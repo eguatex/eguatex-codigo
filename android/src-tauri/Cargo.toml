@@ -1,0 +1,58 @@
+[package]
+name = "eguatex-android"
+version = "1.0.0"
+description = "Editor LaTeX gratuito e offline, feito na Amazônia."
+authors = ["José Paulo de Almeida Junior", "Jéssica Lopes Melo"]
+license = "AGPL-3.0-or-later"
+edition = "2024"
+
+[lib]
+name = "eguatex_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+serde_json = "1"
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-opener = "2"
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+which = "7"
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls", "charset", "http2"] }
+tokio = { version = "1", features = ["full"] }
+keyring = { path = "keyring-arquivo", package = "keyring-arquivo" }
+tauri-plugin-fs = "2"
+dirs = "6"
+zip = { version = "2", default-features = false, features = ["deflate"] }
+sha2 = "0.10"
+base64 = "0.22"
+spellbook = "0.4"
+rand = "0.8"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "gif", "webp", "bmp", "tiff"] }
+
+[dev-dependencies]
+# os testes do cofre (chaves de API) gravam no computador com a cifra de teste do crate
+keyring = { path = "keyring-arquivo", package = "keyring-arquivo", features = ["cifra-de-teste"] }
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
+[target.'cfg(target_os = "android")'.dependencies]
+jni = "0.21"
+ndk-context = "0.1"
+ndk-sys = "0.6"
+
+# Read the optimization guideline for more details: https://tauri.app/concept/size/#cargo-configuration
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+panic = "abort"
+strip = true
+
+[features]
+# so para o APK de teste do emulador: liga a depuracao do WebView (nunca no APK distribuido)
+teste-devtools = ["tauri/devtools"]

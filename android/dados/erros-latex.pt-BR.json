@@ -1,0 +1,533 @@
+[
+  {
+    "padrao": "Undefined control sequence",
+    "regex": "! Undefined control sequence\\.\\s*l\\.(\\d+)\\s+(.+)",
+    "explicacao": "O LaTeX não reconhece o comando '{comando}'. Verifique se escreveu certo ou se falta um \\usepackage.",
+    "causa": "Comando digitado errado ou pacote não carregado.",
+    "sugestao": "Confira a ortografia do comando. Se for de um pacote, adicione \\usepackage{pacote} no preâmbulo.",
+    "exemplo_errado": "\\fraq{1}{2}",
+    "exemplo_correto": "\\frac{1}{2}"
+  },
+  {
+    "padrao": "Missing $ inserted",
+    "regex": "! Missing \\$ inserted\\.\\s*.*?l\\.(\\d+)",
+    "explicacao": "Você usou um símbolo matemático fora do modo matemático. Coloque entre $...$ ou \\(...\\).",
+    "causa": "Símbolo como _, ^, \\alpha fora de $...$.",
+    "sugestao": "Envolva a expressão com $...$ para ativar o modo matemático.",
+    "exemplo_errado": "A formula e a^2 + b^2",
+    "exemplo_correto": "A formula e $a^2 + b^2$"
+  },
+  {
+    "padrao": "LaTeX Error: Environment .* undefined",
+    "regex": "! LaTeX Error: Environment (\\w+) undefined",
+    "explicacao": "O ambiente '{ambiente}' não existe. Verifique o nome ou o pacote necessário.",
+    "causa": "Nome do ambiente digitado errado ou pacote ausente.",
+    "sugestao": "Confira se o nome esta correto e se o pacote foi carregado com \\usepackage.",
+    "exemplo_errado": "\\begin{equacao}",
+    "exemplo_correto": "\\begin{equation}"
+  },
+  {
+    "padrao": "Missing \\begin{document}",
+    "regex": "! LaTeX Error: Missing \\\\begin\\{document\\}",
+    "explicacao": "O LaTeX encontrou texto antes do \\begin{document}. Tudo antes dele deve ser configuração (preâmbulo).",
+    "causa": "Texto ou comando fora do lugar no preâmbulo.",
+    "sugestao": "Mova o texto para depois de \\begin{document} ou corrija o preâmbulo.",
+    "exemplo_errado": "\\documentclass{article}\nOla mundo\n\\begin{document}",
+    "exemplo_correto": "\\documentclass{article}\n\\begin{document}\nOla mundo"
+  },
+  {
+    "padrao": "File not found",
+    "regex": "! LaTeX Error: File `(.+)' not found",
+    "explicacao": "O arquivo '{arquivo}' não foi encontrado. Verifique o nome e o caminho.",
+    "causa": "Arquivo ausente, nome errado ou caminho incorreto.",
+    "sugestao": "Confira se o arquivo existe na pasta do projeto e se o nome esta escrito corretamente.",
+    "exemplo_errado": "\\includegraphics{foto.jpg}",
+    "exemplo_correto": "\\includegraphics{imagem.png}"
+  },
+  {
+    "padrao": "Overfull \\\\hbox",
+    "regex": "Overfull \\\\hbox \\((.+?)pt too wide\\).*? at lines? (\\d+)",
+    "explicacao": "Uma linha ficou larga demais e passou da margem. O LaTeX não conseguiu quebrar a linha de forma bonita.",
+    "causa": "Palavra muito longa, URL sem quebra ou tabela larga.",
+    "sugestao": "Use \\url{} para links, \\hyphenation{} para palavras longas ou ajuste a largura do conteúdo.",
+    "exemplo_errado": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "exemplo_correto": "Use \\sloppy ou quebre o texto manualmente."
+  },
+  {
+    "padrao": "Underfull \\\\hbox",
+    "regex": "Underfull \\\\hbox \\(badness (\\d+)\\).*? at lines? (\\d+)",
+    "explicacao": "Uma linha ficou com espaçamento excessivo entre as palavras.",
+    "causa": "Parágrafo com poucas palavras ou quebra de linha forçada.",
+    "sugestao": "Reescreva o trecho para melhorar o fluxo do texto.",
+    "exemplo_errado": "",
+    "exemplo_correto": ""
+  },
+  {
+    "padrao": "begin ended by end mismatch",
+    "regex": "! LaTeX Error: \\\\begin\\{(\\w+)\\}.*ended by \\\\end\\{(\\w+)\\}",
+    "explicacao": "Você abriu o ambiente '{aberto}' mas fechou com '{fechado}'. Os nomes precisam ser iguais.",
+    "causa": "Nome diferente no \\begin e no \\end.",
+    "sugestao": "Corrija para que \\begin e \\end usem o mesmo nome de ambiente.",
+    "exemplo_errado": "\\begin{itemize}\n...\n\\end{enumerate}",
+    "exemplo_correto": "\\begin{itemize}\n...\n\\end{itemize}"
+  },
+  {
+    "padrao": "Extra alignment tab character",
+    "regex": "! Extra alignment tab character \\\\&\\.\\s*l\\.(\\d+)",
+    "explicacao": "Há mais colunas (separadas por &) do que o declarado na tabela.",
+    "causa": "Número de & maior que o número de colunas definido.",
+    "sugestao": "Confira a declaracao de colunas (ex: {|c|c|c|}) e conte os & em cada linha.",
+    "exemplo_errado": "\\begin{tabular}{cc}\na & b & c\n\\end{tabular}",
+    "exemplo_correto": "\\begin{tabular}{ccc}\na & b & c\n\\end{tabular}"
+  },
+  {
+    "padrao": "Package Error",
+    "regex": "! Package (\\w+) Error: (.+)",
+    "explicacao": "O pacote '{pacote}' reportou um erro: {mensagem}.",
+    "causa": "Uso incorreto de um comando ou opção do pacote.",
+    "sugestao": "Leia a mensagem do erro e consulte a documentação do pacote.",
+    "exemplo_errado": "",
+    "exemplo_correto": ""
+  },
+  {
+    "padrao": "Missing } inserted",
+    "regex": "! Missing \\} inserted\\.\\s*.*?l\\.(\\d+)",
+    "explicacao": "O LaTeX esperava uma chave de fechamento } que não apareceu.",
+    "causa": "Você abriu uma chave { mas esqueceu de fechar com }.",
+    "sugestao": "Conte as chaves de abertura e fechamento no trecho indicado. Cada { precisa de um }.",
+    "exemplo_errado": "\\textbf{texto em negrito",
+    "exemplo_correto": "\\textbf{texto em negrito}"
+  },
+  {
+    "padrao": "Extra }, or forgotten $",
+    "regex": "! Extra \\}, or forgotten \\$\\.\\s*l\\.(\\d+)",
+    "explicacao": "Há uma chave } sobrando ou falta um $ para abrir/fechar modo matemático.",
+    "causa": "Chave de fechamento sem a de abertura correspondente, ou $ faltando.",
+    "sugestao": "Procure uma } a mais ou um $ que ficou sem par na linha indicada.",
+    "exemplo_errado": "O resultado e }5$",
+    "exemplo_correto": "O resultado e $5$"
+  },
+  {
+    "padrao": "Runaway argument",
+    "regex": "Runaway argument\\?\\s*.*?l\\.(\\d+)",
+    "explicacao": "O LaTeX encontrou um argumento que não termina. Provavelmente falta uma chave ou colchete de fechamento.",
+    "causa": "Chave ou colchete de abertura sem o correspondente de fechamento.",
+    "sugestao": "Verifique se toda { tem } e todo [ tem ] no trecho indicado.",
+    "exemplo_errado": "\\begin{figure}[htbp\n\\includegraphics{fig.png}",
+    "exemplo_correto": "\\begin{figure}[htbp]\n\\includegraphics{fig.png}"
+  },
+  {
+    "padrao": "Too many }'s",
+    "regex": "! Too many \\}'s\\.\\s*l\\.(\\d+)",
+    "explicacao": "Há mais chaves de fechamento } do que de abertura {.",
+    "causa": "Uma } extra foi digitada ou uma { foi apagada por engano.",
+    "sugestao": "Remova a } extra ou adicione a { que falta.",
+    "exemplo_errado": "\\section{Título}}",
+    "exemplo_correto": "\\section{Título}"
+  },
+  {
+    "padrao": "Illegal unit of measure (pt inserted)",
+    "regex": "! Illegal unit of measure \\(pt inserted\\)\\.\\s*l\\.(\\d+)",
+    "explicacao": "O LaTeX esperava uma unidade de medida (como cm, mm, pt, in) e não encontrou.",
+    "causa": "Número sem unidade onde o LaTeX exige uma, ou vírgula em vez de ponto decimal.",
+    "sugestao": "Adicione a unidade (ex: 2cm, 10pt) e use ponto decimal em vez de vírgula (ex: 2.5cm).",
+    "exemplo_errado": "\\setlength{\\parindent}{2}",
+    "exemplo_correto": "\\setlength{\\parindent}{2cm}"
+  },
+  {
+    "padrao": "Missing number, treated as zero",
+    "regex": "! Missing number, treated as zero\\.\\s*.*?l\\.(\\d+)",
+    "explicacao": "O LaTeX esperava um número e não encontrou. Tratou como zero.",
+    "causa": "Argumento numerico ausente ou com formato incorreto.",
+    "sugestao": "Verifique se o comando recebeu o número esperado, sem letras ou símbolos estranhos.",
+    "exemplo_errado": "\\hspace{abc}",
+    "exemplo_correto": "\\hspace{1cm}"
+  },
+  {
+    "padrao": "Counter too large",
+    "regex": "! LaTeX Error: Counter too large",
+    "explicacao": "Um contador ultrapassou o limite. Geralmente acontece com notas de rodapé ou listas muito longas usando letras.",
+    "causa": "Mais de 26 itens em listas com letras, ou muitas notas de rodapé com símbolos.",
+    "sugestao": "Mude o estilo do contador ou divida a lista em partes menores.",
+    "exemplo_errado": "\\begin{enumerate}[a)] com mais de 26 itens",
+    "exemplo_correto": "Use \\begin{enumerate}[1)] para listas longas"
+  },
+  {
+    "padrao": "Float(s) lost",
+    "regex": "! LaTeX Error: Float\\(s\\) lost",
+    "explicacao": "Uma figura ou tabela flutuante foi perdida. Isso acontece quando um float aparece dentro de um ambiente que não permite floats.",
+    "causa": "\\begin{figure} ou \\begin{table} dentro de minipage, multicols ou outro ambiente restrito.",
+    "sugestao": "Use a versão com estrela (figure*, table*) ou mova o float para fora do ambiente restrito.",
+    "exemplo_errado": "\\begin{minipage}{0.5\\textwidth}\n\\begin{figure}[h]\n...\n\\end{figure}\n\\end{minipage}",
+    "exemplo_correto": "\\begin{figure}[h]\n...\n\\end{figure}\n\\begin{minipage}{0.5\\textwidth}\n...\n\\end{minipage}"
+  },
+  {
+    "padrao": "Not in outer par mode",
+    "regex": "! LaTeX Error: Not in outer par mode",
+    "explicacao": "Você tentou colocar um float (figura ou tabela) dentro de outro float ou de um ambiente que não permite.",
+    "causa": "Float aninhado dentro de outro float.",
+    "sugestao": "Remova o float interno ou use \\captionof{figure}{...} em vez de \\begin{figure}.",
+    "exemplo_errado": "\\begin{table}\n\\begin{figure}\n...\n\\end{figure}\n\\end{table}",
+    "exemplo_correto": "\\begin{table}\n\\captionof{figure}{Legenda}\n\\end{table}"
+  },
+  {
+    "padrao": "Unknown graphics extension",
+    "regex": "! LaTeX Error: Unknown graphics extension: \\.(\\w+)",
+    "explicacao": "O formato de imagem '.{ext}' não é reconhecido pelo compilador atual.",
+    "causa": "pdfLaTeX aceita PNG, JPG e PDF. Arquivos EPS precisam de epstopdf ou do compilador latex (DVI).",
+    "sugestao": "Converta a imagem para PNG, JPG ou PDF, ou use o pacote epstopdf.",
+    "exemplo_errado": "\\includegraphics{diagrama.eps} com pdflatex",
+    "exemplo_correto": "\\includegraphics{diagrama.pdf}"
+  },
+  {
+    "padrao": "Cannot determine size of graphic",
+    "regex": "! LaTeX Error: Cannot determine size of graphic in (.+)",
+    "explicacao": "O LaTeX não conseguiu descobrir o tamanho da imagem '{arquivo}'.",
+    "causa": "Imagem sem extensão, formato não reconhecido, ou arquivo corrompido.",
+    "sugestao": "Verifique se o arquivo existe e tem extensão correta (.png, .jpg, .pdf). Se necessário, use width ou height no includegraphics.",
+    "exemplo_errado": "\\includegraphics{foto}",
+    "exemplo_correto": "\\includegraphics[width=8cm]{foto.png}"
+  },
+  {
+    "padrao": "Option clash for package",
+    "regex": "! LaTeX Error: Option clash for package (\\w+)",
+    "explicacao": "O pacote '{pacote}' foi carregado duas vezes com opções diferentes.",
+    "causa": "Dois \\usepackage do mesmo pacote com opções conflitantes, ou outro pacote já carregou este com opções diferentes.",
+    "sugestao": "Remova um dos \\usepackage duplicados. Se precisar de opções, coloque todas no primeiro ou use \\PassOptionsToPackage antes do \\documentclass.",
+    "exemplo_errado": "\\usepackage[utf8]{inputenc}\n\\usepackage[latin1]{inputenc}",
+    "exemplo_correto": "\\usepackage[utf8]{inputenc}"
+  },
+  {
+    "padrao": "Command already defined",
+    "regex": "! LaTeX Error: Command \\\\(\\w+) already defined",
+    "explicacao": "O comando '\\{comando}' já existe e você tentou defini-lo novamente.",
+    "causa": "\\newcommand usado para um nome que já existe.",
+    "sugestao": "Use \\renewcommand se quiser substituir, ou escolha outro nome.",
+    "exemplo_errado": "\\newcommand{\\title}{Meu Título}",
+    "exemplo_correto": "\\renewcommand{\\title}{Meu Título}"
+  },
+  {
+    "padrao": "LaTeX Error: Something's wrong--perhaps a missing \\item",
+    "regex": "! LaTeX Error: Something's wrong--perhaps a missing \\\\item",
+    "explicacao": "O LaTeX encontrou texto dentro de uma lista sem o \\item antes.",
+    "causa": "Texto solto dentro de itemize, enumerate ou description sem \\item.",
+    "sugestao": "Adicione \\item antes de cada parágrafo da lista.",
+    "exemplo_errado": "\\begin{itemize}\nPrimeiro item\n\\end{itemize}",
+    "exemplo_correto": "\\begin{itemize}\n\\item Primeiro item\n\\end{itemize}"
+  },
+  {
+    "padrao": "There's no line here to end",
+    "regex": "! LaTeX Error: There's no line here to end",
+    "explicacao": "Você usou \\\\ (quebra de linha) em um lugar onde não há linha para quebrar.",
+    "causa": "\\\\ logo após \\begin{}, após um título de seção ou no início de um ambiente.",
+    "sugestao": "Remova o \\\\ ou use \\vspace{1em} para adicionar espaço vertical.",
+    "exemplo_errado": "\\begin{center}\\\\\nTexto",
+    "exemplo_correto": "\\begin{center}\nTexto"
+  },
+  {
+    "padrao": "\\verb illegal in command argument",
+    "regex": "! LaTeX Error: \\\\verb illegal in command argument",
+    "explicacao": "O comando \\verb não pode ser usado dentro de outro comando.",
+    "causa": "\\verb colocado dentro de \\textbf, \\footnote, \\section ou similar.",
+    "sugestao": "Use \\texttt{} para texto simples em fonte monospacada, ou o pacote fancyvrb para casos mais complexos.",
+    "exemplo_errado": "\\footnote{Use \\verb|código|}",
+    "exemplo_correto": "\\footnote{Use \\texttt{codigo}}"
+  },
+  {
+    "padrao": "Lonely \\item--perhaps a missing list environment",
+    "regex": "! LaTeX Error: Lonely \\\\item--perhaps a missing list environment",
+    "explicacao": "Você usou \\item fora de uma lista (itemize, enumerate ou description).",
+    "causa": "\\item apareceu fora de um ambiente de lista.",
+    "sugestao": "Coloque o \\item dentro de \\begin{itemize}...\\end{itemize} ou ambiente similar.",
+    "exemplo_errado": "\\item Texto solto",
+    "exemplo_correto": "\\begin{itemize}\n\\item Texto solto\n\\end{itemize}"
+  },
+  {
+    "padrao": "No counter defined",
+    "regex": "! LaTeX Error: No counter '(\\w+)' defined",
+    "explicacao": "O contador '{contador}' não existe.",
+    "causa": "Referência a um contador que não foi criado ou nome digitado errado.",
+    "sugestao": "Crie o contador com \\newcounter{nome} ou confira o nome.",
+    "exemplo_errado": "\\setcounter{capitulo}{1}",
+    "exemplo_correto": "\\setcounter{chapter}{1}"
+  },
+  {
+    "padrao": "LaTeX Error: \\caption outside float",
+    "regex": "! LaTeX Error: \\\\caption outside float",
+    "explicacao": "O comando \\caption só pode ser usado dentro de figure ou table.",
+    "causa": "\\caption fora de um ambiente flutuante.",
+    "sugestao": "Coloque o \\caption dentro de \\begin{figure}...\\end{figure} ou \\begin{table}...\\end{table}. Outra opção: use \\captionof do pacote caption.",
+    "exemplo_errado": "\\includegraphics{fig.png}\n\\caption{Legenda}",
+    "exemplo_correto": "\\begin{figure}[h]\n\\includegraphics{fig.png}\n\\caption{Legenda}\n\\end{figure}"
+  },
+  {
+    "padrao": "Misplaced \\noalign",
+    "regex": "! Misplaced \\\\noalign",
+    "explicacao": "O comando \\hline ou \\noalign apareceu em lugar errado na tabela.",
+    "causa": "\\hline depois de texto sem \\\\ antes, ou \\hline repetido sem linha entre eles.",
+    "sugestao": "Coloque \\\\ no final da linha antes do \\hline.",
+    "exemplo_errado": "a & b\n\\hline",
+    "exemplo_correto": "a & b \\\\\n\\hline"
+  },
+  {
+    "padrao": "Misplaced &",
+    "regex": "! Misplaced alignment tab character &",
+    "explicacao": "O caractere & apareceu fora de uma tabela ou alinhamento matemático.",
+    "causa": "& usado em texto normal. Em LaTeX, & e especial e só funciona em tabelas e alinhamentos.",
+    "sugestao": "Use \\& para escrever o símbolo & em texto, ou coloque dentro de um ambiente de tabela.",
+    "exemplo_errado": "Tom & Jerry",
+    "exemplo_correto": "Tom \\& Jerry"
+  },
+  {
+    "padrao": "Improper alphabetic constant",
+    "regex": "! Improper alphabetic constant\\.\\s*l\\.(\\d+)",
+    "explicacao": "O LaTeX encontrou um caractere inválido onde esperava um número ou letra válida.",
+    "causa": "Caractere especial ou acentuado em local inesperado, ou conflito de codificação.",
+    "sugestao": "Verifique se esta usando \\usepackage[utf8]{inputenc} (ou fontenc T1) e se o arquivo esta salvo em UTF-8.",
+    "exemplo_errado": "Arquivo salvo em ANSI sem \\usepackage[utf8]{inputenc}",
+    "exemplo_correto": "Salve o arquivo em UTF-8 e use \\usepackage[utf8]{inputenc}"
+  },
+  {
+    "padrao": "Double superscript",
+    "regex": "! Double superscript\\.\\s*l\\.(\\d+)",
+    "explicacao": "Você colocou dois expoentes (^) seguidos sem agrupar.",
+    "causa": "Dois ^ em sequencia, como x^a^b.",
+    "sugestao": "Agrupe com chaves: x^{ab} ou x^{a^b}.",
+    "exemplo_errado": "$x^2^3$",
+    "exemplo_correto": "$x^{2^3}$"
+  },
+  {
+    "padrao": "Double subscript",
+    "regex": "! Double subscript\\.\\s*l\\.(\\d+)",
+    "explicacao": "Você colocou dois subíndices (_) seguidos sem agrupar.",
+    "causa": "Dois _ em sequencia, como x_a_b.",
+    "sugestao": "Agrupe com chaves: x_{ab} ou x_{a_b}.",
+    "exemplo_errado": "$x_1_2$",
+    "exemplo_correto": "$x_{1_2}$"
+  },
+  {
+    "padrao": "Missing \\endcsname inserted",
+    "regex": "! Missing \\\\endcsname inserted\\.\\s*l\\.(\\d+)",
+    "explicacao": "Há um problema com um nome de comando gerado dinamicamente.",
+    "causa": "Caractere inválido (como número ou sublinhado) em um nome de comando, ou \\csname sem \\endcsname.",
+    "sugestao": "Verifique se não há caracteres especiais no nome do comando ou rótulo.",
+    "exemplo_errado": "\\label{fig:1a}  % em alguns contextos o : causa problemas",
+    "exemplo_correto": "\\label{fig-1a}"
+  },
+  {
+    "padrao": "Paragraph ended before command was complete",
+    "regex": "! Paragraph ended before \\\\(\\w+) was complete",
+    "explicacao": "Você deixou uma linha em branco dentro de um comando que não aceita parágrafos.",
+    "causa": "Linha em branco (parágrafo) dentro de \\title{}, \\section{} ou comando similar.",
+    "sugestao": "Remova a linha em branco dentro do comando ou feche a chave antes dela.",
+    "exemplo_errado": "\\title{Título\n\ndo Trabalho}",
+    "exemplo_correto": "\\title{Título do Trabalho}"
+  },
+  {
+    "padrao": "Overfull \\\\vbox",
+    "regex": "Overfull \\\\vbox \\((.+?)pt too high\\).*",
+    "explicacao": "O conteúdo de uma página ficou alto demais e ultrapassou a margem inferior.",
+    "causa": "Figura ou tabela grande demais, ou muitas notas de rodapé na mesma página.",
+    "sugestao": "Reduza o tamanho da figura, divida o conteúdo ou use \\enlargethispage{1cm} como último recurso.",
+    "exemplo_errado": "",
+    "exemplo_correto": ""
+  },
+  {
+    "padrao": "No room for a new register",
+    "regex": "! No room for a new \\\\(\\w+)",
+    "explicacao": "O LaTeX esgotou o limite de registradores internos (contadores, dimensoes, etc.).",
+    "causa": "Muitos pacotes carregados que criam registradores. Limite classico do TeX e 256.",
+    "sugestao": "Adicione \\usepackage{etex} no preâmbulo (antes dos outros pacotes) ou remova pacotes desnecessarios.",
+    "exemplo_errado": "Muitos pacotes sem etex",
+    "exemplo_correto": "\\usepackage{etex} antes dos demais pacotes"
+  },
+  {
+    "padrao": "LaTeX Error: Two \\documentclass commands",
+    "regex": "! LaTeX Error: Two \\\\documentclass",
+    "explicacao": "O arquivo tem dois comandos \\documentclass. Só pode haver um.",
+    "causa": "\\documentclass duplicado, talvez por copiar e colar de outro arquivo.",
+    "sugestao": "Remova o \\documentclass extra. Mantenha apenas o primeiro.",
+    "exemplo_errado": "\\documentclass{article}\n\\documentclass{report}",
+    "exemplo_correto": "\\documentclass{article}"
+  },
+  {
+    "padrao": "LaTeX Error: Can be used only in preamble",
+    "regex": "! LaTeX Error: Can be used only in preamble",
+    "explicacao": "Você usou um comando que só funciona no preâmbulo (antes de \\begin{document}) dentro do documento.",
+    "causa": "\\usepackage, \\documentclass ou similar usado depois de \\begin{document}.",
+    "sugestao": "Mova o comando para antes de \\begin{document}.",
+    "exemplo_errado": "\\begin{document}\n\\usepackage{amsmath}",
+    "exemplo_correto": "\\usepackage{amsmath}\n\\begin{document}"
+  },
+  {
+    "padrao": "Citation undefined",
+    "regex": "LaTeX Warning: Citation `(.+)' on page \\d+ undefined",
+    "explicacao": "A referência '{chave}' não foi encontrada na bibliografia.",
+    "causa": "Chave do \\cite não existe no .bib, ou BibTeX/Biber não foi rodado.",
+    "sugestao": "Confira se a chave existe no arquivo .bib. Compile na ordem: pdflatex, bibtex (ou biber), pdflatex, pdflatex.",
+    "exemplo_errado": "\\cite{silvaa2024}  % chave com erro de digitacao",
+    "exemplo_correto": "\\cite{silva2024}"
+  },
+  {
+    "padrao": "Reference undefined",
+    "regex": "LaTeX Warning: Reference `(.+)' on page \\d+ undefined",
+    "explicacao": "O rótulo '{rotulo}' referenciado por \\ref não existe.",
+    "causa": "\\label ausente, apagado ou com nome diferente do \\ref.",
+    "sugestao": "Verifique se o \\label existe e tem exatamente o mesmo nome usado no \\ref. Compile duas vezes para atualizar as referências.",
+    "exemplo_errado": "Ver Figura \\ref{fig:resultados}  % sem \\label correspondente",
+    "exemplo_correto": "\\begin{figure}\n...\n\\caption{Resultado}\n\\label{fig:resultados}\n\\end{figure}"
+  },
+  {
+    "padrao": "Label `.+' multiply defined",
+    "regex": "LaTeX Warning: Label `(.+)' multiply defined",
+    "explicacao": "O rótulo '{rotulo}' foi definido mais de uma vez. O LaTeX não sabe qual usar.",
+    "causa": "Dois ou mais \\label com o mesmo nome.",
+    "sugestao": "Renomeie um dos rótulos para que cada um tenha um nome único.",
+    "exemplo_errado": "\\label{fig:1}\n...\n\\label{fig:1}",
+    "exemplo_correto": "\\label{fig:grafico}\n...\n\\label{fig:tabela}"
+  },
+  {
+    "padrao": "Rerun to get cross-references right",
+    "regex": "LaTeX Warning: .* Rerun to get cross-references right",
+    "explicacao": "As referências cruzadas (\\ref, \\cite, sumário) ainda não estão atualizadas.",
+    "causa": "O documento precisa ser compilado mais uma vez para resolver todas as referências.",
+    "sugestao": "Compile novamente. Em geral, duas compilações seguidas resolvem. Com bibliografia, a ordem e: pdflatex, bibtex, pdflatex, pdflatex.",
+    "exemplo_errado": "",
+    "exemplo_correto": ""
+  },
+  {
+    "padrao": "Font shape not available",
+    "regex": "LaTeX Font Warning: Font shape `(.+)' (undefined|not available)",
+    "explicacao": "A combinação de fonte, peso e estilo pedida não está disponível.",
+    "causa": "A fonte instalada não tem negrito, itálico ou outra variante que você pediu.",
+    "sugestao": "O LaTeX substitui por outra variante automaticamente. Se quiser corrigir, use uma fonte que tenha a variante desejada.",
+    "exemplo_errado": "",
+    "exemplo_correto": ""
+  },
+  {
+    "padrao": "Missing character: There is no",
+    "regex": "Missing character: There is no (.+?) in font",
+    "explicacao": "A fonte atual não tem o caractere que você tentou usar.",
+    "causa": "Caractere especial, emoji ou letra acentuada não suportada pela fonte.",
+    "sugestao": "Troque a fonte (\\usepackage{fontenc} com T1) ou use XeLaTeX/LuaLaTeX com fontes do sistema.",
+    "exemplo_errado": "Usar caractere especial com fonte padrão do pdfLaTeX",
+    "exemplo_correto": "\\usepackage[T1]{fontenc} ou compilar com XeLaTeX"
+  },
+  {
+    "padrao": "Dimension too large",
+    "regex": "! Dimension too large\\.\\s*l\\.(\\d+)",
+    "explicacao": "Você especificou uma medida grande demais para o LaTeX processar.",
+    "causa": "Valor de dimensao absurdo (milhares de cm) ou calculo que estourou.",
+    "sugestao": "Verifique as dimensoes no trecho indicado. O limite do TeX e cerca de 575cm.",
+    "exemplo_errado": "\\hspace{9999cm}",
+    "exemplo_correto": "\\hspace{2cm}"
+  },
+  {
+    "padrao": "Undefined color",
+    "regex": "! Package (xcolor|color) Error: Undefined color `(.+)'",
+    "explicacao": "A cor '{cor}' não está definida.",
+    "causa": "Nome de cor errado ou falta carregar o pacote xcolor com a opção de nomes.",
+    "sugestao": "Use \\usepackage[dvipsnames]{xcolor} para cores com nome, ou defina a cor com \\definecolor.",
+    "exemplo_errado": "\\textcolor{verdeescuro}{texto}",
+    "exemplo_correto": "\\definecolor{verdeescuro}{RGB}{0,100,0}\n\\textcolor{verdeescuro}{texto}"
+  },
+  {
+    "padrao": "Unknown option",
+    "regex": "! LaTeX Error: Unknown option `(.+)' for package `(.+)'",
+    "explicacao": "A opção '{opcao}' não existe no pacote '{pacote}'.",
+    "causa": "Opção digitada errada ou incompatível com a versão do pacote.",
+    "sugestao": "Confira as opções validas na documentação do pacote.",
+    "exemplo_errado": "\\usepackage[brasilian]{babel}",
+    "exemplo_correto": "\\usepackage[brazilian]{babel}"
+  },
+  {
+    "padrao": "Encoding scheme not found",
+    "regex": "! LaTeX Error: Encoding scheme `(.+)' unknown",
+    "explicacao": "A codificação de fonte '{codificacao}' não é reconhecida.",
+    "causa": "Opção errada no \\usepackage[...]{fontenc} ou inputenc.",
+    "sugestao": "Use T1 para fontenc e utf8 para inputenc.",
+    "exemplo_errado": "\\usepackage[UTF8]{fontenc}",
+    "exemplo_correto": "\\usepackage[T1]{fontenc}"
+  },
+  {
+    "padrao": "I found no \\bibstyle command",
+    "regex": "I found no \\\\bibstyle command",
+    "explicacao": "O BibTeX não encontrou o comando \\bibliographystyle no seu documento.",
+    "causa": "Falta \\bibliographystyle{estilo} antes de \\bibliography{arquivo}.",
+    "sugestao": "Adicione \\bibliographystyle{abntex2-alf} (ou outro estilo) antes de \\bibliography.",
+    "exemplo_errado": "\\bibliography{referencias}",
+    "exemplo_correto": "\\bibliographystyle{abntex2-alf}\n\\bibliography{referencias}"
+  },
+  {
+    "padrao": "I found no \\citation commands",
+    "regex": "I found no \\\\citation commands",
+    "explicacao": "O BibTeX não encontrou nenhum \\cite no documento.",
+    "causa": "Nenhuma citação no texto, ou o .aux esta desatualizado.",
+    "sugestao": "Adicione pelo menos um \\cite{chave} no texto e recompile com pdflatex antes de rodar o BibTeX.",
+    "exemplo_errado": "Documento sem nenhum \\cite",
+    "exemplo_correto": "Conforme \\cite{silva2024}, o resultado..."
+  },
+  {
+    "padrao": "I couldn't open database file",
+    "regex": "I couldn't open database file (.+\\.bib)",
+    "explicacao": "O BibTeX não encontrou o arquivo de bibliografia '{arquivo}'.",
+    "causa": "Nome errado em \\bibliography{}, arquivo .bib ausente ou em pasta errada.",
+    "sugestao": "Confira se o arquivo .bib existe na mesma pasta e se o nome esta correto (sem extensão .bib no comando).",
+    "exemplo_errado": "\\bibliography{refs.bib}",
+    "exemplo_correto": "\\bibliography{refs}"
+  },
+  {
+    "padrao": "I was expecting a comma or a right curly brace (bibtex)",
+    "regex": "I was expecting a `,' or a `\\}'",
+    "explicacao": "O BibTeX encontrou um erro de sintaxe no arquivo .bib.",
+    "causa": "Vírgula faltando entre campos, chave sem fechar ou aspas desbalanceadas no .bib.",
+    "sugestao": "Verifique a entrada do .bib indicada. Cada campo termina com vírgula, exceto o último antes da }.",
+    "exemplo_errado": "@article{silva2024\n  title = {Título}\n  author = {Silva}  % falta vírgula\n}",
+    "exemplo_correto": "@article{silva2024,\n  title = {Título},\n  author = {Silva}\n}"
+  },
+  {
+    "padrao": "Biber ERROR - Cannot find .bib file",
+    "regex": "ERROR - Cannot find '?(.+\\.bib)'?",
+    "explicacao": "O Biber não encontrou o arquivo de bibliografia '{arquivo}'.",
+    "causa": "Nome errado em \\addbibresource{} ou arquivo .bib ausente.",
+    "sugestao": "Confira se o arquivo .bib existe e se o nome em \\addbibresource{} esta correto (com extensão .bib).",
+    "exemplo_errado": "\\addbibresource{refs}",
+    "exemplo_correto": "\\addbibresource{refs.bib}"
+  },
+  {
+    "padrao": "Biber ERROR - BibTeX subsystem",
+    "regex": "ERROR - BibTeX subsystem: (.+)",
+    "explicacao": "O Biber encontrou um erro ao processar o arquivo .bib: {mensagem}.",
+    "causa": "Sintaxe inválida no .bib, caractere especial sem escape ou campo malformado.",
+    "sugestao": "Abra o arquivo .bib e procure o erro na linha indicada. Caracteres como % e & precisam de escape.",
+    "exemplo_errado": "title = {100% dos casos}",
+    "exemplo_correto": "title = {100\\% dos casos}"
+  },
+  {
+    "padrao": "Emergency stop",
+    "regex": "!  ==> Fatal error occurred, no output PDF file produced!",
+    "explicacao": "Erro fatal: o LaTeX parou e não gerou o PDF.",
+    "causa": "Um erro grave interrompeu a compilação. Veja a mensagem de erro acima desta linha no log.",
+    "sugestao": "Leia o primeiro erro (!) que aparece no log. Corrija-o e compile novamente.",
+    "exemplo_errado": "",
+    "exemplo_correto": ""
+  },
+  {
+    "padrao": "TeX capacity exceeded",
+    "regex": "! TeX capacity exceeded, sorry \\[(.+)\\]",
+    "explicacao": "O LaTeX ficou sem memória interna ({recurso} esgotado).",
+    "causa": "Documento muito complexo, loop infinito em macros, ou imagem enorme.",
+    "sugestao": "Procure por definições recursivas ou imagens muito grandes. Se necessário, aumente a memória nas configurações do TeX (texmf.cnf).",
+    "exemplo_errado": "\\newcommand{\\loop}{\\loop}  % recursao infinita",
+    "exemplo_correto": "Evite macros que chamam a si mesmas."
+  },
+  {
+    "padrao": "XeTeX required for fontspec",
+    "regex": "! Fatal fontspec error: \"cannot-use-pdftex\"",
+    "explicacao": "O pacote fontspec só funciona com XeLaTeX ou LuaLaTeX, não com pdfLaTeX.",
+    "causa": "Você carregou fontspec mas esta compilando com pdfLaTeX.",
+    "sugestao": "Troque o compilador para XeLaTeX ou LuaLaTeX, ou remova o \\usepackage{fontspec}.",
+    "exemplo_errado": "pdflatex documento.tex  % com \\usepackage{fontspec}",
+    "exemplo_correto": "xelatex documento.tex"
+  }
+]

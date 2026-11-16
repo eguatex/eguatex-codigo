@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "modelo.schema.json",
+  "title": "Modelo LaTeX",
+  "type": "object",
+  "required": ["id", "nome", "descricao", "motor", "arquivos", "tectonic_compativel", "embutido", "tags"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "nome": { "type": "string" },
+    "descricao": { "type": "string" },
+    "motor": { "type": "string", "enum": ["pdflatex", "xelatex", "lualatex"] },
+    "tectonic_compativel": { "type": "boolean" },
+    "embutido": { "type": "boolean" },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "arquivos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["caminho", "conteudo"],
+        "properties": {
+          "caminho": { "type": "string" },
+          "conteudo": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

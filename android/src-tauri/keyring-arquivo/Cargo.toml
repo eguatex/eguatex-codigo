@@ -1,0 +1,18 @@
+[package]
+name = "keyring-arquivo"
+version = "0.1.0"
+edition = "2024"
+license = "AGPL-3.0-or-later"
+description = "Cofre de credenciais em arquivo para o EguaTex Android, com a mesma interface do crate keyring"
+
+[lib]
+name = "keyring"
+path = "src/lib.rs"
+
+[features]
+# so para os testes do app no computador (dev-dependencies do eguatex-android): cifra fraca de teste
+cifra-de-teste = []
+
+[target.'cfg(target_os = "android")'.dependencies]
+jni = "0.21"
+ndk-context = "0.1"

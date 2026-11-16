@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "comandos-latex.schema.json",
+  "title": "Comandos LaTeX",
+  "type": "object",
+  "required": ["comandos"],
+  "properties": {
+    "comandos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["comando", "categoria", "explicacao", "exemplo"],
+        "properties": {
+          "comando": { "type": "string", "pattern": "^\\\\[a-zA-Z]+" },
+          "categoria": { "type": "string" },
+          "explicacao": { "type": "string" },
+          "exemplo": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,30 @@
+% EguaTex: variantes "e" do expl3 que o LaTeX do motor do celular (busytex, expl3 de 2023-02)
+% ainda nao tem e que classes novas usam (rpgtex: \tl_set:Ne, \tl_if_blank:eF...). Cada
+% variante so e criada se faltar; num LaTeX novo este arquivo nao muda nada.
+\RequirePackage{expl3}
+\ExplSyntaxOn
+\cs_if_exist:NF \tl_set:Ne { \cs_generate_variant:Nn \tl_set:Nn { Ne , ce } }
+\cs_if_exist:NF \tl_gset:Ne { \cs_generate_variant:Nn \tl_gset:Nn { Ne , ce } }
+\cs_if_exist:NF \tl_put_right:Ne { \cs_generate_variant:Nn \tl_put_right:Nn { Ne } }
+\cs_if_exist:NF \tl_put_left:Ne { \cs_generate_variant:Nn \tl_put_left:Nn { Ne } }
+\cs_if_exist:NF \seq_put_right:Ne { \cs_generate_variant:Nn \seq_put_right:Nn { Ne } }
+\cs_if_exist:NF \seq_gput_right:Ne { \cs_generate_variant:Nn \seq_gput_right:Nn { Ne } }
+\cs_if_exist:NF \prop_item:Ne { \cs_generate_variant:Nn \prop_item:Nn { Ne } }
+\cs_if_exist:NF \clist_set:Ne { \cs_generate_variant:Nn \clist_set:Nn { Ne } }
+\cs_if_exist:NF \str_set:Ne { \cs_generate_variant:Nn \str_set:Nn { Ne } }
+\cs_if_exist:NF \str_case:en { \cs_generate_variant:Nn \str_case:nn { e } }
+\cs_if_exist:NF \str_case:enTF { \cs_generate_variant:Nn \str_case:nnTF { e } \cs_generate_variant:Nn \str_case:nnT { e } \cs_generate_variant:Nn \str_case:nnF { e } }
+\cs_if_exist:NF \msg_error:nne { \cs_generate_variant:Nn \msg_error:nnn { nne } }
+\cs_if_exist:NF \msg_error:nneeee { \cs_generate_variant:Nn \msg_error:nnnnnn { nneeee } }
+\cs_if_exist:NF \tl_if_blank:eTF { \prg_generate_conditional_variant:Nnn \tl_if_blank:n { e } { T , F , TF } }
+\cs_if_exist:NF \tl_if_empty:eTF { \prg_generate_conditional_variant:Nnn \tl_if_empty:n { e } { T , F , TF } }
+\cs_if_exist:NF \str_compare:eNeTF { \prg_generate_conditional_variant:Nnn \str_compare:nNn { eNe } { T , F , TF } }
+\cs_if_exist:NF \str_if_eq:eeTF { \prg_generate_conditional_variant:Nnn \str_if_eq:nn { ee } { T , F , TF } }
+\cs_if_exist:NF \exp_args:Ne { \cs_new:Npn \exp_args:Ne #1#2 { \tex_expanded:D { \exp_not:N #1 {#2} } } }
+\cs_if_exist:NF \exp_args:Nee { \cs_new:Npn \exp_args:Nee #1#2#3 { \tex_expanded:D { \exp_not:N #1 {#2} {#3} } } }
+\cs_if_exist:NF \exp_args:NNee { \cs_new:Npn \exp_args:NNee #1#2#3#4 { \tex_expanded:D { \exp_not:N #1 \exp_not:N #2 {#3} {#4} } } }
+\cs_if_exist:NF \regex_match:nVF { \prg_generate_conditional_variant:Nnn \regex_match:nn { nV } { T , F , TF } }
+% \text_titlecase_all:n veio no expl3 de 2023-10 (rpgtex); aqui fica so a primeira letra maiuscula
+\cs_if_exist:NF \text_titlecase_all:n { \cs_new:Npn \text_titlecase_all:n #1 { \text_titlecase_first:n {#1} } }
+\ExplSyntaxOff
+\endinput

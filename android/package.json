@@ -1,0 +1,50 @@
+{
+  "name": "eguatex",
+  "version": "1.0.0",
+  "description": "Editor LaTeX gratuito e offline, feito na Amazônia.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "prebuild": "node scripts/verificar-identidade.mjs",
+    "build": "vite build",
+    "verificar-identidade": "node scripts/verificar-identidade.mjs",
+    "test": "vitest run",
+    "preview": "vite preview",
+    "prepare": "svelte-kit sync || echo ''",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "tauri": "tauri"
+  },
+  "license": "AGPL-3.0-or-later",
+  "dependencies": {
+    "@codemirror/autocomplete": "^6.20.4",
+    "@codemirror/commands": "^6.11.1",
+    "@codemirror/lang-javascript": "^6.2.5",
+    "@codemirror/language": "^6.13.1",
+    "@codemirror/lint": "^6.9.7",
+    "@codemirror/search": "^6.7.2",
+    "@codemirror/state": "^6.7.6",
+    "@codemirror/view": "^6.43.15",
+    "@lucide/svelte": "^1.61.0",
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-dialog": "^2.8.3",
+    "@tauri-apps/plugin-opener": "^2",
+    "@types/qrcode": "^1.5.6",
+    "codemirror": "^6.0.2",
+    "katex": "^0.19.1",
+    "pdfjs-dist": "^4.10.38",
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^3.0.10",
+    "@sveltejs/kit": "^2.65.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@tauri-apps/cli": "^2",
+    "sharp": "^0.35.5",
+    "svelte": "^5.56.3",
+    "svelte-check": "^4.6.0",
+    "typescript": "~6.0.3",
+    "vite": "^8.0.16",
+    "vitest": "^5.1.0"
+  }
+}

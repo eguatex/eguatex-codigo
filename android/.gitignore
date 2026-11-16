@@ -1,0 +1,24 @@
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/package
+.env
+.env.*
+!.env.example
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# Android: gerados pelo scripts/gerar-apk.sh
+src-tauri/gen/android/app/src/main/jniLibs/
+src-tauri/gen/android/app/src/main/assets/busytex/
+scripts/*.log
+src-tauri/google-oauth.json
+
+# Chave de assinatura: nunca no git (DEPENDENCIAS.md)
+*.jks
+keystore.properties
+
+# arquivos de trabalho local (fora do repositorio desde 14/11/2026)
+/compile_models.mjs
+/compile_models_twice.mjs
