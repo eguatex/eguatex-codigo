@@ -1,0 +1,26 @@
+name: Erro no app
+description: Algo no ÉguaTex não funciona como deveria
+labels: ["erro"]
+body:
+  - type: dropdown
+    id: sistema
+    attributes:
+      label: Sistema
+      options: ["Windows", "Android"]
+    validations:
+      required: true
+  - type: input
+    id: versao
+    attributes:
+      label: Versão do ÉguaTex
+      description: Aparece em Sobre, dentro do app.
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: textarea
+    id: passos
+    attributes:
+      label: O que aconteceu
+      description: Conte os passos para o erro acontecer, o que você esperava e o que apareceu. Se puder, cole uma imagem da tela. Não inclua dados pessoais nem trechos sigilosos dos seus documentos.
+    validations:
+      required: true
