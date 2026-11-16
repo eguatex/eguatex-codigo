@@ -1,0 +1,19 @@
+{
+  "id": "artigo-simples",
+  "nome": "Artigo simples",
+  "descricao": "Modelo basico para artigos academicos com secoes, referencias e abstract.",
+  "motor": "pdflatex",
+  "tectonic_compativel": true,
+  "embutido": true,
+  "tags": ["academico", "artigo", "basico"],
+  "arquivos": [
+    {
+      "caminho": "main.tex",
+      "conteudo": "\\documentclass[12pt,a4paper]{article}\n\\usepackage[utf8]{inputenc}\n\\usepackage[brazil]{babel}\n\\usepackage{amsmath,amssymb}\n\\usepackage{graphicx}\n\\usepackage[colorlinks=true]{hyperref}\n\n\\title{Titulo do Artigo}\n\\author{Seu Nome}\n\\date{\\today}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\nResumo do artigo.\n\\end{abstract}\n\n\\section{Introducao}\nTexto da introducao.\n\n\\section{Metodologia}\nDescricao da metodologia.\n\n\\section{Resultados}\nResultados obtidos.\n\n\\section{Conclusao}\nConclusoes do trabalho.\n\n\\bibliographystyle{abntex2-alf}\n\\bibliography{referencias}\n\n\\end{document}"
+    },
+    {
+      "caminho": "referencias.bib",
+      "conteudo": "@article{exemplo2024,\n  author  = {Silva, Joao},\n  title   = {Um exemplo de referencia},\n  journal = {Revista Brasileira de Exemplo},\n  year    = {2024},\n  volume  = {1},\n  pages   = {1--10}\n}"
+    }
+  ]
+}

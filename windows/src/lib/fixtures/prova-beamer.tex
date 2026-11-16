@@ -1,0 +1,24 @@
+\documentclass{beamer}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{tikz}
+\title{Prova do beamer}
+\author{Carla Lima}
+\begin{document}
+\begin{frame}\titlepage\end{frame}
+\begin{frame}{Primeiro quadro}
+Texto do primeiro quadro com uma lista.
+\begin{itemize}\item ponto alfa\item ponto beta\end{itemize}
+\end{frame}
+\begin{frame}{Segundo quadro}
+\begin{block}{Bloco colorido}Conteudo dentro do bloco azul.\end{block}
+\end{frame}
+\begin{frame}{Terceiro quadro}
+\begin{center}\begin{tikzpicture}\draw[fill=green!30] (0,0) rectangle (3,1.5);\end{tikzpicture}\end{center}
+\end{frame}
+\begin{frame}{Quarto quadro}
+\[ E = mc^2 \]
+Equacao da energia.
+\end{frame}
+\end{document}

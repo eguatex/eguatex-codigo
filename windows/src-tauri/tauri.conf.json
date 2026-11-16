@@ -1,0 +1,65 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "ÉguaTex",
+  "version": "1.0.0+44",
+  "identifier": "br.ufpa.eguatex",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../build"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "ÉguaTex",
+        "width": 1280,
+        "height": 800,
+        "minWidth": 800,
+        "minHeight": 600
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval' blob: busytex: http://busytex.localhost; worker-src 'self' blob:; connect-src 'self' ipc: http://ipc.localhost busytex: http://busytex.localhost blob: data:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.googleusercontent.com; font-src 'self' data:; frame-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'none'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "windows": {
+      "nsis": {
+        "languages": [
+          "PortugueseBR"
+        ],
+        "installerHooks": "./windows/hooks.nsh",
+        "installerIcon": "windows/instalador.ico",
+        "headerImage": "windows/cabecalho.bmp",
+        "sidebarImage": "windows/lateral.bmp"
+      },
+      "wix": {
+        "language": "pt-BR",
+        "upgradeCode": "9e2f3b4e-bdc8-5acd-a060-153608f3b018"
+      }
+    },
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "resources": {
+      "../../eguatex-tinytex/padrao/TinyTeX/": "tex/TinyTeX/",
+      "../../eguatex-pandoc/pandoc-3.13/pandoc.exe": "pandoc/pandoc.exe",
+      "../../eguatex-pandoc/pandoc-3.13/COPYRIGHT.txt": "pandoc/COPYRIGHT.txt",
+      "dicionarios/LICENCA-VERO.txt": "dicionarios/LICENCA-VERO.txt",
+      "dicionarios/LICENCA-EN-US.txt": "dicionarios/LICENCA-EN-US.txt"
+    },
+    "publisher": "José Paulo de Almeida Junior e Jéssica Lopes Melo",
+    "copyright": "© 2026 José Paulo de Almeida Junior e Jéssica Lopes Melo. Licença AGPL-3.0-or-later.",
+    "category": "Productivity",
+    "shortDescription": "Editor LaTeX gratuito e offline, feito na Amazônia.",
+    "longDescription": "ÉguaTex. Editor LaTeX gratuito e offline, feito na Amazônia. Escreva LaTeX de qualquer lugar, mesmo sem internet.",
+    "homepage": "https://www.eguatex.com.br"
+  }
+}

@@ -1,0 +1,1067 @@
+{
+  "categorias": [
+    {
+      "id": "texto",
+      "botoes": [
+        {
+          "rotulo": "B",
+          "comando": "\\textbf{}"
+        },
+        {
+          "rotulo": "I",
+          "comando": "\\textit{}"
+        },
+        {
+          "rotulo": "U",
+          "comando": "\\underline{}"
+        },
+        {
+          "rotulo": "ênfase",
+          "comando": "\\emph{}"
+        },
+        {
+          "rotulo": "tt",
+          "comando": "\\texttt{}"
+        },
+        {
+          "rotulo": "Versalete",
+          "comando": "\\textsc{}"
+        },
+        {
+          "rotulo": "xⁿ",
+          "comando": "\\textsuperscript{}"
+        },
+        {
+          "rotulo": "minúsculo",
+          "comando": "\\tiny"
+        },
+        {
+          "rotulo": "pequeno",
+          "comando": "\\small"
+        },
+        {
+          "rotulo": "grande",
+          "comando": "\\large"
+        },
+        {
+          "rotulo": "enorme",
+          "comando": "\\huge"
+        },
+        {
+          "rotulo": "centralizar",
+          "comando": "\\centering"
+        },
+        {
+          "rotulo": "à esquerda",
+          "comando": "\\raggedright"
+        },
+        {
+          "rotulo": "sem recuo",
+          "comando": "\\noindent"
+        },
+        {
+          "rotulo": "quebra de linha",
+          "comando": "\\linebreak"
+        },
+        {
+          "rotulo": "quebra de página",
+          "comando": "\\newpage"
+        },
+        {
+          "rotulo": "fechar página",
+          "comando": "\\clearpage"
+        },
+        {
+          "rotulo": "espaço horizontal",
+          "comando": "\\hspace{}"
+        },
+        {
+          "rotulo": "espaço vertical",
+          "comando": "\\vspace{}"
+        },
+        {
+          "rotulo": "endereço",
+          "comando": "\\url{}"
+        },
+        {
+          "rotulo": "link com texto",
+          "comando": "\\href{}{}"
+        },
+        {
+          "rotulo": "data de hoje",
+          "comando": "\\today"
+        }
+      ]
+    },
+    {
+      "id": "matematica",
+      "botoes": [
+        {
+          "rotulo": "$x$",
+          "comando": "\\(",
+          "acao": "matematica-linha"
+        },
+        {
+          "rotulo": "\\[ \\]",
+          "comando": "\\[",
+          "acao": "matematica-destaque"
+        },
+        {
+          "rotulo": "( )",
+          "comando": "\\left( {} \\right)"
+        },
+        {
+          "rotulo": "[ ]",
+          "comando": "\\left[ {} \\right]"
+        },
+        {
+          "rotulo": "{ }",
+          "comando": "\\left\\{ {} \\right\\}"
+        },
+        {
+          "rotulo": "⟨ ⟩",
+          "comando": "\\left\\langle {} \\right\\rangle"
+        },
+        {
+          "rotulo": "| |",
+          "comando": "\\left\\lvert {} \\right\\rvert"
+        },
+        {
+          "rotulo": "‖ ‖",
+          "comando": "\\left\\lVert {} \\right\\rVert"
+        },
+        {
+          "rotulo": "⌊ ⌋",
+          "comando": "\\left\\lfloor {} \\right\\rfloor"
+        },
+        {
+          "rotulo": "⌈ ⌉",
+          "comando": "\\left\\lceil {} \\right\\rceil"
+        },
+        {
+          "rotulo": "a/b",
+          "comando": "\\frac{}{}",
+          "acao": "ambiente-fracao"
+        },
+        {
+          "rotulo": "a/b grande",
+          "comando": "\\dfrac{}{}"
+        },
+        {
+          "rotulo": "√",
+          "comando": "\\sqrt{}"
+        },
+        {
+          "rotulo": "ⁿ√",
+          "comando": "\\sqrt[n]{}"
+        },
+        {
+          "rotulo": "C(n,k)",
+          "comando": "\\binom{}{}"
+        },
+        {
+          "rotulo": "∑",
+          "comando": "\\sum_{i=1}^{n}"
+        },
+        {
+          "rotulo": "∏",
+          "comando": "\\prod_{i=1}^{n}"
+        },
+        {
+          "rotulo": "∐",
+          "comando": "\\coprod_{i=1}^{n}"
+        },
+        {
+          "rotulo": "⋃",
+          "comando": "\\bigcup_{i=1}^{n}"
+        },
+        {
+          "rotulo": "⋂",
+          "comando": "\\bigcap_{i=1}^{n}"
+        },
+        {
+          "rotulo": "⨁",
+          "comando": "\\bigoplus_{i=1}^{n}"
+        },
+        {
+          "rotulo": "∫",
+          "comando": "\\int_{a}^{b}"
+        },
+        {
+          "rotulo": "∫ f dx",
+          "comando": "\\int_{a}^{b} f(x) \\, \\mathrm{d}x",
+          "acao": "ambiente-integral"
+        },
+        {
+          "rotulo": "∬",
+          "comando": "\\iint"
+        },
+        {
+          "rotulo": "∭",
+          "comando": "\\iiint"
+        },
+        {
+          "rotulo": "∮",
+          "comando": "\\oint"
+        },
+        {
+          "rotulo": "lim",
+          "comando": "\\lim_{x \\to a}"
+        },
+        {
+          "rotulo": "limsup",
+          "comando": "\\limsup_{n \\to \\infty}"
+        },
+        {
+          "rotulo": "liminf",
+          "comando": "\\liminf_{n \\to \\infty}"
+        },
+        {
+          "rotulo": "max",
+          "comando": "\\max_{x}"
+        },
+        {
+          "rotulo": "min",
+          "comando": "\\min_{x}"
+        },
+        {
+          "rotulo": "sup",
+          "comando": "\\sup_{x}"
+        },
+        {
+          "rotulo": "inf",
+          "comando": "\\inf_{x}"
+        },
+        {
+          "rotulo": "∂",
+          "comando": "\\partial"
+        },
+        {
+          "rotulo": "∇",
+          "comando": "\\nabla"
+        },
+        {
+          "rotulo": "∞",
+          "comando": "\\infty"
+        },
+        {
+          "rotulo": "≤",
+          "comando": "\\leq"
+        },
+        {
+          "rotulo": "≥",
+          "comando": "\\geq"
+        },
+        {
+          "rotulo": "≠",
+          "comando": "\\neq"
+        },
+        {
+          "rotulo": "≈",
+          "comando": "\\approx"
+        },
+        {
+          "rotulo": "≡",
+          "comando": "\\equiv"
+        },
+        {
+          "rotulo": "∝",
+          "comando": "\\propto"
+        },
+        {
+          "rotulo": "±",
+          "comando": "\\pm"
+        },
+        {
+          "rotulo": "×",
+          "comando": "\\times"
+        },
+        {
+          "rotulo": "⋅",
+          "comando": "\\cdot"
+        },
+        {
+          "rotulo": "→",
+          "comando": "\\rightarrow"
+        },
+        {
+          "rotulo": "⇒",
+          "comando": "\\Rightarrow"
+        },
+        {
+          "rotulo": "⇔",
+          "comando": "\\Leftrightarrow"
+        },
+        {
+          "comando": "\\sin"
+        },
+        {
+          "comando": "\\cos"
+        },
+        {
+          "comando": "\\tan"
+        },
+        {
+          "comando": "\\arcsin"
+        },
+        {
+          "comando": "\\arccos"
+        },
+        {
+          "comando": "\\arctan"
+        },
+        {
+          "comando": "\\sinh"
+        },
+        {
+          "comando": "\\cosh"
+        },
+        {
+          "comando": "\\tanh"
+        },
+        {
+          "comando": "\\ln"
+        },
+        {
+          "comando": "\\log"
+        },
+        {
+          "comando": "\\exp"
+        },
+        {
+          "comando": "\\det"
+        },
+        {
+          "comando": "\\Re"
+        },
+        {
+          "comando": "\\Im"
+        },
+        {
+          "rotulo": "v⃗",
+          "comando": "\\vec{}"
+        },
+        {
+          "rotulo": "â",
+          "comando": "\\hat{}"
+        },
+        {
+          "rotulo": "ȧ",
+          "comando": "\\dot{}"
+        },
+        {
+          "rotulo": "ä",
+          "comando": "\\ddot{}"
+        },
+        {
+          "rotulo": "ā",
+          "comando": "\\bar{}"
+        },
+        {
+          "rotulo": "ã",
+          "comando": "\\tilde{}"
+        },
+        {
+          "rotulo": "a̅",
+          "comando": "\\overline{}"
+        },
+        {
+          "rotulo": "wide ^",
+          "comando": "\\widehat{}"
+        },
+        {
+          "rotulo": "wide ~",
+          "comando": "\\widetilde{}"
+        },
+        {
+          "rotulo": "chave sob",
+          "comando": "\\underbrace{}_{}"
+        },
+        {
+          "rotulo": "chave sobre",
+          "comando": "\\overbrace{}^{}"
+        },
+        {
+          "rotulo": "reto",
+          "comando": "\\mathrm{}"
+        },
+        {
+          "rotulo": "𝒜",
+          "comando": "\\mathcal{}"
+        },
+        {
+          "rotulo": "abc",
+          "comando": "\\text{}"
+        },
+        {
+          "rotulo": "equation",
+          "comando": "\\begin{equation}\n  \n\\end{equation}",
+          "acao": "ambiente-equation"
+        },
+        {
+          "rotulo": "align",
+          "comando": "\\begin{align}\n  &= \\\\\n  &=\n\\end{align}",
+          "acao": "ambiente-align"
+        },
+        {
+          "rotulo": "gather",
+          "comando": "\\begin{gather}\n   \\\\\n\\end{gather}",
+          "acao": "ambiente-gather"
+        },
+        {
+          "rotulo": "cases",
+          "comando": "\\begin{cases}\n   & \\\\\n  &\n\\end{cases}",
+          "acao": "ambiente-cases"
+        },
+        {
+          "rotulo": "(⋯) 2x2",
+          "comando": "\\begin{pmatrix}\n  & \\\\\n  &\n\\end{pmatrix}",
+          "acao": "ambiente-pmatrix-2x2"
+        },
+        {
+          "rotulo": "(⋯) 3x3",
+          "comando": "\\begin{pmatrix}\n  & & \\\\\n  & & \\\\\n  & &\n\\end{pmatrix}",
+          "acao": "ambiente-pmatrix-3x3"
+        },
+        {
+          "rotulo": "[⋯] 2x2",
+          "comando": "\\begin{bmatrix}\n  & \\\\\n  &\n\\end{bmatrix}"
+        },
+        {
+          "rotulo": "|⋯| 2x2",
+          "comando": "\\begin{vmatrix}\n  & \\\\\n  &\n\\end{vmatrix}"
+        }
+      ]
+    },
+    {
+      "id": "gregas",
+      "botoes": [
+        {
+          "rotulo": "α",
+          "comando": "\\alpha"
+        },
+        {
+          "rotulo": "β",
+          "comando": "\\beta"
+        },
+        {
+          "rotulo": "γ",
+          "comando": "\\gamma"
+        },
+        {
+          "rotulo": "δ",
+          "comando": "\\delta"
+        },
+        {
+          "rotulo": "ε",
+          "comando": "\\varepsilon"
+        },
+        {
+          "rotulo": "ϵ",
+          "comando": "\\epsilon"
+        },
+        {
+          "rotulo": "ζ",
+          "comando": "\\zeta"
+        },
+        {
+          "rotulo": "η",
+          "comando": "\\eta"
+        },
+        {
+          "rotulo": "θ",
+          "comando": "\\theta"
+        },
+        {
+          "rotulo": "ϑ",
+          "comando": "\\vartheta"
+        },
+        {
+          "rotulo": "ι",
+          "comando": "\\iota"
+        },
+        {
+          "rotulo": "κ",
+          "comando": "\\kappa"
+        },
+        {
+          "rotulo": "λ",
+          "comando": "\\lambda"
+        },
+        {
+          "rotulo": "μ",
+          "comando": "\\mu"
+        },
+        {
+          "rotulo": "ν",
+          "comando": "\\nu"
+        },
+        {
+          "rotulo": "ξ",
+          "comando": "\\xi"
+        },
+        {
+          "rotulo": "ο",
+          "comando": "\\mathrm{o}"
+        },
+        {
+          "rotulo": "π",
+          "comando": "\\pi"
+        },
+        {
+          "rotulo": "ρ",
+          "comando": "\\rho"
+        },
+        {
+          "rotulo": "σ",
+          "comando": "\\sigma"
+        },
+        {
+          "rotulo": "τ",
+          "comando": "\\tau"
+        },
+        {
+          "rotulo": "υ",
+          "comando": "\\upsilon"
+        },
+        {
+          "rotulo": "φ",
+          "comando": "\\varphi"
+        },
+        {
+          "rotulo": "ϕ",
+          "comando": "\\phi"
+        },
+        {
+          "rotulo": "χ",
+          "comando": "\\chi"
+        },
+        {
+          "rotulo": "ψ",
+          "comando": "\\psi"
+        },
+        {
+          "rotulo": "ω",
+          "comando": "\\omega"
+        },
+        {
+          "rotulo": "Γ",
+          "comando": "\\Gamma"
+        },
+        {
+          "rotulo": "Δ",
+          "comando": "\\Delta"
+        },
+        {
+          "rotulo": "Θ",
+          "comando": "\\Theta"
+        },
+        {
+          "rotulo": "Λ",
+          "comando": "\\Lambda"
+        },
+        {
+          "rotulo": "Ξ",
+          "comando": "\\Xi"
+        },
+        {
+          "rotulo": "Π",
+          "comando": "\\Pi"
+        },
+        {
+          "rotulo": "Σ",
+          "comando": "\\Sigma"
+        },
+        {
+          "rotulo": "Υ",
+          "comando": "\\Upsilon"
+        },
+        {
+          "rotulo": "Φ",
+          "comando": "\\Phi"
+        },
+        {
+          "rotulo": "Ψ",
+          "comando": "\\Psi"
+        },
+        {
+          "rotulo": "Ω",
+          "comando": "\\Omega"
+        }
+      ]
+    },
+    {
+      "id": "fisica",
+      "botoes": [
+        {
+          "rotulo": "ℏ",
+          "comando": "\\hbar"
+        },
+        {
+          "rotulo": "ℓ",
+          "comando": "\\ell"
+        },
+        {
+          "rotulo": "ℏω",
+          "comando": "\\hbar \\omega"
+        },
+        {
+          "rotulo": "Δx Δp",
+          "comando": "\\Delta x \\, \\Delta p \\geq \\frac{\\hbar}{2}"
+        },
+        {
+          "rotulo": "d/dx",
+          "comando": "\\frac{\\mathrm{d}}{\\mathrm{d}x}"
+        },
+        {
+          "rotulo": "d/dt",
+          "comando": "\\frac{\\mathrm{d}}{\\mathrm{d}t}"
+        },
+        {
+          "rotulo": "∂/∂x",
+          "comando": "\\frac{\\partial}{\\partial x}"
+        },
+        {
+          "rotulo": "∂/∂t",
+          "comando": "\\frac{\\partial}{\\partial t}"
+        },
+        {
+          "rotulo": "∇²",
+          "comando": "\\nabla^{2}"
+        },
+        {
+          "rotulo": "∇·",
+          "comando": "\\nabla \\cdot {}"
+        },
+        {
+          "rotulo": "∇×",
+          "comando": "\\nabla \\times {}"
+        },
+        {
+          "rotulo": "∇f",
+          "comando": "\\nabla {}"
+        },
+        {
+          "rotulo": "r⃗",
+          "comando": "\\vec{r}"
+        },
+        {
+          "rotulo": "v⃗",
+          "comando": "\\vec{v}"
+        },
+        {
+          "rotulo": "F⃗",
+          "comando": "\\vec{F}"
+        },
+        {
+          "rotulo": "E⃗",
+          "comando": "\\vec{E}"
+        },
+        {
+          "rotulo": "B⃗",
+          "comando": "\\vec{B}"
+        },
+        {
+          "rotulo": "n̂",
+          "comando": "\\hat{n}"
+        },
+        {
+          "rotulo": "Ĥ",
+          "comando": "\\hat{H}"
+        },
+        {
+          "rotulo": "â†",
+          "comando": "\\hat{a}^{\\dagger}"
+        },
+        {
+          "rotulo": "⟨ψ|",
+          "comando": "\\langle {} \\rvert"
+        },
+        {
+          "rotulo": "|ψ⟩",
+          "comando": "\\lvert {} \\rangle"
+        },
+        {
+          "rotulo": "⟨ψ|φ⟩",
+          "comando": "\\langle {} \\mid {} \\rangle"
+        },
+        {
+          "rotulo": "⟨A⟩",
+          "comando": "\\langle {} \\rangle"
+        },
+        {
+          "rotulo": "[A,B]",
+          "comando": "\\left[ {}, {} \\right]"
+        },
+        {
+          "rotulo": "mv²/2",
+          "comando": "\\frac{1}{2} m v^{2}"
+        },
+        {
+          "rotulo": "e^(-iωt)",
+          "comando": "\\mathrm{e}^{-\\mathrm{i} \\omega t}"
+        },
+        {
+          "rotulo": "m/s",
+          "comando": "\\mathrm{m/s}"
+        },
+        {
+          "rotulo": "N",
+          "comando": "\\mathrm{N}"
+        },
+        {
+          "rotulo": "J",
+          "comando": "\\mathrm{J}"
+        },
+        {
+          "rotulo": "W",
+          "comando": "\\mathrm{W}"
+        },
+        {
+          "rotulo": "V",
+          "comando": "\\mathrm{V}"
+        },
+        {
+          "rotulo": "K",
+          "comando": "\\mathrm{K}"
+        },
+        {
+          "rotulo": "Hz",
+          "comando": "\\mathrm{Hz}"
+        }
+      ]
+    },
+    {
+      "id": "simbolos",
+      "botoes": [
+        {
+          "rotulo": "∈",
+          "comando": "\\in"
+        },
+        {
+          "rotulo": "∉",
+          "comando": "\\notin"
+        },
+        {
+          "rotulo": "∋",
+          "comando": "\\ni"
+        },
+        {
+          "rotulo": "⊂",
+          "comando": "\\subset"
+        },
+        {
+          "rotulo": "⊃",
+          "comando": "\\supset"
+        },
+        {
+          "rotulo": "⊆",
+          "comando": "\\subseteq"
+        },
+        {
+          "rotulo": "⊇",
+          "comando": "\\supseteq"
+        },
+        {
+          "rotulo": "∪",
+          "comando": "\\cup"
+        },
+        {
+          "rotulo": "∩",
+          "comando": "\\cap"
+        },
+        {
+          "rotulo": "∖",
+          "comando": "\\setminus"
+        },
+        {
+          "rotulo": "∅",
+          "comando": "\\emptyset"
+        },
+        {
+          "rotulo": "∀",
+          "comando": "\\forall"
+        },
+        {
+          "rotulo": "∃",
+          "comando": "\\exists"
+        },
+        {
+          "rotulo": "¬",
+          "comando": "\\neg"
+        },
+        {
+          "rotulo": "∧",
+          "comando": "\\land"
+        },
+        {
+          "rotulo": "∨",
+          "comando": "\\lor"
+        },
+        {
+          "rotulo": "⟹",
+          "comando": "\\implies"
+        },
+        {
+          "rotulo": "⟺",
+          "comando": "\\iff"
+        },
+        {
+          "rotulo": "⊢",
+          "comando": "\\vdash"
+        },
+        {
+          "rotulo": "⊨",
+          "comando": "\\models"
+        },
+        {
+          "rotulo": "⊤",
+          "comando": "\\top"
+        },
+        {
+          "rotulo": "⊥",
+          "comando": "\\bot"
+        },
+        {
+          "rotulo": "∼",
+          "comando": "\\sim"
+        },
+        {
+          "rotulo": "≃",
+          "comando": "\\simeq"
+        },
+        {
+          "rotulo": "≅",
+          "comando": "\\cong"
+        },
+        {
+          "rotulo": "≪",
+          "comando": "\\ll"
+        },
+        {
+          "rotulo": "≫",
+          "comando": "\\gg"
+        },
+        {
+          "rotulo": "≺",
+          "comando": "\\prec"
+        },
+        {
+          "rotulo": "≻",
+          "comando": "\\succ"
+        },
+        {
+          "rotulo": "∥",
+          "comando": "\\parallel"
+        },
+        {
+          "rotulo": "∣",
+          "comando": "\\mid"
+        },
+        {
+          "rotulo": "⟂",
+          "comando": "\\perp"
+        },
+        {
+          "rotulo": "←",
+          "comando": "\\leftarrow"
+        },
+        {
+          "rotulo": "↔",
+          "comando": "\\leftrightarrow"
+        },
+        {
+          "rotulo": "⇐",
+          "comando": "\\Leftarrow"
+        },
+        {
+          "rotulo": "↑",
+          "comando": "\\uparrow"
+        },
+        {
+          "rotulo": "↓",
+          "comando": "\\downarrow"
+        },
+        {
+          "rotulo": "⇑",
+          "comando": "\\Uparrow"
+        },
+        {
+          "rotulo": "⇓",
+          "comando": "\\Downarrow"
+        },
+        {
+          "rotulo": "↦",
+          "comando": "\\mapsto"
+        },
+        {
+          "rotulo": "⟼",
+          "comando": "\\longmapsto"
+        },
+        {
+          "rotulo": "⟶",
+          "comando": "\\longrightarrow"
+        },
+        {
+          "rotulo": "⟵",
+          "comando": "\\longleftarrow"
+        },
+        {
+          "rotulo": "↪",
+          "comando": "\\hookrightarrow"
+        },
+        {
+          "rotulo": "↗",
+          "comando": "\\nearrow"
+        },
+        {
+          "rotulo": "↘",
+          "comando": "\\searrow"
+        },
+        {
+          "rotulo": "∓",
+          "comando": "\\mp"
+        },
+        {
+          "rotulo": "÷",
+          "comando": "\\div"
+        },
+        {
+          "rotulo": "∗",
+          "comando": "\\ast"
+        },
+        {
+          "rotulo": "⋆",
+          "comando": "\\star"
+        },
+        {
+          "rotulo": "∘",
+          "comando": "\\circ"
+        },
+        {
+          "rotulo": "•",
+          "comando": "\\bullet"
+        },
+        {
+          "rotulo": "⊕",
+          "comando": "\\oplus"
+        },
+        {
+          "rotulo": "⊗",
+          "comando": "\\otimes"
+        },
+        {
+          "rotulo": "⊙",
+          "comando": "\\odot"
+        },
+        {
+          "rotulo": "†",
+          "comando": "\\dagger"
+        },
+        {
+          "rotulo": "‡",
+          "comando": "\\ddagger"
+        },
+        {
+          "rotulo": "…",
+          "comando": "\\ldots"
+        },
+        {
+          "rotulo": "⋯",
+          "comando": "\\cdots"
+        },
+        {
+          "rotulo": "⋮",
+          "comando": "\\vdots"
+        },
+        {
+          "rotulo": "⋱",
+          "comando": "\\ddots"
+        }
+      ]
+    },
+    {
+      "id": "estrutura",
+      "botoes": [
+        {
+          "comando": "\\maketitle"
+        },
+        {
+          "comando": "\\tableofcontents"
+        },
+        {
+          "comando": "\\appendix"
+        },
+        {
+          "comando": "\\chapter{}"
+        },
+        {
+          "comando": "\\section{}"
+        },
+        {
+          "comando": "\\subsection{}"
+        },
+        {
+          "comando": "\\subsubsection{}"
+        },
+        {
+          "comando": "\\paragraph{}"
+        },
+        {
+          "rotulo": "abstract",
+          "comando": "\\begin{abstract}\n  \n\\end{abstract}"
+        },
+        {
+          "rotulo": "itemize",
+          "comando": "\\begin{itemize}\n  \\item \n\\end{itemize}"
+        },
+        {
+          "rotulo": "enumerate",
+          "comando": "\\begin{enumerate}\n  \\item \n\\end{enumerate}"
+        },
+        {
+          "rotulo": "description",
+          "comando": "\\begin{description}\n  \\item[] \n\\end{description}"
+        },
+        {
+          "comando": "\\item "
+        },
+        {
+          "rotulo": "figure",
+          "comando": "\\begin{figure}[htbp]\n  \\centering\n  \\includegraphics[width=0.8\\textwidth]{}\n  \\caption{}\n  \\label{fig:}\n\\end{figure}"
+        },
+        {
+          "rotulo": "table",
+          "comando": "\\begin{table}[htbp]\n  \\centering\n  \\begin{tabular}{cc}\n    \\hline\n     &  \\\\\n    \\hline\n  \\end{tabular}\n  \\caption{}\n  \\label{tab:}\n\\end{table}"
+        },
+        {
+          "comando": "\\includegraphics{}"
+        },
+        {
+          "comando": "\\caption{}"
+        },
+        {
+          "comando": "\\label{}"
+        },
+        {
+          "comando": "\\ref{}"
+        },
+        {
+          "comando": "\\eqref{}"
+        },
+        {
+          "comando": "\\cite{}"
+        },
+        {
+          "comando": "\\footnote{}"
+        },
+        {
+          "comando": "\\usepackage{}"
+        },
+        {
+          "comando": "\\input{}"
+        }
+      ]
+    }
+  ]
+}

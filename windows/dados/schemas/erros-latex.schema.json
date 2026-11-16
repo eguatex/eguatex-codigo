@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "erros-latex.schema.json",
+  "title": "Erros LaTeX pt-BR",
+  "type": "object",
+  "required": ["erros"],
+  "properties": {
+    "erros": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["padrao", "regex", "explicacao", "causa", "sugestao"],
+        "properties": {
+          "padrao": { "type": "string" },
+          "regex": { "type": "string" },
+          "explicacao": { "type": "string" },
+          "causa": { "type": "string" },
+          "sugestao": { "type": "string" },
+          "exemplo_errado": { "type": "string" },
+          "exemplo_correto": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

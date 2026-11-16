@@ -1,0 +1,5 @@
+Dicionario en_US (Hunspell), gerado a partir do SCOWL (Spell Checker Oriented Word Lists).
+Copyright 2000-2019 Kevin Atkinson e colaboradores.
+Licenca permissiva do SCOWL: uso, copia, modificacao e distribuicao livres, desde que este aviso
+acompanhe as copias. Texto completo: http://wordlist.aspell.net/scowl-readme/
+Copia levada da instalacao do TeXstudio (dictionaries/en_US.aff e en_US.dic).

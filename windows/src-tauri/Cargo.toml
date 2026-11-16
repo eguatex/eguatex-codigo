@@ -1,0 +1,46 @@
+[package]
+name = "eguatex"
+version = "1.0.0"
+description = "Editor LaTeX gratuito e offline, feito na Amazônia."
+authors = ["José Paulo de Almeida Junior", "Jéssica Lopes Melo"]
+license = "AGPL-3.0-or-later"
+edition = "2024"
+
+[lib]
+name = "eguatex_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+serde_json = "1"
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-opener = "2"
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+which = "7"
+reqwest = { version = "0.12", features = ["json"] }
+tokio = { version = "1", features = ["full"] }
+keyring = { version = "3", features = ["windows-native"] }
+dirs = "6"
+zip = { version = "2", default-features = false, features = ["deflate"] }
+sha2 = "0.10"
+base64 = "0.22"
+rand = "0.8"
+spellbook = "0.4"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "gif", "webp", "bmp", "tiff"] }
+
+
+# Read the optimization guideline for more details: https://tauri.app/concept/size/#cargo-configuration
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+panic = "abort"
+strip = true
+
+# barra de titulo sem o nome e sem a mini logo (SetWindowThemeAttribute do uxtheme)
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.60", features = ["Win32_Foundation", "Win32_UI_Controls", "Win32_UI_WindowsAndMessaging"] }

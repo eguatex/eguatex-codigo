@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "simbolos.schema.json",
+  "title": "Simbolos LaTeX",
+  "type": "object",
+  "required": ["categorias"],
+  "properties": {
+    "categorias": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["nome", "simbolos"],
+        "properties": {
+          "nome": { "type": "string" },
+          "simbolos": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["nome", "comando", "unicode"],
+              "properties": {
+                "nome": { "type": "string" },
+                "comando": { "type": "string" },
+                "unicode": { "type": "string" },
+                "pacote": { "type": "string" }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,19 @@
+{
+  "id": "tcc-abntex2",
+  "nome": "TCC (abnTeX2)",
+  "descricao": "Modelo para trabalhos de conclusao de curso usando abnTeX2 com normas ABNT.",
+  "motor": "pdflatex",
+  "tectonic_compativel": false,
+  "embutido": true,
+  "tags": ["academico", "tcc", "abnt", "abntex2"],
+  "arquivos": [
+    {
+      "caminho": "main.tex",
+      "conteudo": "\\documentclass[12pt,openright,oneside,a4paper,brazil]{abntex2}\n\\usepackage[utf8]{inputenc}\n\\usepackage{lmodern}\n\\usepackage[T1]{fontenc}\n\\usepackage{indentfirst}\n\\usepackage{graphicx}\n\\usepackage{microtype}\n\\usepackage[brazilian,hyperpageref]{backref}\n\\usepackage[alf]{abntex2cite}\n\n\\titulo{Titulo do Trabalho}\n\\autor{Seu Nome Completo}\n\\local{Belem}\n\\data{2024}\n\\orientador{Prof. Dr. Nome do Orientador}\n\\instituicao{Nome da Instituicao}\n\\tipotrabalho{Trabalho de Conclusao de Curso}\n\n\\begin{document}\n\\frenchspacing\n\\imprimircapa\n\\imprimirfolhaderosto\n\n\\begin{resumo}\nResumo em portugues.\n\\vspace{\\onelineskip}\n\\noindent\\textbf{Palavras-chave}: palavra1. palavra2. palavra3.\n\\end{resumo}\n\n\\pdfbookmark[0]{\\contentsname}{toc}\n\\tableofcontents\n\\cleardoublepage\n\n\\textual\n\n\\chapter{Introducao}\nTexto da introducao.\n\n\\chapter{Referencial Teorico}\nTexto do referencial.\n\n\\chapter{Metodologia}\nDescricao da metodologia.\n\n\\chapter{Resultados}\nResultados obtidos.\n\n\\chapter{Conclusao}\nConclusoes do trabalho.\n\n\\postextual\n\\bibliography{referencias}\n\n\\end{document}"
+    },
+    {
+      "caminho": "referencias.bib",
+      "conteudo": "@book{exemplo2024,\n  author    = {Silva, Maria},\n  title     = {Titulo do Livro Exemplo},\n  publisher = {Editora Exemplo},\n  year      = {2024},\n  address   = {Belem}\n}"
+    }
+  ]
+}

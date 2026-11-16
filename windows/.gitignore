@@ -1,0 +1,36 @@
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/package
+.env
+.env.*
+!.env.example
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+
+
+# Auditoria local
+.eguatex-audit/
+
+# Dependencias e chaves (scripts/baixar-dependencias.sh, DEPENDENCIAS.md)
+*.jks
+keystore.properties
+*.7z
+
+# arquivos de trabalho local (fora do repositorio desde 14/11/2026)
+/analise
+/colab-worker
+/testes-estresse
+/compile_models.mjs
+/compile_models_twice.mjs
+/maestro.json
+/scripts/maestro-10-agentes.ps1
+/scripts/maestro-10-terminais.ps1
+/scripts/maestro-caca-bugs.ps1
+/scripts/maestro-eguatex.ps1
+/scripts/maestro-omniroute-master.ps1
+/scripts/iniciar-tabs-1-5.ps1
+/scripts/bugs-encontrados.log
+/scripts/logs-orquestracao

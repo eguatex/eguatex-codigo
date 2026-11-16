@@ -1,0 +1,1022 @@
+[
+  {
+    "comando": "\\documentclass{classe}",
+    "categoria": "estrutura",
+    "explicacao": "Define o tipo de documento: article, report, book, beamer, abntex2.",
+    "exemplo": "\\documentclass[12pt,a4paper]{article}"
+  },
+  {
+    "comando": "\\usepackage{pacote}",
+    "categoria": "estrutura",
+    "explicacao": "Carrega um pacote com funções extras.",
+    "exemplo": "\\usepackage[utf8]{inputenc}"
+  },
+  {
+    "comando": "\\begin{document}...\\end{document}",
+    "categoria": "estrutura",
+    "explicacao": "Delimita o conteúdo do documento. Tudo antes e preâmbulo (configuração).",
+    "exemplo": "\\begin{document}\nOla mundo!\n\\end{document}"
+  },
+  {
+    "comando": "\\section{título}",
+    "categoria": "estrutura",
+    "explicacao": "Cria uma seção numerada.",
+    "exemplo": "\\section{Introducao}"
+  },
+  {
+    "comando": "\\subsection{título}",
+    "categoria": "estrutura",
+    "explicacao": "Cria uma subseção numerada.",
+    "exemplo": "\\subsection{Objetivos}"
+  },
+  {
+    "comando": "\\subsubsection{título}",
+    "categoria": "estrutura",
+    "explicacao": "Cria uma subdivisao dentro de uma subseção.",
+    "exemplo": "\\subsubsection{Objetivos especificos}"
+  },
+  {
+    "comando": "\\chapter{título}",
+    "categoria": "estrutura",
+    "explicacao": "Cria um capítulo. Disponível em report, book e abntex2.",
+    "exemplo": "\\chapter{Fundamentacao Teorica}"
+  },
+  {
+    "comando": "\\part{título}",
+    "categoria": "estrutura",
+    "explicacao": "Divide o documento em partes grandes.",
+    "exemplo": "\\part{Parte I}"
+  },
+  {
+    "comando": "\\paragraph{título}",
+    "categoria": "estrutura",
+    "explicacao": "Cria um parágrafo com título, sem numeração.",
+    "exemplo": "\\paragraph{Observacao}"
+  },
+  {
+    "comando": "\\tableofcontents",
+    "categoria": "estrutura",
+    "explicacao": "Gera o sumário automaticamente a partir das seções.",
+    "exemplo": "\\tableofcontents"
+  },
+  {
+    "comando": "\\listoffigures",
+    "categoria": "estrutura",
+    "explicacao": "Gera a lista de figuras automaticamente.",
+    "exemplo": "\\listoffigures"
+  },
+  {
+    "comando": "\\listoftables",
+    "categoria": "estrutura",
+    "explicacao": "Gera a lista de tabelas automaticamente.",
+    "exemplo": "\\listoftables"
+  },
+  {
+    "comando": "\\appendix",
+    "categoria": "estrutura",
+    "explicacao": "Marca o início dos apêndices. As seções seguintes usam letras.",
+    "exemplo": "\\appendix\n\\section{Dados complementares}"
+  },
+  {
+    "comando": "\\title{título}",
+    "categoria": "preambulo",
+    "explicacao": "Define o título do documento.",
+    "exemplo": "\\title{Meu Trabalho de Conclusao}"
+  },
+  {
+    "comando": "\\author{nome}",
+    "categoria": "preambulo",
+    "explicacao": "Define o autor do documento.",
+    "exemplo": "\\author{Jose Paulo}"
+  },
+  {
+    "comando": "\\date{data}",
+    "categoria": "preambulo",
+    "explicacao": "Define a data do documento. Use \\date{} para nenhuma data.",
+    "exemplo": "\\date{\\today}"
+  },
+  {
+    "comando": "\\maketitle",
+    "categoria": "preambulo",
+    "explicacao": "Gera a página de título usando \\title, \\author e \\date.",
+    "exemplo": "\\begin{document}\n\\maketitle\n\\end{document}"
+  },
+  {
+    "comando": "\\input{arquivo}",
+    "categoria": "estrutura",
+    "explicacao": "Inclui o conteúdo de outro arquivo .tex no ponto atual.",
+    "exemplo": "\\input{capitulos/introducao}"
+  },
+  {
+    "comando": "\\include{arquivo}",
+    "categoria": "estrutura",
+    "explicacao": "Inclui outro arquivo .tex em página nova. Útil para capítulos.",
+    "exemplo": "\\include{capitulos/metodologia}"
+  },
+  {
+    "comando": "\\newcommand{\\nome}[args]{definição}",
+    "categoria": "preambulo",
+    "explicacao": "Cria um comando personalizado.",
+    "exemplo": "\\newcommand{\\R}{\\mathbb{R}}"
+  },
+  {
+    "comando": "\\renewcommand{\\nome}{definição}",
+    "categoria": "preambulo",
+    "explicacao": "Redefine um comando existente.",
+    "exemplo": "\\renewcommand{\\contentsname}{Sumario}"
+  },
+  {
+    "comando": "\\frac{a}{b}",
+    "categoria": "matematica",
+    "explicacao": "Cria uma fracao a/b.",
+    "exemplo": "$\\frac{1}{2}$ gera 1/2"
+  },
+  {
+    "comando": "\\dfrac{a}{b}",
+    "categoria": "matematica",
+    "explicacao": "Fracao em tamanho grande (display), mesmo dentro de texto.",
+    "exemplo": "$\\dfrac{1}{2}$"
+  },
+  {
+    "comando": "\\sqrt{x}",
+    "categoria": "matematica",
+    "explicacao": "Raiz quadrada de x. Use \\sqrt[n]{x} para raiz enesima.",
+    "exemplo": "$\\sqrt{16} = 4$"
+  },
+  {
+    "comando": "\\sum_{i=1}^{n}",
+    "categoria": "matematica",
+    "explicacao": "Somatorio de i=1 até n.",
+    "exemplo": "$\\sum_{i=1}^{n} i = \\frac{n(n+1)}{2}$"
+  },
+  {
+    "comando": "\\prod_{i=1}^{n}",
+    "categoria": "matematica",
+    "explicacao": "Produtorio de i=1 até n.",
+    "exemplo": "$\\prod_{i=1}^{n} i = n!$"
+  },
+  {
+    "comando": "\\int_{a}^{b}",
+    "categoria": "matematica",
+    "explicacao": "Integral definida de a até b.",
+    "exemplo": "$\\int_{0}^{1} x\\,dx = \\frac{1}{2}$"
+  },
+  {
+    "comando": "\\iint",
+    "categoria": "matematica",
+    "explicacao": "Integral dupla.",
+    "exemplo": "$\\iint_D f(x,y)\\,dx\\,dy$"
+  },
+  {
+    "comando": "\\oint",
+    "categoria": "matematica",
+    "explicacao": "Integral de linha (contorno fechado).",
+    "exemplo": "$\\oint_C \\vec{F} \\cdot d\\vec{r}$"
+  },
+  {
+    "comando": "\\lim_{x \\to a}",
+    "categoria": "matematica",
+    "explicacao": "Limite quando x tende a a.",
+    "exemplo": "$\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1$"
+  },
+  {
+    "comando": "\\infty",
+    "categoria": "matematica",
+    "explicacao": "Símbolo de infinito.",
+    "exemplo": "$\\lim_{n \\to \\infty}$"
+  },
+  {
+    "comando": "\\partial",
+    "categoria": "matematica",
+    "explicacao": "Símbolo de derivada parcial.",
+    "exemplo": "$\\frac{\\partial f}{\\partial x}$"
+  },
+  {
+    "comando": "\\vec{v}",
+    "categoria": "matematica",
+    "explicacao": "Coloca uma seta sobre a letra, indicando vetor.",
+    "exemplo": "$\\vec{F} = m\\vec{a}$"
+  },
+  {
+    "comando": "\\hat{x}",
+    "categoria": "matematica",
+    "explicacao": "Coloca um acento circunflexo sobre a letra (vetor unitario).",
+    "exemplo": "$\\hat{x}$"
+  },
+  {
+    "comando": "\\bar{x}",
+    "categoria": "matematica",
+    "explicacao": "Coloca uma barra sobre a letra (media, conjugado).",
+    "exemplo": "$\\bar{x} = \\frac{1}{n}\\sum x_i$"
+  },
+  {
+    "comando": "\\dot{x}",
+    "categoria": "matematica",
+    "explicacao": "Coloca um ponto sobre a letra (derivada temporal).",
+    "exemplo": "$\\dot{x} = \\frac{dx}{dt}$"
+  },
+  {
+    "comando": "\\ddot{x}",
+    "categoria": "matematica",
+    "explicacao": "Coloca dois pontos sobre a letra (segunda derivada temporal).",
+    "exemplo": "$\\ddot{x} = \\frac{d^2x}{dt^2}$"
+  },
+  {
+    "comando": "\\mathbb{R}",
+    "categoria": "matematica",
+    "explicacao": "Letra em estilo quadro negro (conjuntos). Requer \\usepackage{amsfonts} ou amssymb.",
+    "exemplo": "$x \\in \\mathbb{R}$"
+  },
+  {
+    "comando": "\\mathcal{L}",
+    "categoria": "matematica",
+    "explicacao": "Letra em estilo caligrafico.",
+    "exemplo": "$\\mathcal{L}\\{f(t)\\}$"
+  },
+  {
+    "comando": "\\binom{n}{k}",
+    "categoria": "matematica",
+    "explicacao": "Coeficiente binomial (combinação). Requer amsmath.",
+    "exemplo": "$\\binom{n}{k} = \\frac{n!}{k!(n-k)!}$"
+  },
+  {
+    "comando": "\\underbrace{expr}_{texto}",
+    "categoria": "matematica",
+    "explicacao": "Coloca uma chave embaixo da expressão com um rótulo.",
+    "exemplo": "$\\underbrace{1+1+\\cdots+1}_{n\\ vezes}$"
+  },
+  {
+    "comando": "\\overbrace{expr}^{texto}",
+    "categoria": "matematica",
+    "explicacao": "Coloca uma chave em cima da expressão com um rótulo.",
+    "exemplo": "$\\overbrace{a+b+c}^{3\\ termos}$"
+  },
+  {
+    "comando": "\\left( ... \\right)",
+    "categoria": "matematica",
+    "explicacao": "Parênteses que crescem automaticamente com o conteúdo.",
+    "exemplo": "$\\left( \\frac{a}{b} \\right)$"
+  },
+  {
+    "comando": "\\begin{equation}...\\end{equation}",
+    "categoria": "ambientes",
+    "explicacao": "Equação numerada em linha própria.",
+    "exemplo": "\\begin{equation}\nE = mc^2\n\\end{equation}"
+  },
+  {
+    "comando": "\\begin{align}...\\end{align}",
+    "categoria": "ambientes",
+    "explicacao": "Varias equações alinhadas pelo &. Requer amsmath.",
+    "exemplo": "\\begin{align}\nx &= 1 \\\\\ny &= 2\n\\end{align}"
+  },
+  {
+    "comando": "\\begin{equation*}...\\end{equation*}",
+    "categoria": "ambientes",
+    "explicacao": "Equação em linha própria, sem numeração.",
+    "exemplo": "\\begin{equation*}\na^2 + b^2 = c^2\n\\end{equation*}"
+  },
+  {
+    "comando": "\\begin{cases}...\\end{cases}",
+    "categoria": "ambientes",
+    "explicacao": "Função definida por partes, com chave a esquerda. Requer amsmath.",
+    "exemplo": "$f(x) = \\begin{cases} 1 & x > 0 \\\\ 0 & x \\leq 0 \\end{cases}$"
+  },
+  {
+    "comando": "\\begin{matrix}...\\end{matrix}",
+    "categoria": "ambientes",
+    "explicacao": "Matriz sem delimitadores. Use pmatrix (parênteses), bmatrix (colchetes), vmatrix (barras).",
+    "exemplo": "$\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$"
+  },
+  {
+    "comando": "\\textbf{texto}",
+    "categoria": "formatacao",
+    "explicacao": "Texto em negrito.",
+    "exemplo": "\\textbf{importante}"
+  },
+  {
+    "comando": "\\textit{texto}",
+    "categoria": "formatacao",
+    "explicacao": "Texto em itálico.",
+    "exemplo": "\\textit{enfase}"
+  },
+  {
+    "comando": "\\underline{texto}",
+    "categoria": "formatacao",
+    "explicacao": "Texto sublinhado.",
+    "exemplo": "\\underline{destaque}"
+  },
+  {
+    "comando": "\\emph{texto}",
+    "categoria": "formatacao",
+    "explicacao": "Enfase: itálico no texto normal, normal no texto itálico.",
+    "exemplo": "\\emph{conceito importante}"
+  },
+  {
+    "comando": "\\texttt{texto}",
+    "categoria": "formatacao",
+    "explicacao": "Texto em fonte monoespasscada (tipo maquina de escrever).",
+    "exemplo": "\\texttt{codigo aqui}"
+  },
+  {
+    "comando": "\\textsc{texto}",
+    "categoria": "formatacao",
+    "explicacao": "Texto em versalete (letras maiúsculas pequenas).",
+    "exemplo": "\\textsc{Nome Proprio}"
+  },
+  {
+    "comando": "\\textsuperscript{texto}",
+    "categoria": "formatacao",
+    "explicacao": "Texto sobrescrito fora do modo matemático.",
+    "exemplo": "1\\textsuperscript{o} lugar"
+  },
+  {
+    "comando": "\\footnote{texto}",
+    "categoria": "formatacao",
+    "explicacao": "Cria uma nota de rodapé numerada automaticamente.",
+    "exemplo": "Texto principal\\footnote{Nota explicativa.}"
+  },
+  {
+    "comando": "\\centering",
+    "categoria": "formatacao",
+    "explicacao": "Centraliza o conteúdo dentro do ambiente atual.",
+    "exemplo": "\\begin{figure}\n\\centering\n\\includegraphics{foto.png}\n\\end{figure}"
+  },
+  {
+    "comando": "\\raggedright",
+    "categoria": "formatacao",
+    "explicacao": "Alinha o texto a esquerda, sem justificar.",
+    "exemplo": "{\\raggedright Texto alinhado a esquerda.}"
+  },
+  {
+    "comando": "\\newpage",
+    "categoria": "formatacao",
+    "explicacao": "Forca uma quebra de página.",
+    "exemplo": "\\newpage"
+  },
+  {
+    "comando": "\\clearpage",
+    "categoria": "formatacao",
+    "explicacao": "Quebra de página e coloca todas as figuras/tabelas pendentes.",
+    "exemplo": "\\clearpage"
+  },
+  {
+    "comando": "\\noindent",
+    "categoria": "formatacao",
+    "explicacao": "Remove a indentacao do parágrafo atual.",
+    "exemplo": "\\noindent Este parágrafo comeca sem recuo."
+  },
+  {
+    "comando": "\\vspace{medida}",
+    "categoria": "formatacao",
+    "explicacao": "Adiciona espaço vertical.",
+    "exemplo": "\\vspace{1cm}"
+  },
+  {
+    "comando": "\\hspace{medida}",
+    "categoria": "formatacao",
+    "explicacao": "Adiciona espaço horizontal.",
+    "exemplo": "Palavra\\hspace{2cm}outra palavra"
+  },
+  {
+    "comando": "\\linebreak",
+    "categoria": "formatacao",
+    "explicacao": "Forca quebra de linha no ponto atual.",
+    "exemplo": "Texto aqui\\linebreak e aqui na próxima linha."
+  },
+  {
+    "comando": "\\tiny",
+    "categoria": "formatacao",
+    "explicacao": "Muda para o menor tamanho de fonte.",
+    "exemplo": "{\\tiny texto muito pequeno}"
+  },
+  {
+    "comando": "\\small",
+    "categoria": "formatacao",
+    "explicacao": "Muda para fonte menor que o padrão.",
+    "exemplo": "{\\small texto menor}"
+  },
+  {
+    "comando": "\\large",
+    "categoria": "formatacao",
+    "explicacao": "Muda para fonte maior que o padrão.",
+    "exemplo": "{\\large texto maior}"
+  },
+  {
+    "comando": "\\Large",
+    "categoria": "formatacao",
+    "explicacao": "Muda para fonte bem maior (L maiúsculo).",
+    "exemplo": "{\\Large título grande}"
+  },
+  {
+    "comando": "\\huge",
+    "categoria": "formatacao",
+    "explicacao": "Muda para fonte muito grande.",
+    "exemplo": "{\\huge texto enorme}"
+  },
+  {
+    "comando": "\\ref{rotulo}",
+    "categoria": "referencias",
+    "explicacao": "Referência a um rótulo definido com \\label.",
+    "exemplo": "Ver Figura \\ref{fig:exemplo}"
+  },
+  {
+    "comando": "\\cite{chave}",
+    "categoria": "referencias",
+    "explicacao": "Cita uma referência da bibliografia.",
+    "exemplo": "Conforme \\cite{silva2024}"
+  },
+  {
+    "comando": "\\label{rotulo}",
+    "categoria": "referencias",
+    "explicacao": "Define um rótulo para referenciar depois com \\ref.",
+    "exemplo": "\\label{fig:exemplo}"
+  },
+  {
+    "comando": "\\pageref{rotulo}",
+    "categoria": "referencias",
+    "explicacao": "Mostra o número da página onde o rótulo esta.",
+    "exemplo": "Ver página \\pageref{sec:intro}"
+  },
+  {
+    "comando": "\\eqref{rotulo}",
+    "categoria": "referencias",
+    "explicacao": "Referência uma equação com parênteses automaticos. Requer amsmath.",
+    "exemplo": "Conforme a Equação \\eqref{eq:einstein}"
+  },
+  {
+    "comando": "\\footnotetext{texto}",
+    "categoria": "referencias",
+    "explicacao": "Texto da nota de rodapé (usado com \\footnotemark em tabelas).",
+    "exemplo": "\\footnotemark\n...\n\\footnotetext{Explicacao.}"
+  },
+  {
+    "comando": "\\bibliography{arquivo}",
+    "categoria": "bibliografia",
+    "explicacao": "Indica o arquivo .bib com as referências (sem a extensão).",
+    "exemplo": "\\bibliography{referencias}"
+  },
+  {
+    "comando": "\\bibliographystyle{estilo}",
+    "categoria": "bibliografia",
+    "explicacao": "Define o estilo das referências: plain, abnt, apalike, ieeetr.",
+    "exemplo": "\\bibliographystyle{abntex2-alf}"
+  },
+  {
+    "comando": "\\nocite{*}",
+    "categoria": "bibliografia",
+    "explicacao": "Inclui todas as entradas do .bib, mesmo as não citadas.",
+    "exemplo": "\\nocite{*}"
+  },
+  {
+    "comando": "\\printbibliography",
+    "categoria": "bibliografia",
+    "explicacao": "Imprime a bibliografia (quando usa biblatex em vez de bibtex).",
+    "exemplo": "\\printbibliography"
+  },
+  {
+    "comando": "\\includegraphics[opções]{arquivo}",
+    "categoria": "figuras",
+    "explicacao": "Insere uma imagem. Requer \\usepackage{graphicx}.",
+    "exemplo": "\\includegraphics[width=0.8\\textwidth]{foto.png}"
+  },
+  {
+    "comando": "\\begin{figure}[posicao]...\\end{figure}",
+    "categoria": "figuras",
+    "explicacao": "Ambiente flutuante para figuras. Posicoes: h (aqui), t (topo), b (base), p (página).",
+    "exemplo": "\\begin{figure}[htbp]\n\\centering\n\\includegraphics[width=0.5\\textwidth]{fig.png}\n\\caption{Descricao da figura.}\n\\label{fig:exemplo}\n\\end{figure}"
+  },
+  {
+    "comando": "\\caption{texto}",
+    "categoria": "figuras",
+    "explicacao": "Adiciona legenda a uma figura ou tabela.",
+    "exemplo": "\\caption{Resultado do experimento.}"
+  },
+  {
+    "comando": "\\begin{tabular}{colunas}...\\end{tabular}",
+    "categoria": "tabelas",
+    "explicacao": "Cria uma tabela. Colunas: l (esquerda), c (centro), r (direita), | (linha vertical).",
+    "exemplo": "\\begin{tabular}{|c|c|c|}\n\\hline\nA & B & C \\\\\n\\hline\n1 & 2 & 3 \\\\\n\\hline\n\\end{tabular}"
+  },
+  {
+    "comando": "\\begin{table}[posicao]...\\end{table}",
+    "categoria": "tabelas",
+    "explicacao": "Ambiente flutuante para tabelas, como figure para figuras.",
+    "exemplo": "\\begin{table}[htbp]\n\\centering\n\\caption{Dados.}\n\\begin{tabular}{cc}\na & b\n\\end{tabular}\n\\end{table}"
+  },
+  {
+    "comando": "\\hline",
+    "categoria": "tabelas",
+    "explicacao": "Desenha uma linha horizontal em tabelas.",
+    "exemplo": "\\hline"
+  },
+  {
+    "comando": "\\multicolumn{n}{alinhamento}{texto}",
+    "categoria": "tabelas",
+    "explicacao": "Mescla n colunas em uma só.",
+    "exemplo": "\\multicolumn{3}{|c|}{Título geral}"
+  },
+  {
+    "comando": "\\cline{i-j}",
+    "categoria": "tabelas",
+    "explicacao": "Linha horizontal parcial, das colunas i até j.",
+    "exemplo": "\\cline{2-4}"
+  },
+  {
+    "comando": "\\begin{itemize}...\\end{itemize}",
+    "categoria": "listas",
+    "explicacao": "Lista com marcadores (bolinhas).",
+    "exemplo": "\\begin{itemize}\n\\item Primeiro\n\\item Segundo\n\\end{itemize}"
+  },
+  {
+    "comando": "\\begin{enumerate}...\\end{enumerate}",
+    "categoria": "listas",
+    "explicacao": "Lista numerada.",
+    "exemplo": "\\begin{enumerate}\n\\item Primeiro\n\\item Segundo\n\\end{enumerate}"
+  },
+  {
+    "comando": "\\begin{description}...\\end{description}",
+    "categoria": "listas",
+    "explicacao": "Lista de definições com termo em negrito.",
+    "exemplo": "\\begin{description}\n\\item[LaTeX] Sistema de composicao.\n\\end{description}"
+  },
+  {
+    "comando": "\\item",
+    "categoria": "listas",
+    "explicacao": "Cada elemento de uma lista.",
+    "exemplo": "\\item Texto do item"
+  },
+  {
+    "comando": "\\begin{verbatim}...\\end{verbatim}",
+    "categoria": "ambientes",
+    "explicacao": "Mostra texto exatamente como escrito, sem interpretar comandos.",
+    "exemplo": "\\begin{verbatim}\n\\textbf{isso aparece como texto puro}\n\\end{verbatim}"
+  },
+  {
+    "comando": "\\verb|texto|",
+    "categoria": "ambientes",
+    "explicacao": "Trecho curto de texto literal, sem interpretar comandos.",
+    "exemplo": "O comando \\verb|\\frac| cria fracoes."
+  },
+  {
+    "comando": "\\begin{quote}...\\end{quote}",
+    "categoria": "ambientes",
+    "explicacao": "Bloco de citação com recuo dos dois lados.",
+    "exemplo": "\\begin{quote}\nTexto citado.\n\\end{quote}"
+  },
+  {
+    "comando": "\\begin{abstract}...\\end{abstract}",
+    "categoria": "ambientes",
+    "explicacao": "Resumo do documento.",
+    "exemplo": "\\begin{abstract}\nEste trabalho apresenta...\n\\end{abstract}"
+  },
+  {
+    "comando": "\\begin{minipage}{largura}...\\end{minipage}",
+    "categoria": "ambientes",
+    "explicacao": "Caixa de texto com largura definida, para colocar conteúdo lado a lado.",
+    "exemplo": "\\begin{minipage}{0.45\\textwidth}\nTexto da esquerda.\n\\end{minipage}"
+  },
+  {
+    "comando": "\\begin{flushleft}...\\end{flushleft}",
+    "categoria": "ambientes",
+    "explicacao": "Bloco de texto alinhado a esquerda.",
+    "exemplo": "\\begin{flushleft}\nTexto a esquerda.\n\\end{flushleft}"
+  },
+  {
+    "comando": "\\begin{center}...\\end{center}",
+    "categoria": "ambientes",
+    "explicacao": "Bloco de texto centralizado.",
+    "exemplo": "\\begin{center}\nTexto centralizado.\n\\end{center}"
+  },
+  {
+    "comando": "\\begin{flushright}...\\end{flushright}",
+    "categoria": "ambientes",
+    "explicacao": "Bloco de texto alinhado a direita.",
+    "exemplo": "\\begin{flushright}\nTexto a direita.\n\\end{flushright}"
+  },
+  {
+    "comando": "\\geometry{opções}",
+    "categoria": "geometria",
+    "explicacao": "Configura as margens da página. Requer \\usepackage{geometry}.",
+    "exemplo": "\\geometry{a4paper, margin=2.5cm}"
+  },
+  {
+    "comando": "\\setlength{\\parindent}{medida}",
+    "categoria": "geometria",
+    "explicacao": "Define o recuo dos parágrafos.",
+    "exemplo": "\\setlength{\\parindent}{1.5cm}"
+  },
+  {
+    "comando": "\\setlength{\\parskip}{medida}",
+    "categoria": "geometria",
+    "explicacao": "Define o espaço entre parágrafos.",
+    "exemplo": "\\setlength{\\parskip}{6pt}"
+  },
+  {
+    "comando": "\\pagestyle{estilo}",
+    "categoria": "geometria",
+    "explicacao": "Define o estilo dos cabecalhos e rodapes: plain, empty, headings.",
+    "exemplo": "\\pagestyle{empty}"
+  },
+  {
+    "comando": "\\pagenumbering{estilo}",
+    "categoria": "geometria",
+    "explicacao": "Tipo de numeração: arabic, roman, Roman, alph, Alph.",
+    "exemplo": "\\pagenumbering{roman}"
+  },
+  {
+    "comando": "\\onehalfspacing",
+    "categoria": "geometria",
+    "explicacao": "Espaçamento entre linhas de 1,5. Requer \\usepackage{setspace}.",
+    "exemplo": "\\onehalfspacing"
+  },
+  {
+    "comando": "\\doublespacing",
+    "categoria": "geometria",
+    "explicacao": "Espaçamento entre linhas duplo. Requer \\usepackage{setspace}.",
+    "exemplo": "\\doublespacing"
+  },
+  {
+    "comando": "\\url{endereco}",
+    "categoria": "formatacao",
+    "explicacao": "Insere um link clicavel. Requer \\usepackage{hyperref} ou url.",
+    "exemplo": "\\url{https://www.exemplo.com.br}"
+  },
+  {
+    "comando": "\\href{url}{texto}",
+    "categoria": "formatacao",
+    "explicacao": "Link com texto personalizado. Requer \\usepackage{hyperref}.",
+    "exemplo": "\\href{https://www.exemplo.com.br}{Site de exemplo}"
+  },
+  {
+    "comando": "\\today",
+    "categoria": "formatacao",
+    "explicacao": "Insere a data atual automaticamente.",
+    "exemplo": "Data: \\today"
+  },
+  {
+    "comando": "\\begin{frame}{título}...\\end{frame}",
+    "categoria": "ambientes",
+    "explicacao": "Um slide na classe beamer.",
+    "exemplo": "\\begin{frame}{Introducao}\nConteudo do slide.\n\\end{frame}"
+  },
+  {
+    "comando": "\\frametitle{título}",
+    "categoria": "ambientes",
+    "explicacao": "Define o título de um slide beamer (alternativa a colocar no begin).",
+    "exemplo": "\\begin{frame}\n\\frametitle{Resultados}\n\\end{frame}"
+  },
+  {
+    "comando": "\\pause",
+    "categoria": "ambientes",
+    "explicacao": "No beamer, faz o conteúdo seguinte aparecer só no próximo clique.",
+    "exemplo": "Primeiro ponto \\pause\nSegundo ponto"
+  },
+  {
+    "comando": "\\text{texto}",
+    "categoria": "matematica",
+    "explicacao": "Insere texto normal dentro do modo matemático. Requer amsmath.",
+    "exemplo": "$x = 0 \\text{ se } y > 1$"
+  },
+  {
+    "comando": "\\mathrm{texto}",
+    "categoria": "matematica",
+    "explicacao": "Texto em romano (sem itálico) dentro do modo matemático.",
+    "exemplo": "$\\mathrm{pH} = -\\log[\\mathrm{H}^+]$"
+  },
+  {
+    "comando": "\\overline{expr}",
+    "categoria": "matematica",
+    "explicacao": "Linha horizontal sobre a expressão (media, complemento).",
+    "exemplo": "$\\overline{AB}$"
+  },
+  {
+    "comando": "\\tilde{x}",
+    "categoria": "matematica",
+    "explicacao": "Coloca um til sobre a letra.",
+    "exemplo": "$\\tilde{x}$"
+  },
+  {
+    "comando": "\\titulo{texto}",
+    "categoria": "preambulo",
+    "explicacao": "abnTeX2: define o título do trabalho, usado na capa e na folha de rosto.",
+    "exemplo": "\\titulo{Modos normais do TiO2}"
+  },
+  {
+    "comando": "\\autor{nome}",
+    "categoria": "preambulo",
+    "explicacao": "abnTeX2: define o autor do trabalho. Use \\and para mais de um autor.",
+    "exemplo": "\\autor{José Paulo de Almeida Junior}"
+  },
+  {
+    "comando": "\\orientador[rotulo]{nome}",
+    "categoria": "preambulo",
+    "explicacao": "abnTeX2: define o orientador. O rótulo opcional troca o texto \"Orientador:\".",
+    "exemplo": "\\orientador{Prof. Dr. Fulano de Tal}"
+  },
+  {
+    "comando": "\\coorientador[rotulo]{nome}",
+    "categoria": "preambulo",
+    "explicacao": "abnTeX2: define o coorientador. O rótulo opcional troca o texto \"Coorientador:\".",
+    "exemplo": "\\coorientador{Profa. Dra. Beltrana}"
+  },
+  {
+    "comando": "\\instituicao{texto}",
+    "categoria": "preambulo",
+    "explicacao": "abnTeX2: define a instituição, impressa na capa e na folha de rosto.",
+    "exemplo": "\\instituicao{Universidade Federal do Pará}"
+  },
+  {
+    "comando": "\\local{cidade}",
+    "categoria": "preambulo",
+    "explicacao": "abnTeX2: define a cidade impressa na capa e na folha de rosto.",
+    "exemplo": "\\local{Belém}"
+  },
+  {
+    "comando": "\\data{ano}",
+    "categoria": "preambulo",
+    "explicacao": "abnTeX2: define a data (normalmente o ano) da capa e da folha de rosto.",
+    "exemplo": "\\data{2026}"
+  },
+  {
+    "comando": "\\preambulo{texto}",
+    "categoria": "preambulo",
+    "explicacao": "abnTeX2: define o texto da folha de rosto, com a natureza do trabalho e o grau pretendido.",
+    "exemplo": "\\preambulo{Trabalho de Conclusão de Curso apresentado ao curso de Física.}"
+  },
+  {
+    "comando": "\\tipotrabalho{tipo}",
+    "categoria": "preambulo",
+    "explicacao": "abnTeX2: define o tipo do trabalho (Tese, Dissertação, Monografia, TCC).",
+    "exemplo": "\\tipotrabalho{Monografia}"
+  },
+  {
+    "comando": "\\imprimircapa",
+    "categoria": "estrutura",
+    "explicacao": "abnTeX2: imprime a capa com os dados definidos no preâmbulo.",
+    "exemplo": "\\imprimircapa"
+  },
+  {
+    "comando": "\\imprimirfolhaderosto",
+    "categoria": "estrutura",
+    "explicacao": "abnTeX2: imprime a folha de rosto. Com asterisco, deixa o verso livre.",
+    "exemplo": "\\imprimirfolhaderosto*"
+  },
+  {
+    "comando": "\\assinatura{nome}",
+    "categoria": "estrutura",
+    "explicacao": "abnTeX2: desenha uma linha de assinatura centralizada com o nome embaixo. Com asterisco, cria só a caixa (linha e nome), sem posição na página nem centralização: coloque-a você mesmo, por exemplo dentro de um \\begin{center}.",
+    "exemplo": "\\assinatura{Prof. Dr. Fulano de Tal}\n\\assinatura*{Profa. Dra. Beltrana}"
+  },
+  {
+    "comando": "\\pretextual",
+    "categoria": "estrutura",
+    "explicacao": "abnTeX2: inicia os elementos pré-textuais (capa, resumo, sumário). Já vale no começo do documento.",
+    "exemplo": "\\pretextual"
+  },
+  {
+    "comando": "\\textual",
+    "categoria": "estrutura",
+    "explicacao": "abnTeX2: inicia a parte textual, com numeração arábica das páginas.",
+    "exemplo": "\\textual"
+  },
+  {
+    "comando": "\\postextual",
+    "categoria": "estrutura",
+    "explicacao": "abnTeX2: inicia os elementos pós-textuais (referências, apêndices, anexos).",
+    "exemplo": "\\postextual"
+  },
+  {
+    "comando": "\\apendices",
+    "categoria": "estrutura",
+    "explicacao": "abnTeX2: inicia a parte de apêndices. Cada \\chapter seguinte vira APÊNDICE A, B, C.",
+    "exemplo": "\\apendices\n\\chapter{Código usado}"
+  },
+  {
+    "comando": "\\anexos",
+    "categoria": "estrutura",
+    "explicacao": "abnTeX2: inicia a parte de anexos. Cada \\chapter seguinte vira ANEXO A, B, C.",
+    "exemplo": "\\anexos\n\\chapter{Tabela do fabricante}"
+  },
+  {
+    "comando": "\\partapendices",
+    "categoria": "estrutura",
+    "explicacao": "abnTeX2: imprime a página de divisão \"Apêndices\" e a entrada correspondente no sumário.",
+    "exemplo": "\\partapendices"
+  },
+  {
+    "comando": "\\partanexos",
+    "categoria": "estrutura",
+    "explicacao": "abnTeX2: imprime a página de divisão \"Anexos\" e a entrada correspondente no sumário.",
+    "exemplo": "\\partanexos"
+  },
+  {
+    "comando": "\\citeonline{chave}",
+    "categoria": "referencias",
+    "explicacao": "abnTeX2 (abntex2cite): cita a obra no texto, no formato Autor (ano). Use quando o autor faz parte da frase.",
+    "exemplo": "Segundo \\citeonline{silva2024}, o modo é ativo."
+  },
+  {
+    "comando": "\\citeauthoronline{chave}",
+    "categoria": "referencias",
+    "explicacao": "abnTeX2 (abntex2cite): cita só o nome do autor, sem o ano.",
+    "exemplo": "\\citeauthoronline{silva2024}"
+  },
+  {
+    "comando": "\\apudonline[comentario]{primeira}{segunda}",
+    "categoria": "referencias",
+    "explicacao": "abnTeX2 (abntex2cite): citação de citação (apud) no formato Autor (ano apud Autor, ano).",
+    "exemplo": "\\apudonline{raman1928}{silva2024}"
+  },
+  {
+    "comando": "\\begin{resumo}...\\end{resumo}",
+    "categoria": "ambientes",
+    "explicacao": "abnTeX2: resumo em português, com o título e o formato da ABNT. Coloque as palavras-chave no fim.",
+    "exemplo": "\\begin{resumo}\nTexto do resumo.\n\n\\textbf{Palavras-chave}: Raman; TiO2.\n\\end{resumo}"
+  },
+  {
+    "comando": "\\begin{citacao}...\\end{citacao}",
+    "categoria": "ambientes",
+    "explicacao": "abnTeX2: citação direta longa (mais de três linhas), com recuo de 4 cm, fonte reduzida e espaço simples.",
+    "exemplo": "\\begin{citacao}\nTexto citado literalmente.\n\\end{citacao}"
+  },
+  {
+    "comando": "\\begin{agradecimentos}...\\end{agradecimentos}",
+    "categoria": "ambientes",
+    "explicacao": "abnTeX2: página de agradecimentos, com título no formato pré-textual.",
+    "exemplo": "\\begin{agradecimentos}\nAgradeço a todos.\n\\end{agradecimentos}"
+  },
+  {
+    "comando": "\\begin{dedicatoria}...\\end{dedicatoria}",
+    "categoria": "ambientes",
+    "explicacao": "abnTeX2: página de dedicatória, sem título. O ambiente só cria a página e o marcador; para o texto ficar no canto inferior direito use \\vspace*{\\fill} e flushright, como no modelo do abnTeX2.",
+    "exemplo": "\\begin{dedicatoria}\n  \\vspace*{\\fill}\n  \\begin{flushright}\n    \\textit{A minha família.}\n  \\end{flushright}\n\\end{dedicatoria}"
+  },
+  {
+    "comando": "\\begin{epigrafe}...\\end{epigrafe}",
+    "categoria": "ambientes",
+    "explicacao": "abnTeX2: página de epígrafe, sem título. O ambiente só cria a página e o marcador; para a citação ficar no canto inferior direito use \\vspace*{\\fill} e flushright, como no modelo do abnTeX2.",
+    "exemplo": "\\begin{epigrafe}\n  \\vspace*{\\fill}\n  \\begin{flushright}\n    \\textit{Frase.}\n    (Autor)\n  \\end{flushright}\n\\end{epigrafe}"
+  },
+  {
+    "comando": "\\begin{folhadeaprovacao}...\\end{folhadeaprovacao}",
+    "categoria": "ambientes",
+    "explicacao": "abnTeX2: folha de aprovação da banca, com título no formato pré-textual. Use \\assinatura para os membros.",
+    "exemplo": "\\begin{folhadeaprovacao}\n\\assinatura{Prof. Dr. Fulano}\n\\end{folhadeaprovacao}"
+  },
+  {
+    "comando": "\\begin{fichacatalografica}...\\end{fichacatalografica}",
+    "categoria": "ambientes",
+    "explicacao": "abnTeX2: página da ficha catalográfica, em fonte reduzida e sem número de página. O ambiente não posiciona nada; para o quadro ficar no pé da página use \\vspace*{\\fill} antes dele, como no modelo do abnTeX2. Com a ficha em PDF, use \\includepdf (pacote pdfpages) no lugar do quadro.",
+    "exemplo": "\\begin{fichacatalografica}\n  \\vspace*{\\fill}\n  \\begin{center}\n    \\fbox{\\begin{minipage}[c][8cm]{13.5cm}\n      Texto da ficha catalográfica (dados da biblioteca).\n    \\end{minipage}}\n  \\end{center}\n\\end{fichacatalografica}"
+  },
+  {
+    "comando": "\\begin{errata}...\\end{errata}",
+    "categoria": "ambientes",
+    "explicacao": "abnTeX2: página de errata, com título no formato pré-textual.",
+    "exemplo": "\\begin{errata}\nFolha 10, linha 3: onde se lê A, leia-se B.\n\\end{errata}"
+  },
+  {
+    "comando": "\\SI{valor}{unidade}",
+    "categoria": "matematica",
+    "explicacao": "siunitx: escreve número com unidade, com o espaço fino correto. Aceita unidades como \\meter\\per\\second.",
+    "exemplo": "\\SI{9.81}{\\meter\\per\\second\\squared}"
+  },
+  {
+    "comando": "\\si{unidade}",
+    "categoria": "matematica",
+    "explicacao": "siunitx: escreve só a unidade, em fonte reta.",
+    "exemplo": "\\si{\\kilo\\gram\\meter\\per\\second}"
+  },
+  {
+    "comando": "\\num{número}",
+    "categoria": "matematica",
+    "explicacao": "siunitx: formata um número com separador de milhar e notação científica.",
+    "exemplo": "\\num{1.2e-3}"
+  },
+  {
+    "comando": "\\qty{valor}{unidade}",
+    "categoria": "matematica",
+    "explicacao": "siunitx (versão 3): escreve número com unidade, e as unidades podem ser escritas por extenso (\\qty{3}{meter per second}) ou com macros (\\kelvin). Substitui o \\SI da versão 2. Atenção: o pacote physics também define \\qty (parênteses de tamanho automático) e os dois entram em conflito se forem carregados juntos. Carregue só um, ou use \\SI e \\si do siunitx.",
+    "exemplo": "\\qty{300}{\\kelvin}"
+  },
+  {
+    "comando": "\\unit{unidade}",
+    "categoria": "matematica",
+    "explicacao": "siunitx (versão 3): escreve só a unidade. Troca o \\si da versão 2.",
+    "exemplo": "\\unit{\\newton\\meter}"
+  },
+  {
+    "comando": "\\ang{angulo}",
+    "categoria": "matematica",
+    "explicacao": "siunitx: escreve um ângulo em graus. Aceita grau decimal ou graus; minutos; segundos.",
+    "exemplo": "\\ang{45} e \\ang{30;15;10}"
+  },
+  {
+    "comando": "\\numrange{inicio}{fim}",
+    "categoria": "matematica",
+    "explicacao": "siunitx: escreve um intervalo de números, como 10 a 20.",
+    "exemplo": "\\numrange{10}{20}"
+  },
+  {
+    "comando": "\\sisetup{opções}",
+    "categoria": "preambulo",
+    "explicacao": "siunitx: define opções globais, como separador decimal e espaçamento.",
+    "exemplo": "\\sisetup{output-decimal-marker = {,}}"
+  },
+  {
+    "comando": "\\abs{x}",
+    "categoria": "matematica",
+    "explicacao": "physics: valor absoluto com delimitadores do tamanho certo.",
+    "exemplo": "\\abs{x - 1}"
+  },
+  {
+    "comando": "\\norm{v}",
+    "categoria": "matematica",
+    "explicacao": "physics: norma de um vetor, com barras duplas.",
+    "exemplo": "\\norm{\\vec{v}}"
+  },
+  {
+    "comando": "\\dv{f}{x}",
+    "categoria": "matematica",
+    "explicacao": "physics: derivada ordinária df/dx. Com \\dv{x} sozinho, vira d/dx.",
+    "exemplo": "\\dv{f}{t}"
+  },
+  {
+    "comando": "\\pdv{f}{x}",
+    "categoria": "matematica",
+    "explicacao": "physics: derivada parcial. Com duas variáveis, dá a derivada mista.",
+    "exemplo": "\\pdv{f}{x}{y}"
+  },
+  {
+    "comando": "\\dd{x}",
+    "categoria": "matematica",
+    "explicacao": "physics: diferencial em fonte reta, como em integrais.",
+    "exemplo": "\\int f(x) \\dd{x}"
+  },
+  {
+    "comando": "\\bra{psi}",
+    "categoria": "matematica",
+    "explicacao": "physics: bra da notação de Dirac, <psi|.",
+    "exemplo": "\\bra{\\psi}"
+  },
+  {
+    "comando": "\\ket{psi}",
+    "categoria": "matematica",
+    "explicacao": "physics: ket da notação de Dirac, |psi>.",
+    "exemplo": "\\ket{\\psi}"
+  },
+  {
+    "comando": "\\braket{a}{b}",
+    "categoria": "matematica",
+    "explicacao": "physics: produto interno de Dirac, <a|b>.",
+    "exemplo": "\\braket{\\phi}{\\psi}"
+  },
+  {
+    "comando": "\\expval{A}",
+    "categoria": "matematica",
+    "explicacao": "physics: valor esperado de um operador, <A>.",
+    "exemplo": "\\expval{H}"
+  },
+  {
+    "comando": "\\mel{n}{A}{m}",
+    "categoria": "matematica",
+    "explicacao": "physics: elemento de matriz de um operador, <n|A|m>.",
+    "exemplo": "\\mel{n}{H}{m}"
+  },
+  {
+    "comando": "\\comm{A}{B}",
+    "categoria": "matematica",
+    "explicacao": "physics: comutador [A, B].",
+    "exemplo": "\\comm{x}{p}"
+  },
+  {
+    "comando": "\\order{x^2}",
+    "categoria": "matematica",
+    "explicacao": "physics: notação de ordem, O(x^2).",
+    "exemplo": "\\order{x^3}"
+  },
+  {
+    "comando": "\\grad",
+    "categoria": "matematica",
+    "explicacao": "physics: gradiente. Com argumento entre parênteses, aplica a um campo.",
+    "exemplo": "\\grad \\phi"
+  },
+  {
+    "comando": "\\div",
+    "categoria": "matematica",
+    "explicacao": "physics: divergente. Com o pacote carregado, troca o sinal de divisão pelo operador.",
+    "exemplo": "\\div \\vb{E}"
+  },
+  {
+    "comando": "\\curl",
+    "categoria": "matematica",
+    "explicacao": "physics: rotacional.",
+    "exemplo": "\\curl \\vb{B}"
+  },
+  {
+    "comando": "\\laplacian",
+    "categoria": "matematica",
+    "explicacao": "physics: laplaciano.",
+    "exemplo": "\\laplacian \\psi"
+  }
+]
