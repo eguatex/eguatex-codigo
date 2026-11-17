@@ -357,7 +357,7 @@ export async function compilarWeb(
       reiniciarMotor();
       progresso?.('O motor LaTeX falhou. Tentando de novo...');
       await iniciar();
-      aviso += `ÉguaTex: o motor do celular falhou na primeira tentativa (${(r.texto ?? '').split('\n')[0]}) e foi reiniciado.\n`;
+      aviso += `ÉguaTeX: o motor do celular falhou na primeira tentativa (${(r.texto ?? '').split('\n')[0]}) e foi reiniciado.\n`;
       r = await rodar();
     }
     return r;
@@ -406,7 +406,7 @@ export async function compilarWeb(
   if (trocadas.length > 0) {
     notasConfig.push(`fontes que não existem no celular foram trocadas na compilação (o arquivo não muda): ${trocadas.join(', ')}.`);
   }
-  const notas = notasConfig.map((n) => `ÉguaTex: ${n}\n`).join('');
+  const notas = notasConfig.map((n) => `ÉguaTeX: ${n}\n`).join('');
   if (resposta.tipo === 'falha') {
     reiniciarMotor();
     // falha ou tempo esgotado do Worker: o auxiliar em disco pode ser o culpado, a proxima compilacao parte limpa
@@ -438,7 +438,7 @@ export async function compilarWeb(
   const tGravaCache = desde(tGravaCache0);
   const logFinal = resposta.logFinal ?? '';
   const falta = avisoDeFalta(logFinal || resposta.log || '');
-  const avisoFalta = falta ? `ÉguaTex: ${falta}\n` : '';
+  const avisoFalta = falta ? `ÉguaTeX: ${falta}\n` : '';
   const base = principal.replace(/\.tex$/i, '');
   if (logFinal) await invoke('cmd_motor_gravar_texto', { caminho: juntarCaminho(diretorio, base + '.log'), conteudo: logFinal }).catch(() => {});
   let pdf: string | null = null;

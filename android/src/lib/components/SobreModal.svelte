@@ -1,7 +1,7 @@
 <script lang="ts">
   import X from "@lucide/svelte/icons/x";
   import { invoke } from "@tauri-apps/api/core";
-  import { t, tf } from "$lib/i18n";
+  import { t } from "$lib/i18n";
   import { registrarFechavel } from "$lib/voltar";
   import CartoesApoio from "./CartoesApoio.svelte";
 
@@ -15,14 +15,10 @@
   let { visivel = false, onfechar, onfeedback, onapoiar }: Props = $props();
 
   let versao = $state("");
-  let detalhes = $state("");
 
   $effect(() => {
     if (!visivel) return;
-    invoke<string>("cmd_versao").then((v) => (versao = v)).catch(() => (versao = "ÉguaTex"));
-    invoke<{ compilacao: string; tauri: string }>("cmd_detalhes_tecnicos")
-      .then((d) => (detalhes = tf("sobre.detalhes", d)))
-      .catch(() => (detalhes = ""));
+    invoke<string>("cmd_versao").then((v) => (versao = v)).catch(() => (versao = "ÉguaTeX"));
   });
 
   // o botao Voltar do Android fecha o Sobre em vez de sair do app
@@ -48,7 +44,6 @@
         />
         <p class="versao">{versao} · {t("sobre.autor")}</p>
         <p class="nota">{t("sobre.licenca")}</p>
-        {#if detalhes}<p class="nota detalhes">{detalhes}</p>{/if}
         <p class="motores ok">{t("sobre.motores-android")}</p>
       </div>
     </div>

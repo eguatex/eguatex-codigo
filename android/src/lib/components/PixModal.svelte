@@ -3,7 +3,7 @@
   import Copy from "@lucide/svelte/icons/copy";
   import Check from "@lucide/svelte/icons/check";
   import Heart from "@lucide/svelte/icons/heart";
-  import { gerarPayloadPix } from '$lib/pix';
+  import { PIX_APOIO, payloadPixValido } from '$lib/pix';
   import { t } from '$lib/i18n';
   import QRCode from 'qrcode';
   import { onMount } from 'svelte';
@@ -21,14 +21,9 @@
   let caixaCodigo: HTMLTextAreaElement | undefined = $state();
   let qrCodeSvg = $state('');
 
-  const dadosPix = {
-    chave: '8fc26c3b-8923-4fd6-a0f3-f6d62c4a7f3b',
-    nome: 'JOSE PAULO DE A JUNIOR',
-    cidade: 'BELEM',
-    txid: 'EGUATEXAPOIO'
-  };
-
-  const payload = gerarPayloadPix(dadosPix);
+  // Texto exato do QR do banco (ver PIX_APOIO em pix.ts). Nunca montar de novo.
+  const dadosPix = PIX_APOIO;
+  const payload = payloadPixValido(PIX_APOIO.payload) ? PIX_APOIO.payload : '';
 
   onMount(async () => {
     try {

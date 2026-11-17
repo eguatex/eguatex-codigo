@@ -22,10 +22,6 @@ const LIMITE_TESTE: Duration = Duration::from_secs(20);
 pub const LIMITE_CHAVE: usize = 1280;
 /// Codigo do Ativar quando o Gemini aceitou a chave e o cofre nao a gravou.
 pub const COFRE: &str = "cofre";
-/// Usuarios do cofre de provedores que o ÉguaTex nao usa mais (versoes antes da 42). Lista fixa:
-/// nenhum nome vem da frente, e "google-oauth" e "gemini" nunca entram aqui.
-const USUARIOS_ANTIGOS: &[&str] = &["openai-compativel", "openai", "anthropic"];
-
 /// Chave de API. Sem Debug, Display, Clone ou Serialize derivados: o texto so sai por
 /// `cabecalho` (marcado como sensivel) e por `limpar`, que a troca por `***`.
 pub struct ChaveApi(String);
@@ -120,16 +116,6 @@ pub fn apagar() -> Result<(), String> {
     match entrada()?.delete_credential() {
         Ok(()) | Err(keyring::Error::NoEntry) => Ok(()),
         Err(_) => Err("Erro ao apagar a chave do cofre.".into()),
-    }
-}
-
-/// Na abertura do app: apaga em silencio as chaves de provedores antigos (`USUARIOS_ANTIGOS`).
-/// Sem entrada, ou com o cofre fechado, nao faz nada.
-pub fn apagar_provedores_antigos() {
-    for usuario in USUARIOS_ANTIGOS {
-        if let Ok(e) = keyring::Entry::new(servico_cofre(), usuario) {
-            let _ = e.delete_credential();
-        }
     }
 }
 
@@ -314,26 +300,6 @@ mod testes {
         assert!(!crate::ia::carregar_config().ativa);
         let i18n: serde_json::Value = serde_json::from_str(include_str!("../../../dados/i18n/pt-BR.json")).unwrap();
         assert_eq!(i18n["ia.chave.resultado.cofre"], "Não foi possível guardar a chave neste computador. Tente de novo.");
-        zerar();
-    }
-
-    #[test]
-    fn abertura_apaga_so_os_provedores_antigos() {
-        let _vez = cofre_de_teste();
-        zerar();
-        let entrada = |u: &str| keyring::Entry::new(servico_cofre(), u).unwrap();
-        for usuario in ["openai-compativel", "openai", "anthropic", "google-oauth", "gemini"] {
-            entrada(usuario).set_password(&format!("segredo-{usuario}")).unwrap();
-        }
-        apagar_provedores_antigos();
-        for usuario in ["openai-compativel", "openai", "anthropic"] {
-            assert!(entrada(usuario).get_password().is_err(), "{usuario}");
-        }
-        assert_eq!(entrada("google-oauth").get_password().unwrap(), "segredo-google-oauth");
-        assert_eq!(entrada("gemini").get_password().unwrap(), "segredo-gemini");
-        // sem entradas antigas, tambem nao faz nada
-        apagar_provedores_antigos();
-        let _ = entrada("google-oauth").delete_credential();
         zerar();
     }
 

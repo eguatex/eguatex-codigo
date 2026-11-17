@@ -60,7 +60,7 @@
   interface ConteudoGemini {
     role: string;
     parts: ParteGemini[];
-    /** Campo do ÉguaTex: qual modelo respondeu. Sai antes de ir para o historico. */
+    /** Campo do ÉguaTeX: qual modelo respondeu. Sai antes de ir para o historico. */
     modeloUsado?: string;
   }
 

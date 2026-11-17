@@ -60,3 +60,21 @@ export function gerarPayloadPix(dados: DadosPix): string {
   const crc = calcularCrc16(payloadSemCrc);
   return payloadSemCrc + crc;
 }
+
+/**
+ * Pix de apoio ao ÉguaTeX. O payload e o texto exato do QR Code gerado pelo banco
+ * (lido da imagem em 16/11/2026). Ele NAO e montado de novo pelo app: qualquer mudanca
+ * de campo muda o CRC e corrompe o QR. Para trocar, cole o texto novo inteiro do banco;
+ * o teste `pix.test.ts` confere o CRC e a chave.
+ */
+export const PIX_APOIO = {
+  chave: 'contatoeguatex@gmail.com',
+  nome: 'JOSE PAULO DE ALMEIDA JUNIOR',
+  payload: '00020126460014br.gov.bcb.pix0124contatoeguatex@gmail.com5204000053039865802BR5924JOSEPAULODEALMEIDAJUNIOR6009Sao Paulo610901227-20062230519daqr7406303692472506304D3FB',
+} as const;
+
+/** O payload termina com o CRC16 certo (campo 63, 4 digitos hexadecimais)? */
+export function payloadPixValido(payload: string): boolean {
+  const m = /^(.*6304)([0-9A-F]{4})$/.exec(payload);
+  return !!m && calcularCrc16(m[1]) === m[2];
+}

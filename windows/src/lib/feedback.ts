@@ -15,7 +15,7 @@ export function montarMailto(email: string, assunto: string, corpo: string): str
   return `mailto:${email}?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`;
 }
 
-/** Link mailto: com assunto e corpo já escritos. `versao` vem de `cmd_versao` ("ÉguaTex 1.0.0"). */
+/** Link mailto: com assunto e corpo já escritos. `versao` vem de `cmd_versao` ("ÉguaTeX 1.0.0"). */
 export function montarMailtoFeedback(versao: string, sistema: string, email = EMAIL_CONTATO): string {
   const corpo = [
     t('feedback.corpo'),

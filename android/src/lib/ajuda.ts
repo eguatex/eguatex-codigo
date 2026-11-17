@@ -2,11 +2,10 @@
 // Os dois só agem quando a pessoa clica. Nenhum roda sozinho.
 
 import { invoke } from '@tauri-apps/api/core';
-import { openUrl } from '@tauri-apps/plugin-opener';
 import { avisoDeAtualizacao, type ResultadoAtualizacao } from './atualizacao';
+import { mostrarResultadoManual } from './aviso-versao.svelte';
 import { sistemaDoUserAgent } from './feedback';
 import { abrirFeedbackModal } from './feedback-modal.svelte';
-import { t } from './i18n';
 
 /** Abre o modal "Enviar feedback" com a versão do app e o sistema já lidos. */
 export async function enviarFeedback(): Promise<void> {
@@ -27,11 +26,6 @@ export async function procurarAtualizacao(): Promise<void> {
   } catch {
     aviso = avisoDeAtualizacao({ estado: 'erro', versao_atual: '' });
   }
-  if (aviso.link) {
-    if (confirm(`${aviso.texto}\n\n${t('atualizacao.abrir-pergunta')}`)) {
-      openUrl(aviso.link).catch((e) => console.error('Erro ao abrir o link:', e));
-    }
-  } else {
-    alert(aviso.texto);
-  }
+  // resultado na faixa do alto da tela, com o botao de download quando ha versao nova
+  mostrarResultadoManual(aviso.texto, aviso.link);
 }

@@ -16,7 +16,7 @@
         android:theme="@style/Theme.eguatex_android"
         android:usesCleartextTraffic="${usesCleartextTraffic}">
         <activity
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="fullUser"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode|density|fontScale"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize"

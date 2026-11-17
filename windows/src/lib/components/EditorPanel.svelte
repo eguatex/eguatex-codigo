@@ -13,6 +13,7 @@
   // estado guardado continua valido se o painel for montado de novo.
   const compHistorico = new Compartment();
   const compAparencia = new Compartment();
+  const compTema = new Compartment();
   const compAutocompletar = new Compartment();
   const compColchetes = new Compartment();
   const compVisual = new Compartment();
@@ -42,7 +43,7 @@
   import { closeBrackets, closeBracketsKeymap } from "@codemirror/autocomplete";
   import { searchKeymap, highlightSelectionMatches, openSearchPanel } from "@codemirror/search";
   import { latexMode } from "$lib/editor/latex-language";
-  import { temaClaro } from "$lib/editor/tema-eguatex";
+  import { temaDoEditor } from "$lib/editor/tema-eguatex";
   import { modoVisual } from "$lib/editor/visual";
   import { bloqueioDeEdicao } from "$lib/editor/somente-leitura";
   import { revisoes, revisando, campoRevisoes, definirRevisoes, aceitar, rejeitar, type Revisao } from "$lib/editor/revisao";
@@ -304,10 +305,22 @@
     return [EditorState.readOnly.of(somenteLeitura), EditorView.editable.of(!somenteLeitura), bloqueioDeEdicao];
   }
 
+  // Tema do editor segue o "Tema geral": escuro, claro ou o do sistema (inclusive se o sistema mudar com o app aberto).
+  let sistemaEscuro = $state(typeof window !== "undefined" && !!window.matchMedia?.("(prefers-color-scheme: dark)").matches);
+  $effect(() => {
+    const consulta = window.matchMedia?.("(prefers-color-scheme: dark)");
+    if (!consulta) return;
+    const mudar = (e: MediaQueryListEvent) => (sistemaEscuro = e.matches);
+    consulta.addEventListener("change", mudar);
+    return () => consulta.removeEventListener("change", mudar);
+  });
+  let editorEscuro = $derived(preferencias.tema === "escuro" || (preferencias.tema === "sistema" && sistemaEscuro));
+
   /** Tema, visual, revisando e as outras opcoes de agora (um estado guardado pode ter as de antes). */
   function efeitosDeConfiguracao() {
     return [
       compLinhas.reconfigure(linhas()),
+      compTema.reconfigure(temaDoEditor(editorEscuro)),
       compAparencia.reconfigure(aparencia()),
       compAutocompletar.reconfigure(preferencias.autocompletar ? autocompletarLatex : []),
       compColchetes.reconfigure(preferencias.fecharColchetes ? closeBrackets() : []),
@@ -377,7 +390,7 @@
       latexMode,
       frasesDoEditor(),
       extensaoMacros(() => atalhos.usuario.macros),
-      temaClaro,
+      compTema.of(temaDoEditor(editorEscuro)),
       compAparencia.of(aparencia()),
       revisoes,
       compVisual.of(modoVisual(visual)),

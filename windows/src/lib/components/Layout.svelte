@@ -9,6 +9,7 @@
   import ArrowRight from "@lucide/svelte/icons/arrow-right";
   import ArrowLeft from "@lucide/svelte/icons/arrow-left";
   import { preferencias, definirPreferencia } from '$lib/preferencias.svelte';
+  import { limitarLarguraPdf } from '$lib/divisor-pdf';
   import ChatIA from './ChatIA.svelte';
   import Search from "@lucide/svelte/icons/search";
   import AtalhosModal from './AtalhosModal.svelte';
@@ -356,7 +357,8 @@
 
   let painelAtivo = $state('arquivos');
   let larguraPainel = $state(240);
-  let larguraPdf = $state(480);
+  let larguraJanela = $state(typeof window !== 'undefined' ? window.innerWidth : 1280);
+  let fracaoPdf = $state(preferencias.fracaoPdf);
   let redimensionando: 'painel' | 'pdf' | null = $state(null);
   let pdfRef: ReturnType<typeof PdfViewer> | undefined = $state();
   let buscaTexto = $state('');
@@ -438,11 +440,12 @@
         if (redimensionando === 'painel') {
           larguraPainel = Math.max(160, Math.min(400, ev.clientX - deslocamento));
         } else if (redimensionando === 'pdf') {
-          larguraPdf = Math.max(300, Math.min(800, window.innerWidth - ev.clientX));
+          fracaoPdf = limitarLarguraPdf(window.innerWidth - ev.clientX, window.innerWidth, outrosPaineis) / window.innerWidth;
         }
       };
 
       const soltar = () => {
+        if (redimensionando === 'pdf' && Number.isFinite(fracaoPdf)) definirPreferencia('fracaoPdf', fracaoPdf);
         redimensionando = null;
         if (alvo.hasPointerCapture?.(id)) alvo.releasePointerCapture(id);
         alvo.removeEventListener('pointermove', mover);
@@ -466,6 +469,10 @@
   const arquivoLatex = $derived(arquivoAtual === '' || /\.(tex|sty|cls|ltx|dtx)$/i.test(arquivoAtual));
 
   let painelLateralVisivel = $derived(painelAtivo !== '');
+  // barra de icones (44 px) e painel lateral aberto: o editor fica com o resto, no minimo 360 px
+  let outrosPaineis = $derived(44 + (painelLateralVisivel ? (painelAtivo === 'chat' ? 340 : larguraPainel) : 0));
+  let larguraPdf = $derived(larguraPdfLivre);
+  let larguraPdfLivre = $derived(limitarLarguraPdf(fracaoPdf * larguraJanela, larguraJanela, outrosPaineis));
 
   // com uma imagem ativa o editor continua montado, so escondido
   const imagemAtiva = $derived(abas.find((a) => a.caminho === abaAtiva)?.tipo === 'imagem');
@@ -721,7 +728,7 @@
   <PaletaComandos visivel={paletaVisivel} acoes={todasAcoes} onfechar={() => (paletaVisivel = false)} />
 </div>
 
-<svelte:window onkeydown={teclaGlobal} />
+<svelte:window onkeydown={teclaGlobal} bind:innerWidth={larguraJanela} />
 
 <style>
   .layout {

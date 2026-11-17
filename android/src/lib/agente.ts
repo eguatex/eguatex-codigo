@@ -1,4 +1,4 @@
-// Agente de IA do ÉguaTex: ferramentas que o Gemini pode chamar e propostas de alteracao.
+// Agente de IA do ÉguaTeX: ferramentas que o Gemini pode chamar e propostas de alteracao.
 // Regra central: o Gemini nunca grava nada. Ele so propoe; quem grava e o app, depois do "Aceitar".
 
 export type NivelAgente = "conversa" | "leitura" | "sugerir";
@@ -149,7 +149,7 @@ export function ferramentas(nivel: NivelAgente) {
 
 export function instrucaoSistema(nivel: NivelAgente): string {
   const base =
-    "Você e o Assistente LaTeX do ÉguaTex, um editor LaTeX livre e offline. Responda em português do Brasil, " +
+    "Você e o Assistente LaTeX do ÉguaTeX, um editor LaTeX livre e offline. Responda em português do Brasil, " +
     "de forma direta e em linguagem simples para iniciantes. Siga a ABNT quando a pergunta envolver trabalhos " +
     "academicos brasileiros. Não invente pacotes, comandos ou opções de classe. Não use travessão.";
   if (nivel === "conversa") {
@@ -181,7 +181,7 @@ export function contextoDaPergunta(projeto: ProjetoAgente | undefined, nivel: Ni
   if (sel) partes.push(`Trecho selecionado (linhas ${sel.linhaInicio} a ${sel.linhaFim}):\n${sel.texto.slice(0, 4000)}`);
   const erros = projeto.erros().filter((e) => e.tipo !== "aviso");
   if (erros.length) partes.push(`Erros da última compilação:\n${resumirErros(erros)}`);
-  return partes.length ? `\n\n[Contexto do ÉguaTex]\n${partes.join("\n\n")}` : "";
+  return partes.length ? `\n\n[Contexto do ÉguaTeX]\n${partes.join("\n\n")}` : "";
 }
 
 function resumirErros(erros: ErroCompilacao[]): string {

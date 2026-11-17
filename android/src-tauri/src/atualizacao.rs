@@ -85,6 +85,28 @@ fn interpretar_release(json: &str, atual: &str, extensao: Option<&str>) -> Resul
 }
 
 /// Consulta a última release publicada. Nunca falha: o estado vai no resultado.
+/// Arquivo que o instalador do Windows grava ao lado do programa quando a caixa
+/// "Avisar quando houver versao nova" foi marcada.
+const MARCA_DO_INSTALADOR: &str = "avisar-versao-nova.txt";
+
+/// Le e apaga a marca do instalador. Sem a marca (ou no Android), devolve false.
+fn ler_marca_do_instalador(pasta: &std::path::Path) -> bool {
+    let marca = pasta.join(MARCA_DO_INSTALADOR);
+    if !marca.is_file() {
+        return false;
+    }
+    let _ = std::fs::remove_file(&marca);
+    true
+}
+
+#[tauri::command]
+pub fn cmd_aviso_do_instalador() -> bool {
+    std::env::current_exe()
+        .ok()
+        .and_then(|exe| exe.parent().map(ler_marca_do_instalador))
+        .unwrap_or(false)
+}
+
 #[tauri::command]
 pub async fn cmd_procurar_atualizacao() -> ResultadoAtualizacao {
     let atual = env!("CARGO_PKG_VERSION");
@@ -117,6 +139,17 @@ pub async fn cmd_procurar_atualizacao() -> ResultadoAtualizacao {
 
 #[cfg(test)]
 mod testes {
+    #[test]
+    fn marca_do_instalador_e_lida_uma_vez() {
+        let pasta = std::env::temp_dir().join(format!("eguatex-marca-{}", std::process::id()));
+        std::fs::create_dir_all(&pasta).unwrap();
+        assert!(!super::ler_marca_do_instalador(&pasta));
+        std::fs::write(pasta.join(super::MARCA_DO_INSTALADOR), "1").unwrap();
+        assert!(super::ler_marca_do_instalador(&pasta));
+        assert!(!super::ler_marca_do_instalador(&pasta));
+        let _ = std::fs::remove_dir_all(&pasta);
+    }
+
     use super::*;
 
     #[test]

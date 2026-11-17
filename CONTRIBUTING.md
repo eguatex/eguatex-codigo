@@ -1,10 +1,10 @@
 # Como contribuir
 
-Obrigado por querer ajudar o ÉguaTex.
+Obrigado por querer ajudar o ÉguaTeX.
 
 ## Como este repositório funciona
 
-O desenvolvimento do ÉguaTex acontece num espaço de trabalho interno da equipe. Este repositório recebe uma cópia do código a cada versão lançada, para que qualquer pessoa possa estudar, compilar e modificar o app, como garante a licença AGPL-3.0.
+O desenvolvimento do ÉguaTeX acontece num espaço de trabalho interno da equipe. Este repositório recebe uma cópia do código a cada versão lançada, para que qualquer pessoa possa estudar, compilar e modificar o app, como garante a licença AGPL-3.0.
 
 Por isso, as contribuições seguem este caminho:
 
@@ -14,7 +14,7 @@ Por isso, as contribuições seguem este caminho:
 
 ## Jeitos de ajudar
 
-- **Avisar um erro:** abra uma issue com o modelo "Erro no app". Conte o sistema (Windows ou Android), a versão do ÉguaTex e os passos para o erro acontecer.
+- **Avisar um erro:** abra uma issue com o modelo "Erro no app". Conte o sistema (Windows ou Android), a versão do ÉguaTeX e os passos para o erro acontecer.
 - **Sugerir uma melhoria:** abra uma issue com o modelo "Sugestão".
 - **Propor uma mudança no código:** abra um pull request explicando o que muda e por quê. Mudanças pequenas e focadas são mais fáceis de avaliar.
 

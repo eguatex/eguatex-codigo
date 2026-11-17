@@ -58,7 +58,7 @@ export function montarPayload(campos: CamposFeedback, versao: string, sistema: s
   };
 }
 
-/** Mailto com assunto "[ÉguaTex] {tipo}" e o payload no corpo: o envio normal. */
+/** Mailto com assunto "[ÉguaTeX] {tipo}" e o payload no corpo: o envio normal. */
 export function montarMailtoDoPayload(p: PayloadFeedback, email = EMAIL_CONTATO): string {
   const linhas = [`${t('feedback.tipo')}: ${t(`feedback.tipo-${p.tipo}` as 'feedback.tipo-outro')}`];
   if (p.nome) linhas.push(`${t('feedback.nome')}: ${p.nome}`);

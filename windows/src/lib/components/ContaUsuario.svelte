@@ -1,5 +1,5 @@
 <script lang="ts">
-  // Conta Google unica do ÉguaTex: um login libera o Google Drive, o compartilhamento e a
+  // Conta Google unica do ÉguaTeX: um login libera o Google Drive, o compartilhamento e a
   // abertura de arquivos do Google (o assistente de IA usa chave propria). O estado e as acoes ficam em
   // $lib/conta-google.svelte; aqui so ficam o botao (barra lateral ou icone) e o cartao da conta.
   import UserRound from "@lucide/svelte/icons/user-round";

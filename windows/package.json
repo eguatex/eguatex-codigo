@@ -1,6 +1,6 @@
 {
   "name": "eguatex",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Editor LaTeX gratuito e offline, feito na Amazônia.",
   "type": "module",
   "scripts": {
@@ -13,7 +13,6 @@
     "prepare": "svelte-kit sync || echo ''",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "test": "vitest run",
     "tauri": "tauri"
   },
   "license": "AGPL-3.0-or-later",
@@ -26,6 +25,7 @@
     "@codemirror/search": "^6.7.2",
     "@codemirror/state": "^6.7.6",
     "@codemirror/view": "^6.43.15",
+    "@lezer/highlight": "^1.2.5",
     "@lucide/svelte": "^1.61.0",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-dialog": "^2.8.3",

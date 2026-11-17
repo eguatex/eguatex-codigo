@@ -153,6 +153,7 @@
           opcoesDocumento,
           t('config.documento-principal-descricao'),
         ),
+        interruptor('avisarVersaoNova', t('config.avisar-versao'), t('config.avisar-versao-descricao')),
         interruptor('autoCompilar', t('config.compilacao-automatica'), t('config.compilacao-automatica-descricao')),
         interruptor(
           'pararNoPrimeiroErro',

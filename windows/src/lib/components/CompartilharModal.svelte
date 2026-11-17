@@ -128,11 +128,11 @@
       {#if conta === null}
         <p class="estado"><Girador tamanho={14} /> {t("tarefa.carregando")}</p>
       {:else if !conta.configurado}
-        <p class="estado erro">O login com Google não está configurado nesta versão do ÉguaTex.</p>
+        <p class="estado erro">O login com Google não está configurado nesta versão do ÉguaTeX.</p>
       {:else if !conta.conectado}
         <section class="entrar">
           <Users size={32} />
-          <p>O ÉguaTex compartilha pelo <strong>Google Drive</strong>. {t("drive.compartilhar-explica")} Não há limite de colaboradores.</p>
+          <p>O ÉguaTeX compartilha pelo <strong>Google Drive</strong>. {t("drive.compartilhar-explica")} Não há limite de colaboradores.</p>
           {#if conta.aviso}<p class="estado erro">{conta.aviso}</p>{:else}<p class="miudo">{t("drive.permissao-aviso")}</p>{/if}
           <button class="primario" onclick={entrar} disabled={!!ocupado}>Entrar com Google</button>
         </section>

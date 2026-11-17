@@ -178,6 +178,20 @@
 ; O TinyTeX nao funciona em pasta com acento: a pasta do programa e %LOCALAPPDATA%\ÉguaTex
 ; e o pdflatex nao acha o pdflatex.fmt. Move o TinyTeX para %PROGRAMDATA%\EguaTex,
 ; que nunca tem acento (o nome de usuario pode ter). O app procura nesse lugar primeiro.
+; O nome passou de EguaTex para EguaTeX (so muda maiuscula). O Windows mantem o nome antigo
+; quando o atalho e regravado por cima, entao renomeia passando por um nome temporario.
+!macro EGUATEX_RENOMEAR_ATALHO ARQ
+  ${If} ${FileExists} "${ARQ}"
+    Delete "${ARQ}.tmp-nome"
+    Rename "${ARQ}" "${ARQ}.tmp-nome"
+    Rename "${ARQ}.tmp-nome" "${ARQ}"
+  ${EndIf}
+!macroend
+!macro EGUATEX_NOME_ATALHOS
+  !insertmacro EGUATEX_RENOMEAR_ATALHO "$SMPROGRAMS\${PRODUCTNAME}.lnk"
+  !insertmacro EGUATEX_RENOMEAR_ATALHO "$DESKTOP\${PRODUCTNAME}.lnk"
+!macroend
+
 !macro NSIS_HOOK_POSTINSTALL
   Push $R1
   ReadEnvStr $R1 PROGRAMDATA
@@ -198,6 +212,31 @@
     !insertmacro EGUATEX_PERMISSOES_TINYTEX
     !insertmacro EGUATEX_PASTA_CONTAS
   ${EndIf}
+  ${If} $EguaAvisoEstado == 1
+    FileOpen $R1 "$INSTDIR\avisar-versao-nova.txt" w
+    FileWrite $R1 "1"
+    FileClose $R1
+  ${EndIf}
+  !insertmacro EGUATEX_NOME_ATALHOS
   !insertmacro EGUATEX_ATUALIZAR_ICONES
   Pop $R1
 !macroend
+
+; Caixa "Avisar quando houver versao nova" na tela de boas-vindas, DESMARCADA de fabrica.
+; Marcada, o pos-instalacao grava avisar-versao-nova.txt ao lado do programa; o app le,
+; liga o aviso e apaga o arquivo na primeira abertura. A instalacao silenciosa (/S) nao grava.
+Var EguaAvisoCaixa
+Var EguaAvisoEstado
+!define MUI_PAGE_CUSTOMFUNCTION_SHOW EguaAvisoMostrar
+!define MUI_PAGE_CUSTOMFUNCTION_LEAVE EguaAvisoSair
+Function EguaAvisoMostrar
+  ${NSD_CreateCheckbox} 120u 172u 195u 12u "Avisar quando houver vers${U+00E3}o nova"
+  Pop $EguaAvisoCaixa
+  SetCtlColors $EguaAvisoCaixa "" "FFFFFF"
+  ${If} $EguaAvisoEstado == 1
+    ${NSD_Check} $EguaAvisoCaixa
+  ${EndIf}
+FunctionEnd
+Function EguaAvisoSair
+  ${NSD_GetState} $EguaAvisoCaixa $EguaAvisoEstado
+FunctionEnd

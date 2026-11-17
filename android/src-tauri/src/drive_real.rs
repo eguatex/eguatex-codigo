@@ -109,7 +109,7 @@ async fn drive_real_fase1() {
     let nome1 = format!("TesteDriveP1-{sufixo}");
     let nome2 = format!("TesteDriveP2-{sufixo}");
 
-    // o app ja tinha a pasta "ÉguaTex" na conta A?
+    // o app ja tinha a pasta "ÉguaTeX" na conta A?
     let pasta_antes = {
         let mut url = reqwest::Url::parse(&format!("{API}/files")).unwrap();
         url.query_pairs_mut()
@@ -228,7 +228,7 @@ async fn drive_real_limpar() {
         t.linha(&format!("confere {nome}"), "200", &format!("restam {}", zips_com_nome(nome).await.len()));
     }
     if !e["pasta_existia_antes"].as_bool().unwrap_or(true) {
-        // a pasta "ÉguaTex" foi criada pelo teste: sai se estiver vazia
+        // a pasta "ÉguaTeX" foi criada pelo teste: sai se estiver vazia
         if let Ok(id) = pasta_do_app().await {
             let mut url = reqwest::Url::parse(&format!("{API}/files")).unwrap();
             url.query_pairs_mut().append_pair("q", &format!("'{id}' in parents and trashed=false")).append_pair("fields", "files(id)");

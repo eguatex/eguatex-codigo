@@ -68,7 +68,7 @@
       {#if ajudaAberta}
         <div class="ajuda-menu" role="menu">
           <button class="ajuda-item" role="menuitem" onclick={() => { ajudaAberta = false; oncomousar?.(); }}>
-            Como usar o ÉguaTex
+            Como usar o ÉguaTeX
           </button>
           <button class="ajuda-item" role="menuitem" onclick={() => { ajudaAberta = false; onatalhos?.(); }}>
             Atalhos de teclado
@@ -77,7 +77,7 @@
             Documentação do LaTeX
           </button>
           <button class="ajuda-item" role="menuitem" onclick={() => abrirLink(SITE)}>
-            Site do ÉguaTex
+            Site do ÉguaTeX
           </button>
           <button class="ajuda-item" role="menuitem" onclick={() => abrirLink(MAILTO_CONTATO)}>
             Contato: {EMAIL_CONTATO}

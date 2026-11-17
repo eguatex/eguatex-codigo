@@ -118,7 +118,7 @@ pub fn cmd_exportar_documento(
         return Err(format!("O arquivo exportado precisa terminar em .{formato}"));
     }
     let pandoc = pandoc().ok_or_else(|| {
-        "O conversor Pandoc não foi encontrado. Reinstale o ÉguaTex ou instale o Pandoc (pandoc.org).".to_string()
+        "O conversor Pandoc não foi encontrado. Reinstale o ÉguaTeX ou instale o Pandoc (pandoc.org).".to_string()
     })?;
     let caminho = Path::new(diretorio.trim_end_matches(['/', '\\'])).join(arquivo.trim_start_matches(['/', '\\']));
     if !caminho.is_file() {

@@ -32,7 +32,7 @@
       titulo: '3. Compilar e ver o PDF',
       itens: [
         'Clique em "Compilar" ou aperte Ctrl + Enter. O PDF aparece à direita.',
-        'Se o documento tiver bibliografia, o ÉguaTex roda o BibTeX ou o Biber e repete a compilação até as citações ficarem certas.',
+        'Se o documento tiver bibliografia, o ÉguaTeX roda o BibTeX ou o Biber e repete a compilação até as citações ficarem certas.',
         'Erros e avisos aparecem no painel de registros, em português, com a linha do problema. Clique no erro para ir até a linha.',
         'Dê dois cliques no PDF para ir ao trecho correspondente no texto.',
       ],
@@ -61,9 +61,9 @@
 {#if visivel}
   <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
   <div class="fundo-modal" onclick={onfechar}>
-    <div class="modal" role="dialog" aria-modal="true" aria-label="Como usar o ÉguaTex" tabindex="-1" onclick={(e) => e.stopPropagation()}>
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Como usar o ÉguaTeX" tabindex="-1" onclick={(e) => e.stopPropagation()}>
       <header>
-        <h2>Como usar o ÉguaTex</h2>
+        <h2>Como usar o ÉguaTeX</h2>
         <button class="fechar" onclick={onfechar} title="Fechar"><X size={18} /></button>
       </header>
       <div class="corpo">

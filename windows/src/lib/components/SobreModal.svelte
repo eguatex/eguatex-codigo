@@ -15,7 +15,6 @@
   let { visivel = false, onfechar, onfeedback, onapoiar }: Props = $props();
 
   let versao = $state("");
-  let detalhes = $state("");
   let motores = $state<string[]>([]);
   let distribuicao = $state("");
 
@@ -30,10 +29,7 @@
 
   $effect(() => {
     if (!visivel) return;
-    invoke<string>("cmd_versao").then((v) => (versao = v)).catch(() => (versao = "ÉguaTex"));
-    invoke<{ compilacao: string; tauri: string }>("cmd_detalhes_tecnicos")
-      .then((d) => (detalhes = tf("sobre.detalhes", d)))
-      .catch(() => (detalhes = ""));
+    invoke<string>("cmd_versao").then((v) => (versao = v)).catch(() => (versao = "ÉguaTeX"));
     invoke<{ distribuicao?: string | null; motores: Array<{ nome: string }> }>("cmd_detectar_motores")
       .then((info) => {
         distribuicao = info.distribuicao ?? "";
@@ -79,7 +75,6 @@
         <p class="versao">{versao} · {t("sobre.autor")}</p>
         <p class="nota">{t("sobre.licenca")}</p>
         <p class="motores" class:ok={motores.length > 0}>{linhaMotores}</p>
-        {#if detalhes}<p class="nota detalhes">{detalhes}</p>{/if}
       </div>
     </div>
   </div>

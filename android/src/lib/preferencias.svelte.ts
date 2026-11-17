@@ -17,6 +17,14 @@ export interface Preferencias {
   familiaFonte: 'padrao' | 'Consolas' | 'Cascadia Code' | 'Courier New' | 'Lucida Console';
   alturaLinha: 'compacta' | 'normal' | 'larga';
   tema: 'sistema' | 'claro' | 'escuro';
+  /** Largura do PDF em fracao da janela (o divisor entre o editor e o PDF). */
+  fracaoPdf: number;
+  /** Avisar quando houver versao nova (uma consulta por dia ao abrir). Desligado de fabrica. */
+  avisarVersaoNova: boolean;
+  /** A faixa que oferece o aviso de versao nova ja apareceu uma vez. */
+  faixaAvisoVista: boolean;
+  /** Dia (AAAA-MM-DD) da ultima consulta automatica de versao nova. */
+  ultimaConsultaVersao: string;
   mostrarTrilha: boolean;
   mostrarAbas: boolean;
   previaEquacao: boolean;
@@ -47,6 +55,10 @@ const PADROES: Preferencias = {
   familiaFonte: 'padrao',
   alturaLinha: 'normal',
   tema: 'sistema',
+  fracaoPdf: 0.375,
+  avisarVersaoNova: false,
+  faixaAvisoVista: false,
+  ultimaConsultaVersao: '',
   // desligada na instalacao nova, como no Overleaf; quem ja tem preferencias salvas mantem a trilha ligada (ver carregar)
   mostrarTrilha: false,
   mostrarAbas: true,
@@ -85,6 +97,11 @@ const normalizadores: Normalizadores = {
   familiaFonte: umDe(['padrao', 'Consolas', 'Cascadia Code', 'Courier New', 'Lucida Console']),
   alturaLinha: umDe(['compacta', 'normal', 'larga']),
   tema: umDe(['sistema', 'claro', 'escuro']),
+  fracaoPdf: (valor) =>
+    typeof valor === 'number' && Number.isFinite(valor) ? Math.min(0.7, Math.max(0.05, valor)) : undefined,
+  avisarVersaoNova: booleano,
+  faixaAvisoVista: booleano,
+  ultimaConsultaVersao: (valor) => (typeof valor === 'string' && /^(\d{4}-\d{2}-\d{2})?$/.test(valor) ? valor : undefined),
   mostrarTrilha: booleano,
   mostrarAbas: booleano,
   previaEquacao: booleano,

@@ -1,4 +1,4 @@
-//! Google Picker: a pessoa escolhe no navegador o arquivo do Drive que o ÉguaTex pode usar.
+//! Google Picker: a pessoa escolhe no navegador o arquivo do Drive que o ÉguaTeX pode usar.
 //!
 //! Com o escopo `drive.file` o app so toca arquivos que ele mesmo criou ou que a pessoa
 //! escolheu no Picker. O Picker libera exatamente o item escolhido (escolher uma pasta nao
@@ -157,7 +157,7 @@ pub fn configurado() -> bool {
 pub(crate) fn configuracao() -> Result<(&'static str, &'static str), String> {
     match (CHAVE, NUMERO_PROJETO) {
         (Some(c), Some(n)) if !c.is_empty() && !n.is_empty() => Ok((c, n)),
-        _ => Err("O seletor de arquivos do Google ainda não foi configurado nesta versão do ÉguaTex.".into()),
+        _ => Err("O seletor de arquivos do Google ainda não foi configurado nesta versão do ÉguaTeX.".into()),
     }
 }
 
@@ -165,16 +165,16 @@ pub(crate) fn configuracao() -> Result<(&'static str, &'static str), String> {
 /// `TXT` e nao tem texto proprio; os titulos por modo tambem saem daqui (`Modo::titulo`).
 /// `{n}` e `{nome}` sao trocados pela pagina.
 const TEXTOS: &[(&str, &str)] = &[
-    ("pagina_titulo", "ÉguaTex: Google Drive"),
+    ("pagina_titulo", "ÉguaTeX: Google Drive"),
     ("carregando", "Carregando o seletor do Google..."),
-    ("voltar", "Voltar ao ÉguaTex"),
-    ("falha_carregar", "Não foi possível carregar o seletor do Google. Confira a internet e tente de novo no ÉguaTex."),
+    ("voltar", "Voltar ao ÉguaTeX"),
+    ("falha_carregar", "Não foi possível carregar o seletor do Google. Confira a internet e tente de novo no ÉguaTeX."),
     ("escolher_de_novo", "Escolher de novo"),
-    ("recebidos", "Recebidos {n} arquivo(s). Pode voltar ao ÉguaTex."),
-    ("recebido", "Recebido: {nome}. Pode voltar ao ÉguaTex."),
+    ("recebidos", "Recebidos {n} arquivo(s). Pode voltar ao ÉguaTeX."),
+    ("recebido", "Recebido: {nome}. Pode voltar ao ÉguaTeX."),
     ("escolha_recusada", "Não foi possível usar essa escolha. Escolha de novo."),
-    ("sem_resposta", "O ÉguaTex não respondeu. Volte ao app e tente de novo."),
-    ("cancelado", "Cancelado. Pode voltar ao ÉguaTex."),
+    ("sem_resposta", "O ÉguaTeX não respondeu. Volte ao app e tente de novo."),
+    ("cancelado", "Cancelado. Pode voltar ao ÉguaTeX."),
     ("titulo_projeto", "Escolha o projeto (.eguatex.zip) ou um .zip ou arquivo do seu Drive"),
     ("titulo_planilha", "Escolha a planilha do Google"),
     ("titulo_documento", "Escolha o documento do Google"),
@@ -183,7 +183,7 @@ const TEXTOS: &[(&str, &str)] = &[
     ("titulo_dentro", "Escolha os arquivos da pasta"),
     ("dica_pasta", "Marque todos os arquivos e escolha Selecionar."),
     ("dica_cookies", "Se o seletor pedir login ou não responder, permita os cookies de docs.google.com no navegador e recarregue a página."),
-    ("seletor_mudo", "O seletor do Google não abriu neste navegador. Entre no navegador com a mesma conta do Google do ÉguaTex, permita os cookies de terceiros e desligue VPN ou bloqueador de anúncios. Depois toque em Escolher de novo."),
+    ("seletor_mudo", "O seletor do Google não abriu neste navegador. Entre no navegador com a mesma conta do Google do ÉguaTeX, permita os cookies de terceiros e desligue VPN ou bloqueador de anúncios. Depois toque em Escolher de novo."),
 ];
 
 /// Texto da pagina pela chave (vazio se a chave nao existir; um teste garante que existem).
@@ -509,7 +509,7 @@ async fn aguardar_rede_no_android(app: &tauri::AppHandle) {
         match google::cliente().head("https://www.googleapis.com/").timeout(Duration::from_secs(5)).send().await {
             Ok(_) => return,
             Err(_) => {
-                let _ = app.emit("ia-google-progresso", "Volte ao ÉguaTex para continuar");
+                let _ = app.emit("ia-google-progresso", "Volte ao ÉguaTeX para continuar");
                 tokio::time::sleep(Duration::from_secs(2)).await;
             }
         }
@@ -792,7 +792,7 @@ mod testes {
 
     #[test]
     fn a_pagina_nao_tem_texto_proprio_e_usa_todos_os_textos_do_mapa() {
-        for solto in ["Não foi possível", "Pode voltar", "Escolher de novo", "Carregando", "Cancelado.", "Voltar ao ÉguaTex", "não respondeu"] {
+        for solto in ["Não foi possível", "Pode voltar", "Escolher de novo", "Carregando", "Cancelado.", "Voltar ao ÉguaTeX", "não respondeu"] {
             assert!(!PAGINA.contains(solto), "texto fora do mapa: {solto}");
         }
         for (chave, valor) in TEXTOS {

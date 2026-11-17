@@ -37,9 +37,10 @@ declare -A ARQ=( [aarch64]=arm64 [armv7]=arm [x86_64]=x86_64 )
 ALVOS="${ALVOS:-aarch64 armv7}"
 SAIDA="${SAIDA:-$HOME/Desktop/EguaTex_android.apk}"
 
-# o app foi pensado para o celular deitado; sem isto o editor e o PDF nao cabem lado a lado
-if ! grep -q 'android:screenOrientation="fullSensor"' "$APP/src/main/AndroidManifest.xml"; then
-  echo "AndroidManifest.xml sem android:screenOrientation=\"fullSensor\" na activity (o app gira: em pe como o Overleaf, deitado lado a lado)."; exit 1
+# o app gira (em pe e deitado), mas segue a rotacao automatica do celular: fullUser respeita
+# a trava de rotacao; o fullSensor de antes girava mesmo com a tela travada
+if ! grep -q 'android:screenOrientation="fullUser"' "$APP/src/main/AndroidManifest.xml"; then
+  echo "AndroidManifest.xml sem android:screenOrientation=\"fullUser\" na activity (o app gira: em pe como o Overleaf, deitado lado a lado)."; exit 1
 fi
 
 cd "$RAIZ"

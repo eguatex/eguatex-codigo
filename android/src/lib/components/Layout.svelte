@@ -9,6 +9,7 @@
   import ArrowRight from "@lucide/svelte/icons/arrow-right";
   import ArrowLeft from "@lucide/svelte/icons/arrow-left";
   import { preferencias, definirPreferencia } from '$lib/preferencias.svelte';
+  import { limitarLarguraPdf } from '$lib/divisor-pdf';
   import ChatIA from './ChatIA.svelte';
   import Search from "@lucide/svelte/icons/search";
   import AtalhosModal from './AtalhosModal.svelte';
@@ -308,7 +309,6 @@
       // no modo compacto e no retrato o modo estreito nao forca painel unico
       estreito = !compacto && !retrato && consulta.matches;
       // retrato: o PDF fica com metade da largura de 720 px, como no Overleaf em pe
-      if (retrato && !eraRetrato) larguraPdf = 330;
       if ((compacto && !eraCompacto) || (retrato && !eraRetrato)) {
         modoLayout = 'ambos';
         painelAtivo = '';
@@ -456,7 +456,8 @@
     if (gavetaAberta) return registrarFechavel(() => (painelAtivo = ''));
   });
   let larguraPainel = $state(240);
-  let larguraPdf = $state(480);
+  let larguraJanela = $state(typeof window !== 'undefined' ? window.innerWidth : 1280);
+  let fracaoPdf = $state(preferencias.fracaoPdf);
   let proporcaoPdf = $state(preferencias.proporcaoPdf);
   let corpoRef: HTMLDivElement | undefined = $state();
   let redimensionando: 'painel' | 'pdf' | null = $state(null);
@@ -577,12 +578,13 @@
           if (compacto && caixa && caixa.width > 0) {
             proporcaoPdf = Math.max(0.3, Math.min(0.7, (caixa.right - ev.clientX) / caixa.width));
           } else {
-            larguraPdf = Math.max(300, Math.min(800, window.innerWidth - ev.clientX));
+            fracaoPdf = limitarLarguraPdf(window.innerWidth - ev.clientX, window.innerWidth, outrosPaineis) / window.innerWidth;
           }
         }
       };
 
       const soltar = () => {
+        if (redimensionando === 'pdf' && Number.isFinite(fracaoPdf)) definirPreferencia('fracaoPdf', fracaoPdf);
         if (redimensionando === 'pdf' && compacto && Number.isFinite(proporcaoPdf)) definirPreferencia('proporcaoPdf', proporcaoPdf);
         redimensionando = null;
         if (alvo.hasPointerCapture?.(id)) alvo.releasePointerCapture(id);
@@ -604,6 +606,11 @@
   );
 
   let painelLateralVisivel = $derived(painelAtivo !== '');
+  // barra de icones (44 px) e painel lateral aberto: o editor fica com o resto, no minimo 360 px
+  let outrosPaineis = $derived(44 + (painelLateralVisivel ? (painelAtivo === 'chat' ? 340 : larguraPainel) : 0));
+  // retrato: o PDF fica com metade da largura de 720 px, como no Overleaf em pe
+  let larguraPdf = $derived(retrato ? 330 : larguraPdfLivre);
+  let larguraPdfLivre = $derived(limitarLarguraPdf(fracaoPdf * larguraJanela, larguraJanela, outrosPaineis));
 
   // com uma imagem ativa o editor continua montado, so escondido
   const imagemAtiva = $derived(abas.find((a) => a.caminho === abaAtiva)?.tipo === 'imagem');
@@ -882,7 +889,7 @@
   <PaletaComandos visivel={paletaVisivel} acoes={todasAcoes} onfechar={() => (paletaVisivel = false)} />
 </div>
 
-<svelte:window onkeydown={teclaGlobal} />
+<svelte:window onkeydown={teclaGlobal} bind:innerWidth={larguraJanela} />
 
 <style>
   .layout {

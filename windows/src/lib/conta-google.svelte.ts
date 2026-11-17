@@ -1,4 +1,4 @@
-// Conta Google unica do ÉguaTex: estado e acoes compartilhados por todos os lugares que mostram
+// Conta Google unica do ÉguaTeX: estado e acoes compartilhados por todos os lugares que mostram
 // ou pedem o login (icone da conta, Drive, compartilhamento, seletor de arquivos).
 // O login libera o Drive, o compartilhamento e a abertura de arquivos do Google. O assistente de
 // IA nao usa o login: usa a chave de API da propria pessoa (ConfigIA.svelte).

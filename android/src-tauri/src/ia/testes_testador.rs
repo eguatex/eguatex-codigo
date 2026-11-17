@@ -503,7 +503,7 @@ async fn config_de_provedor_antigo_carrega_como_gemini_e_sem_chave_nada_sai() {
     let caminho = dados().join("eguatex").join("ia-config.json");
     std::fs::create_dir_all(caminho.parent().unwrap()).unwrap();
     // nomes montados aos pedacos: o grep de restos dos provedores antigos continua limpo
-    let antigos = [format!("open{}", "ai"), format!("anth{}", "ropic"), "ollama".to_string()];
+    let antigos = [format!("open{}", "ai"), "ollama".to_string()];
     for antigo in &antigos {
         std::fs::write(&caminho, format!(r#"{{"ativa":true,"provedor":"{antigo}","modelo":"modelo-antigo","ollama_url":"http://localhost:11434"}}"#)).unwrap();
         let c = super::carregar_config();

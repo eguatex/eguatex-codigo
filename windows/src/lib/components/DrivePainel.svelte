@@ -132,7 +132,7 @@
       {#if conta === null}
         <section class="centro"><Girador tamanho={18} /> Carregando...</section>
       {:else if !conta.configurado}
-        <section><p>Esta versão do ÉguaTex não tem a ligação com o Google configurada.</p></section>
+        <section><p>Esta versão do ÉguaTeX não tem a ligação com o Google configurada.</p></section>
       {:else if !conta.conectado}
         <section>
           <p>

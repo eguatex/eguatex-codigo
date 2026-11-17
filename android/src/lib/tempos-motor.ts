@@ -63,7 +63,7 @@ function textoRecarga(rotulo: string, [pacotes, carga, montagem]: Recarga): stri
   return [`${rotulo} carga wasm e ${pacotes} pacotes ${Math.round(carga)} ms`, `${rotulo} montagem ${Math.round(montagem)} ms`];
 }
 
-/** Monta a linha `ÉguaTex: tempos: ...`, em milissegundos, com o total primeiro. Partes sem valor ficam de fora. */
+/** Monta a linha `ÉguaTeX: tempos: ...`, em milissegundos, com o total primeiro. Partes sem valor ficam de fora. */
 export function formatarTempos(t: TemposMotor): string {
   const w = t.worker ?? {};
   const partes: Array<string | null> = [];
@@ -95,5 +95,5 @@ export function formatarTempos(t: TemposMotor): string {
   par('gravar PDF', t.gravacao);
   par('gravar cache em disco', t.gravarCache);
   par('erros', t.erros);
-  return `ÉguaTex: tempos: ${partes.filter((p): p is string => p !== null).join(', ')}`;
+  return `ÉguaTeX: tempos: ${partes.filter((p): p is string => p !== null).join(', ')}`;
 }

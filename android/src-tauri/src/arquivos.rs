@@ -285,7 +285,7 @@ pub fn cmd_importar_arquivo(
     importar_numerado(&caminho_projeto, &origem, &pasta_relativa, 1)
 }
 
-/// Extensoes de figura que o ÉguaTex insere com \includegraphics.
+/// Extensoes de figura que o ÉguaTeX insere com \includegraphics.
 pub const EXTENSOES_FIGURA: &[&str] = &["png", "jpg", "jpeg", "pdf", "eps"];
 /// Pasta do projeto onde as figuras importadas ficam.
 pub const PASTA_FIGURAS: &str = "figuras";
@@ -1057,7 +1057,7 @@ pub(crate) fn importar_zip_com_limites(
     });
     ignorados.extend(barrados.iter().map(|(_, c, _)| limites_zip::nome_para_aviso(&c.to_string_lossy())));
     if lista.is_empty() {
-        return Err(format!("O zip não tem nada que o ÉguaTex possa abrir. Ignorados: {}.", ignorados.join(", ")));
+        return Err(format!("O zip não tem nada que o ÉguaTeX possa abrir. Ignorados: {}.", ignorados.join(", ")));
     }
     let nomes_no_zip: Vec<String> = lista
         .iter()

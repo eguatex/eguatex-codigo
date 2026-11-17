@@ -1,5 +1,5 @@
 //! Log em arquivo do fluxo do Google Drive (Picker, download e extracao), para diagnosticar
-//! falhas sem depender de quem testa. Grava em `<dados locais>/ÉguaTex/logs/drive.log`
+//! falhas sem depender de quem testa. Grava em `<dados locais>/ÉguaTeX/logs/drive.log`
 //! (no Windows, `%LOCALAPPDATA%\ÉguaTex\logs`). Nunca recebe token nem segredo.
 //! Passa de 1 MB: o arquivo antigo vira `drive.log.1` e um novo comeca.
 

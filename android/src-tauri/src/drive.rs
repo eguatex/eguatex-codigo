@@ -2,7 +2,7 @@
 //! limite de colaboradores.
 //!
 //! O projeto continua sendo uma pasta comum no disco. No Drive ele vira um unico arquivo
-//! `<nome>.eguatex.zip`, dentro da pasta "ÉguaTex" que o app cria. O app usa so o escopo
+//! `<nome>.eguatex.zip`, dentro da pasta "ÉguaTeX" que o app cria. O app usa so o escopo
 //! `drive.file`: toca apenas arquivos que ele criou ou que a pessoa escolheu no Google Picker
 //! (drive_picker.rs). O Picker libera so o item escolhido, por isso o projeto compartilhado
 //! e um arquivo e nao uma pasta.
@@ -12,7 +12,7 @@
 //! "nome (conflito de fulano).ext", sem perder nada. Projetos antigos, salvos como pasta com
 //! arquivos, viram zip na primeira sincronizacao do dono.
 //!
-//! O login e a conta Google unica do ÉguaTex (ia/google.rs).
+//! O login e a conta Google unica do ÉguaTeX (ia/google.rs).
 
 use std::collections::{BTreeMap, BTreeSet, VecDeque};
 use std::fs;
@@ -33,9 +33,9 @@ const API: &str = "https://www.googleapis.com/drive/v3";
 const UPLOAD: &str = "https://www.googleapis.com/upload/drive/v3";
 const MIME_PASTA: &str = "application/vnd.google-apps.folder";
 const MIME_ZIP: &str = "application/zip";
-/// Marca os projetos criados pelo ÉguaTex (zip e pastas antigas).
+/// Marca os projetos criados pelo ÉguaTeX (zip e pastas antigas).
 const MARCA: (&str, &str) = ("eguatex", "1");
-/// Marca a pasta "ÉguaTex" onde ficam os zips dos projetos.
+/// Marca a pasta "ÉguaTeX" onde ficam os zips dos projetos.
 const MARCA_PASTA_APP: (&str, &str) = ("eguatex", "app");
 const NOME_PASTA_APP: &str = "ÉguaTex";
 /// Comeco do erro quando o arquivo some ou a pessoa perde o acesso (HTTP 404). A interface
@@ -116,7 +116,7 @@ fn erro_da_api(status: u16, corpo: &str) -> String {
         .unwrap_or_else(|| corpo.chars().take(200).collect());
     match status {
         401 => "A sessão do Google Drive expirou. Entre de novo com a conta Google.".into(),
-        404 => format!("{ACESSO_PERDIDO}O arquivo não está mais no seu Google Drive, ou o ÉguaTex perdeu o acesso a ele."),
+        404 => format!("{ACESSO_PERDIDO}O arquivo não está mais no seu Google Drive, ou o ÉguaTeX perdeu o acesso a ele."),
         _ => format!("Google Drive recusou o pedido ({status}): {msg}"),
     }
 }
@@ -358,7 +358,7 @@ async fn para_lixeira(id: &str) -> Result<(), String> {
     api(Method::PATCH, &format!("{API}/files/{id}"), Some(json!({ "trashed": true }))).await.map(|_| ())
 }
 
-/// Pasta "ÉguaTex" no Meu Drive, criada pelo app na primeira vez.
+/// Pasta "ÉguaTeX" no Meu Drive, criada pelo app na primeira vez.
 async fn pasta_do_app() -> Result<String, String> {
     let mut url = reqwest::Url::parse(&format!("{API}/files")).map_err(|e| e.to_string())?;
     url.query_pairs_mut()
@@ -1008,7 +1008,7 @@ async fn ciclo(projeto: &Path, estado: &mut Estado, eu: &str) -> Result<Option<R
     if estado.e_formato_antigo() {
         let pasta = meta(&estado.pasta_id).await?;
         if !pasta.dono_sou_eu {
-            return Err("Este projeto está no formato antigo do Drive e só o dono pode convertê-lo. Peça para ele abrir o projeto no ÉguaTex atualizado e sincronizar uma vez.".into());
+            return Err("Este projeto está no formato antigo do Drive e só o dono pode convertê-lo. Peça para ele abrir o projeto no ÉguaTeX atualizado e sincronizar uma vez.".into());
         }
         for (rel, r) in listar_remoto(&estado.pasta_id).await? {
             remotos.insert(rel, baixar(&r.id).await?);
@@ -1180,7 +1180,7 @@ async fn sincronizar(projeto: &Path) -> Result<ResultadoSync, String> {
     // o estado so e lido depois de pegar a trava: outra chamada pode ter acabado de gravar
     let _vez = SINCRONIZANDO.lock().await;
     let Some(estado) = ler_estado(projeto) else {
-        // sem o zip do ÉguaTex: so os arquivos abertos do Drive (vinculos) voltam para la
+        // sem o zip do ÉguaTeX: so os arquivos abertos do Drive (vinculos) voltam para la
         let vinculos = ler_vinculos(projeto);
         if vinculos.is_empty() {
             return Err("Este projeto não está no Google Drive.".into());
@@ -1250,7 +1250,7 @@ pub async fn cmd_drive_reabrir_seletor(app: tauri::AppHandle, caminho: String) -
     let Some(escolhido) = drive_picker::escolher(&app, Modo::Projeto).await? else {
         return Ok(false);
     };
-    // so vale se o arquivo escolhido for mesmo um projeto do ÉguaTex
+    // so vale se o arquivo escolhido for mesmo um projeto do ÉguaTeX
     conferir_projeto(&meta(&escolhido.id).await?)?;
     trocar_arquivo(&mut estado, escolhido.id);
     gravar_estado(&projeto, &estado)?;
@@ -1328,13 +1328,13 @@ fn email_valido(e: &str) -> bool {
     }
 }
 
-/// Texto do e-mail de convite: explica como a pessoa abre o projeto no ÉguaTex.
+/// Texto do e-mail de convite: explica como a pessoa abre o projeto no ÉguaTeX.
 fn texto_do_convite(mensagem: &str, arquivo: &str) -> String {
     let instrucao = format!(
-        "Para editar: instale o ÉguaTex, abra Projetos, Compartilhados comigo, clique em Escolher no Google Drive e selecione o arquivo \"{arquivo}\" em Compartilhados comigo."
+        "Para editar: instale o ÉguaTeX, abra Projetos, Compartilhados comigo, clique em Escolher no Google Drive e selecione o arquivo \"{arquivo}\" em Compartilhados comigo."
     );
     if mensagem.trim().is_empty() {
-        format!("Convite para editar um projeto no ÉguaTex. {instrucao}")
+        format!("Convite para editar um projeto no ÉguaTeX. {instrucao}")
     } else {
         format!("{}\n\n{instrucao}", mensagem.trim())
     }
@@ -1585,7 +1585,7 @@ fn conferir_projeto(m: &MetaRemota) -> Result<(), String> {
     if e_zip || m.mime == MIME_PASTA {
         Ok(())
     } else {
-        Err("Esse arquivo não é um projeto do ÉguaTex. Escolha um arquivo que termina em .eguatex.zip.".into())
+        Err("Esse arquivo não é um projeto do ÉguaTeX. Escolha um arquivo que termina em .eguatex.zip.".into())
     }
 }
 
@@ -1628,15 +1628,15 @@ async fn baixar_projeto_de(m: MetaRemota, pasta_pai: &str) -> Result<Option<Stri
     let decisao = decidir_escolha_projeto(&m.nome, &m.mime);
     match decisao {
         EscolhaProjeto::Inaceitavel => {
-            return Err(format!("{}: o ÉguaTex não abre esse tipo de arquivo. Use um .zip, .tex, .bib, figura ou PDF.", m.nome));
+            return Err(format!("{}: o ÉguaTeX não abre esse tipo de arquivo. Use um .zip, .tex, .bib, figura ou PDF.", m.nome));
         }
         EscolhaProjeto::ZipComum | EscolhaProjeto::ArquivoSolto | EscolhaProjeto::TalvezZip => {
             let bytes = baixar(&m.id).await?;
             let zip = e_zip_de_fato(&m.nome, &m.mime, &bytes);
             if decisao == EscolhaProjeto::TalvezZip && !zip {
-                return Err(format!("{}: o ÉguaTex não abre esse tipo de arquivo. Use um .zip, .tex, .bib, figura ou PDF.", m.nome));
+                return Err(format!("{}: o ÉguaTeX não abre esse tipo de arquivo. Use um .zip, .tex, .bib, figura ou PDF.", m.nome));
             }
-            // zip de um projeto do ÉguaTex (com .eguatex/drive.json) segue como projeto compartilhado
+            // zip de um projeto do ÉguaTeX (com .eguatex/drive.json) segue como projeto compartilhado
             if !(zip && zip_e_projeto_eguatex(&bytes)) {
                 return abrir_como_arquivos(Path::new(pasta_pai), m, bytes).await.map(Some);
             }
@@ -1672,7 +1672,7 @@ async fn baixar_projeto_de(m: MetaRemota, pasta_pai: &str) -> Result<Option<Stri
 //
 // A pessoa escolhe arquivos no Picker (um por um, nao a pasta: o escopo `drive.file` so libera o
 // que foi escolhido). Eles viram arquivos comuns no projeto, e `.eguatex/drive-vinculos.json`
-// lembra de qual arquivo do Drive cada um veio. Ao sincronizar um projeto sem o zip do ÉguaTex,
+// lembra de qual arquivo do Drive cada um veio. Ao sincronizar um projeto sem o zip do ÉguaTeX,
 // so os arquivos vinculados voltam ao Drive; arquivos novos criados no projeto ficam so no disco.
 
 const ARQUIVO_VINCULOS: &str = "drive-vinculos.json";
@@ -1959,7 +1959,7 @@ fn e_zip(nome: &str) -> bool {
     nome.to_lowercase().ends_with(".zip")
 }
 
-/// O zip tem `.eguatex/drive.json`: veio de um projeto do ÉguaTex ligado ao Drive.
+/// O zip tem `.eguatex/drive.json`: veio de um projeto do ÉguaTeX ligado ao Drive.
 fn zip_e_projeto_eguatex(bytes: &[u8]) -> bool {
     zip::ZipArchive::new(Cursor::new(bytes))
         .map(|z| z.file_names().any(|n| n.replace('\\', "/").trim_start_matches("./") == ".eguatex/drive.json"))
@@ -2031,7 +2031,7 @@ fn sem_prefixo_de_acesso(erro: &str) -> &str {
     erro.strip_prefix(ACESSO_PERDIDO).unwrap_or(erro)
 }
 
-/// Sincroniza os arquivos vinculados de um projeto que nao tem o zip do ÉguaTex. Chamar com a
+/// Sincroniza os arquivos vinculados de um projeto que nao tem o zip do ÉguaTeX. Chamar com a
 /// trava `SINCRONIZANDO` em maos.
 async fn sincronizar_vinculos(projeto: &Path, mut vinculos: Vinculos) -> Result<ResultadoSync, String> {
     let mut r = ResultadoSync::default();
@@ -2124,7 +2124,7 @@ pub struct ResultadoAbrir {
     pub vinculados: u32,
     /// Arquivos ignorados e outros avisos para a pessoa.
     pub avisos: Vec<String>,
-    /// Abriu como projeto do ÉguaTex (zip .eguatex.zip), sincronizado pelo fluxo normal.
+    /// Abriu como projeto do ÉguaTeX (zip .eguatex.zip), sincronizado pelo fluxo normal.
     pub projeto_do_drive: bool,
     /// `.tex` com `\documentclass` que a tela deve abrir e usar como principal (caminho relativo).
     /// Vem dos arquivos trazidos: num projeto aberto, so dos zips; num projeto novo, de qualquer `.tex`.
@@ -2144,7 +2144,7 @@ fn pasta_nova(pasta_pai: &Path, nome: &str) -> Result<PathBuf, String> {
 
 /// Abre o seletor do Google com varios arquivos e traz os escolhidos para um projeto.
 /// `destino` e "novo" (cria uma pasta em `pasta_pai`) ou o caminho do projeto aberto.
-/// Documentos do Google (Docs, Planilhas) e tipos que o ÉguaTex nao usa ficam de fora, com aviso.
+/// Documentos do Google (Docs, Planilhas) e tipos que o ÉguaTeX nao usa ficam de fora, com aviso.
 /// `None` se a pessoa cancelou o seletor.
 #[tauri::command]
 pub async fn cmd_drive_abrir_arquivos(
@@ -2348,7 +2348,7 @@ async fn trazer_para_o_projeto(
         r.principal_sugerido = crate::arquivos::principal_entre(&candidatos, &nome_pasta);
     }
     if let Some(i) = projeto_zip {
-        // o projeto do ÉguaTex entra pelo fluxo normal: o estado aponta para o zip e a primeira
+        // o projeto do ÉguaTeX entra pelo fluxo normal: o estado aponta para o zip e a primeira
         // sincronizacao baixa tudo (e leva junto os arquivos soltos que ja estao na pasta)
         gravar_estado(dir, &Estado { arquivo_id: baixados[i].meta.id.clone(), ..Default::default() })?;
         let res = sincronizar_travado(dir, ler_estado(dir).unwrap_or_default()).await?;
@@ -2365,7 +2365,7 @@ fn caminho_da_figura(nome: &str) -> String {
 }
 
 /// Grava a figura baixada em `figuras/` (nome repetido vira "nome (2).ext") e, se `ligar` e o
-/// projeto nao usa o zip do ÉguaTex, liga o arquivo ao do Drive como os outros arquivos abertos
+/// projeto nao usa o zip do ÉguaTeX, liga o arquivo ao do Drive como os outros arquivos abertos
 /// de la. Figura convertida (gif, webp...) nao se liga: o arquivo do Drive tem outro formato.
 async fn trazer_figura(projeto: &Path, m: &MetaRemota, bytes: &[u8], ligar: bool) -> Result<String, String> {
     // com a trava: uma sincronizacao em andamento nao pode regravar os vinculos por cima
@@ -2428,7 +2428,7 @@ enum EscolhaProjeto {
     ArquivoSolto,
     /// Tipo generico (octet-stream) e nome sem extensao conhecida: so o conteudo diz se e zip.
     TalvezZip,
-    /// Documento do Google ou tipo que o ÉguaTex nao usa.
+    /// Documento do Google ou tipo que o ÉguaTeX nao usa.
     Inaceitavel,
 }
 
@@ -2472,7 +2472,7 @@ async fn abrir_como_arquivos(pasta_pai: &Path, m: MetaRemota, bytes: Vec<u8>) ->
     }
     if r.adicionados.is_empty() {
         let _ = fs::remove_dir_all(&dir);
-        let motivo = if r.avisos.is_empty() { "não tem arquivos que o ÉguaTex use".to_string() } else { r.avisos.join(" ") };
+        let motivo = if r.avisos.is_empty() { "não tem arquivos que o ÉguaTeX use".to_string() } else { r.avisos.join(" ") };
         return Err(format!("{nome}: {motivo}"));
     }
     Ok(dir.display().to_string())
@@ -3443,7 +3443,7 @@ mod testes_vinculos {
         assert_eq!(decidir_escolha_projeto("124.zip", "application/zip"), ZipComum);
         assert_eq!(decidir_escolha_projeto("124.ZIP", "application/octet-stream"), ZipComum);
         assert_eq!(decidir_escolha_projeto("projeto final.zip", "application/x-zip-compressed"), ZipComum);
-        // outro tipo: arquivo solto se o ÉguaTex usa, senao nao serve
+        // outro tipo: arquivo solto se o ÉguaTeX usa, senao nao serve
         for ok in ["main.tex", "refs.bib", "abnt.cls", "fig.png", "doc.pdf", "notas.md"] {
             assert_eq!(decidir_escolha_projeto(ok, "text/plain"), ArquivoSolto, "{ok}");
         }

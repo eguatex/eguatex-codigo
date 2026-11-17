@@ -301,7 +301,7 @@ pub fn cmd_importar_arquivo(
     importar_numerado(&caminho_projeto, &origem, &pasta_relativa, 1)
 }
 
-/// Extensoes de figura que o ÉguaTex insere com \includegraphics. Sem svg: o pdflatex nao o inclui.
+/// Extensoes de figura que o ÉguaTeX insere com \includegraphics. Sem svg: o pdflatex nao o inclui.
 pub const EXTENSOES_FIGURA: &[&str] = &["png", "jpg", "jpeg", "pdf", "eps"];
 /// Pasta do projeto onde as figuras importadas ficam.
 pub const PASTA_FIGURAS: &str = "figuras";
@@ -480,7 +480,7 @@ pub fn cmd_copiar_para(
         return Err("O destino precisa ser um caminho absoluto".to_string());
     }
     if destino_executavel(&destino) {
-        return Err(format!("Por segurança, o ÉguaTex não salva arquivos .{} fora do projeto", extensao(&destino)));
+        return Err(format!("Por segurança, o ÉguaTeX não salva arquivos .{} fora do projeto", extensao(&destino)));
     }
     if destino.is_dir() {
         return Err("O destino e uma pasta; informe o nome do arquivo".to_string());

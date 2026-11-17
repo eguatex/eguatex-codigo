@@ -27,7 +27,7 @@ const CLIENT_ID: Option<&str> = option_env!("EGUATEX_GOOGLE_CLIENT_ID");
 const CLIENT_SECRET: Option<&str> = option_env!("EGUATEX_GOOGLE_CLIENT_SECRET");
 const USUARIO_COFRE: &str = "google-oauth";
 /// O login pede so o basico e o Google Drive, sempre: o escopo `drive.file` da acesso so aos
-/// arquivos que o proprio ÉguaTex criou ou que a pessoa escolheu no Google Picker. Nenhum desses
+/// arquivos que o proprio ÉguaTeX criou ou que a pessoa escolheu no Google Picker. Nenhum desses
 /// escopos e confidencial, entao a tela "app nao verificado" nao aparece. O Gemini usa a chave de
 /// API da pessoa, sem escopo do Google Cloud.
 const ESCOPOS_BASE: &str = "openid email profile https://www.googleapis.com/auth/drive.file";
@@ -91,7 +91,7 @@ pub fn configurado() -> bool {
 fn credenciais() -> Result<(&'static str, &'static str), String> {
     match CLIENT_ID {
         Some(id) if !id.is_empty() => Ok((id, CLIENT_SECRET.unwrap_or(""))),
-        _ => Err("Login com Google ainda não configurado nesta versão do ÉguaTex.".into()),
+        _ => Err("Login com Google ainda não configurado nesta versão do ÉguaTeX.".into()),
     }
 }
 
@@ -166,7 +166,7 @@ const AVISO_BASE: &str = "inclusive a do Google Drive";
 const MSG_PERMISSAO_BASE: &str = "Faltou uma permissão na tela do Google. Clique em Entrar com Google de novo e marque todas as caixas, inclusive a do Google Drive (arquivos criados ou escolhidos por você).";
 /// Marca no cofre de que uma conta antiga (Drive inteiro) foi desfeita; some no proximo login.
 const COFRE_MIGRACAO: &str = "google-migracao";
-pub const AVISO_MIGRACAO: &str = "Entre de novo: o ÉguaTex agora pede menos acesso ao seu Drive.";
+pub const AVISO_MIGRACAO: &str = "Entre de novo: o ÉguaTeX agora pede menos acesso ao seu Drive.";
 
 /// Confere se todas as permissoes exigidas foram marcadas na tela do Google.
 /// "drive.file" exige exatamente `.../auth/drive.file`; o escopo inteiro (`.../auth/drive`)
@@ -338,19 +338,19 @@ fn esperar_retorno(
         let ok = erro.is_empty() && state_volta == state && !code.is_empty();
         let faltou = ok && !tem_escopos(&escopos, exigidos);
         let pagina_faltou = format!(
-            "<h2>Faltou marcar permissões.</h2>             <p>O ÉguaTex precisa de todas as caixas da tela do Google, {}.</p>             <p><a href=\"{}\" style=\"display:inline-block;padding:10px 20px;background:#2E7D32;color:#fff;             border-radius:6px;text-decoration:none\">Tentar de novo e marcar todas</a></p>",
+            "<h2>Faltou marcar permissões.</h2>             <p>O ÉguaTeX precisa de todas as caixas da tela do Google, {}.</p>             <p><a href=\"{}\" style=\"display:inline-block;padding:10px 20px;background:#2E7D32;color:#fff;             border-radius:6px;text-decoration:none\">Tentar de novo e marcar todas</a></p>",
             aviso,
             url_login.replace('&', "&amp;").replace('"', "&quot;")
         );
         let pagina = if faltou {
             pagina_faltou.as_str()
         } else if ok {
-            "<h2>Pode voltar ao ÉguaTex.</h2><p>Esta aba já pode ser fechada.</p>"
+            "<h2>Pode voltar ao ÉguaTeX.</h2><p>Esta aba já pode ser fechada.</p>"
         } else {
-            "<h2>O login não foi concluído.</h2><p>Volte ao ÉguaTex e tente de novo.</p>"
+            "<h2>O login não foi concluído.</h2><p>Volte ao ÉguaTeX e tente de novo.</p>"
         };
         let corpo = format!(
-            "<!doctype html><html><head><meta charset=\"utf-8\"><title>ÉguaTex</title></head>\
+            "<!doctype html><html><head><meta charset=\"utf-8\"><title>ÉguaTeX</title></head>\
              <body style=\"font-family:sans-serif;text-align:center;margin-top:15vh\">{pagina}</body></html>"
         );
         let resposta = format!(
@@ -1081,7 +1081,7 @@ mod testes {
         let tudo = "openid%20email%20profile%20https://www.googleapis.com/auth/drive.file";
         let parcial = pedir(porta, "/?state=abc&code=PARCIAL&scope=email%20profile");
         assert!(parcial.contains("Faltou marcar") && parcial.contains("https://login"));
-        assert!(pedir(porta, &format!("/?state=abc&code=4%2F0XYZ&scope={tudo}")).contains("Pode voltar ao ÉguaTex"));
+        assert!(pedir(porta, &format!("/?state=abc&code=4%2F0XYZ&scope={tudo}")).contains("Pode voltar ao ÉguaTeX"));
         assert_eq!(h.join().unwrap().unwrap(), "4/0XYZ");
     }
 
@@ -1613,7 +1613,7 @@ mod testes_fonte {
         for novo in ["cmd_ia_chave_ativar", "cmd_ia_chave_status", "cmd_ia_chave_remover", "cmd_conta_google_entrar", "cmd_ia_google_info", "cmd_ia_google_sair"] {
             assert!(lista.contains(&format!("{novo},")), "{novo} falta no handler");
         }
-        assert!(lib.contains(r#"pub const NUMERO_COMPILACAO: &str = "44";"#));
+        assert!(lib.contains(r#"pub const NUMERO_COMPILACAO: &str = "45";"#));
     }
 
     #[test]

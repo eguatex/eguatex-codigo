@@ -26,25 +26,14 @@ use projetos::{ArquivoNo, Projeto};
 pub const NOME_VERSAO: &str = env!("CARGO_PKG_VERSION");
 
 /// Numero de compilacao (rodada de teste da oficina: v44, v45...). Fica nos
-/// bastidores: so aparece na linha de detalhes tecnicos da tela Sobre.
-pub const NUMERO_COMPILACAO: &str = "44";
+/// bastidores e nunca aparece na tela (versionCode do Android, versao interna do instalador).
+pub const NUMERO_COMPILACAO: &str = "45";
 
 #[tauri::command]
 fn cmd_versao() -> String {
-    format!("ÉguaTex {NOME_VERSAO}")
+    format!("ÉguaTeX {NOME_VERSAO}")
 }
 
-/// Detalhes tecnicos da tela Sobre: numero de compilacao e versao do Tauri.
-#[derive(serde::Serialize)]
-struct DetalhesTecnicos {
-    compilacao: &'static str,
-    tauri: &'static str,
-}
-
-#[tauri::command]
-fn cmd_detalhes_tecnicos() -> DetalhesTecnicos {
-    DetalhesTecnicos { compilacao: NUMERO_COMPILACAO, tauri: tauri::VERSION }
-}
 
 #[tauri::command(async)]
 fn cmd_detectar_motores() -> InfoMotores {
@@ -267,18 +256,17 @@ pub fn run() {
             }
             // cache de fontes do TinyTeX e biber prontos antes da primeira compilacao
             compilador::preparar_em_segundo_plano();
-            // Chaves de provedores antigos saem do cofre. Conta antiga, com o Drive inteiro:
+            // Conta antiga, com o Drive inteiro:
             // revoga e pede novo login com menos acesso.
             tauri::async_runtime::spawn(async {
-                ia::chave::apagar_provedores_antigos();
                 let _ = ia::google::migrar_conta_antiga().await;
             });
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
             cmd_versao,
-            cmd_detalhes_tecnicos,
             atualizacao::cmd_procurar_atualizacao,
+            atualizacao::cmd_aviso_do_instalador,
             cmd_detectar_motores,
             cmd_compilar,
             cmd_compilar_completo,
@@ -372,12 +360,9 @@ mod testes_ler_pdf {
 mod testes_versao {
     #[test]
     fn tela_mostra_o_nome_da_versao() {
-        assert_eq!(super::NOME_VERSAO, "1.0.0");
-        assert_eq!(super::cmd_versao(), "ÉguaTex 1.0.0");
+        assert_eq!(super::NOME_VERSAO, "1.0.1");
+        assert_eq!(super::cmd_versao(), "ÉguaTeX 1.0.1");
         assert!(!super::cmd_versao().contains("Tauri"));
-        let d = super::cmd_detalhes_tecnicos();
-        assert_eq!(d.compilacao, "44");
-        assert_eq!(d.tauri, tauri::VERSION);
     }
 
     #[test]

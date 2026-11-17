@@ -11,7 +11,7 @@ mod testes_testador;
 pub const MODELOS: &[&str] = &["", "gemini-flash-latest", "gemini-flash-lite-latest"];
 
 /// O unico provedor de IA e o Gemini. Config antiga com outro nome carrega como "gemini".
-pub const MSG_PROVEDOR: &str = "Provedor de IA desconhecido. O ÉguaTex usa só o Gemini.";
+pub const MSG_PROVEDOR: &str = "Provedor de IA desconhecido. O ÉguaTeX usa só o Gemini.";
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ConfigIA {

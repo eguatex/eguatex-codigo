@@ -1,5 +1,5 @@
 //! Testes de borda da extracao de zip no projeto aberto (embrulho, zip slip, nomes, repeticao).
-//! Arquivo so de testes, igual no ÉguaTex e no ÉguaTex Android.
+//! Arquivo so de testes, igual no ÉguaTeX e no ÉguaTeX Android.
 use super::*;
 use std::io::{Cursor, Write};
 

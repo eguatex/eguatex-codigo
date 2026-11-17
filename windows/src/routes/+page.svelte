@@ -73,6 +73,8 @@
   import CartoesApoio from "$lib/components/CartoesApoio.svelte";
   import PixModal from "$lib/components/PixModal.svelte";
   import FeedbackModal from "$lib/components/FeedbackModal.svelte";
+  import FaixaVersao from "$lib/components/FaixaVersao.svelte";
+  import { iniciarAvisoDeVersao } from "$lib/aviso-versao.svelte";
   import { reenviarPendentes } from "$lib/feedback-envio";
   import { enviarFeedback } from "$lib/ajuda";
   import type { ModoEdicao } from "$lib/modo-edicao";
@@ -2027,6 +2029,7 @@ ${resultado.log || ''}`
   }
 
   carregarInicio();
+  void iniciarAvisoDeVersao();
   carregarConfigIA();
 </script>
 
@@ -2036,6 +2039,8 @@ ${resultado.log || ''}`
 
 <FeedbackModal />
 
+<FaixaVersao />
+
 {#if modo === 'inicio'}
   {#if pixInicioVisivel}
     <PixModal aoFechar={() => (pixInicioVisivel = false)} />
@@ -2043,9 +2048,9 @@ ${resultado.log || ''}`
   <div class="inicio">
     <aside class="lateral">
       <div class="marca">
-        <img src="/curupira-logo.png" alt="ÉguaTex" width="46" height="46" />
+        <img src="/curupira-logo.png" alt="ÉguaTeX" width="46" height="46" />
         <div>
-          <div class="marca-nome">ÉguaTex</div>
+          <div class="marca-nome">ÉguaTeX</div>
           <div class="marca-sub">{t('app.descricao')}</div>
         </div>
       </div>

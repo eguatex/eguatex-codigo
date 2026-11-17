@@ -52,7 +52,7 @@ const TEX_EMBUTIDO: &str = "tex/TinyTeX/bin/windows";
 
 /// %PROGRAMDATA% e gravavel por qualquer usuario local. Antes de usar o TinyTeX de la, confere
 /// que cada pasta de `bin\windows` ate `...\EguaTex` e TODO arquivo dentro de `bin\windows`
-/// (exe, com, dll, scripts) tem o mesmo dono do ÉguaTex em execucao (quem o instalou). Basta um
+/// (exe, com, dll, scripts) tem o mesmo dono do ÉguaTeX em execucao (quem o instalou). Basta um
 /// arquivo plantado por outro usuario para a pasta inteira ser recusada. A pasta de recursos
 /// (desenvolvimento) nao passa por esta conferencia.
 pub(crate) fn tinytex_confiavel(bin: &Path) -> bool {
@@ -896,7 +896,7 @@ fn preparar_projeto(arquivo: &str, diretorio: &str, motor: &str) -> (String, Str
         }
         escolhido.to_string()
     };
-    let notas: String = notas.iter().map(|n| format!("ÉguaTex: {n}\n")).collect();
+    let notas: String = notas.iter().map(|n| format!("ÉguaTeX: {n}\n")).collect();
     (motor, notas)
 }
 
@@ -916,9 +916,9 @@ fn com_notas(mut resultado: ResultadoCompilacao, notas: &str) -> ResultadoCompil
     resultado
 }
 
-/// Poe as notas do projeto no comeco do log, depois da linha `ÉguaTex: tempos:` quando ela existe.
+/// Poe as notas do projeto no comeco do log, depois da linha `ÉguaTeX: tempos:` quando ela existe.
 pub(crate) fn juntar_notas(notas: &str, log: &str) -> String {
-    if log.starts_with("ÉguaTex: tempos:")
+    if log.starts_with("ÉguaTeX: tempos:")
         && let Some((tempos, resto)) = log.split_once('\n')
     {
         return format!("{tempos}\n{notas}\n{resto}");
@@ -1015,7 +1015,7 @@ fn executar(comando: &mut Command) -> std::io::Result<Output> {
     if estourou {
         stderr.extend_from_slice(
             format!(
-                "\nÉguaTex: a compilação passou de {} minutos e foi interrompida. Procure um laço sem fim no documento.\n",
+                "\nÉguaTeX: a compilação passou de {} minutos e foi interrompida. Procure um laço sem fim no documento.\n",
                 LIMITE_TEMPO.as_secs() / 60
             )
             .as_bytes(),
@@ -1215,7 +1215,7 @@ pub fn compilar(
     conferir_pasta_da_conta();
     let (arquivo, troca) = resolver_principal(arquivo, diretorio);
     let (motor, notas) = preparar_projeto(&arquivo, diretorio, motor);
-    let notas = format!("{}{notas}", troca.map(|t| format!("ÉguaTex: {t}\n")).unwrap_or_default());
+    let notas = format!("{}{notas}", troca.map(|t| format!("ÉguaTeX: {t}\n")).unwrap_or_default());
     let (pasta, nome, sub) = separar_pasta(&arquivo, diretorio);
     let resultado = compilar_uma_vez(&nome, &pasta, &motor, parar_no_erro, false);
     com_notas(com_subpasta(resultado, &sub), &notas)
@@ -1728,7 +1728,7 @@ pub fn compilar_completo(
     let (arquivo, troca) = resolver_principal(arquivo, diretorio);
     let (detectado, notas) = preparar_projeto(&arquivo, diretorio, motor);
     let detectado = nome_do_motor(&detectado);
-    let mut notas = format!("{}{notas}", troca.map(|t| format!("ÉguaTex: {t}\n")).unwrap_or_default());
+    let mut notas = format!("{}{notas}", troca.map(|t| format!("ÉguaTeX: {t}\n")).unwrap_or_default());
     let (pasta, nome, sub) = separar_pasta(&arquivo, diretorio);
     let teto = limitar_passadas(max_passadas);
     // % !TeX program ou motor no latexmkrc ($pdf_mode, $pdflatex) mandam: nem motor lembrado nem
@@ -1746,13 +1746,13 @@ pub fn compilar_completo(
         Some((m, imp)) if !motor_automatico(m) && nome_do_motor(m) != detectado => {
             if imp == impressao {
                 notas.push_str(&format!(
-                    "ÉguaTex: motor lembrado deste projeto: {} (gerou o PDF da última vez).\n",
+                    "ÉguaTeX: motor lembrado deste projeto: {} (gerou o PDF da última vez).\n",
                     nome_exibido(m)
                 ));
                 Some(nome_do_motor(m))
             } else {
                 notas.push_str(&format!(
-                    "ÉguaTex: o preâmbulo ou os pacotes mudaram; o {} lembrado foi esquecido e o motor volta a ser detectado.\n",
+                    "ÉguaTeX: o preâmbulo ou os pacotes mudaram; o {} lembrado foi esquecido e o motor volta a ser detectado.\n",
                     nome_exibido(m)
                 ));
                 None
@@ -1785,7 +1785,7 @@ pub fn compilar_completo(
             if r.pdf.is_some() {
                 let motivo = if pelo_log == Some(m) { "acusou motor errado" } else { "não gerou o PDF" };
                 notas.push_str(&format!(
-                    "ÉguaTex: o {} {motivo}; compilado de novo com o {}.\n",
+                    "ÉguaTeX: o {} {motivo}; compilado de novo com o {}.\n",
                     nome_exibido(primeiro),
                     nome_exibido(m)
                 ));
@@ -1805,7 +1805,7 @@ pub fn compilar_completo(
             }
             let nomes: Vec<&str> = tentados.iter().map(|m| nome_exibido(m)).collect();
             notas.push_str(&format!(
-                "ÉguaTex: tentado também com {} e nenhum gerou o PDF; os erros abaixo são do {}.\n",
+                "ÉguaTeX: tentado também com {} e nenhum gerou o PDF; os erros abaixo são do {}.\n",
                 nomes.join(" e "),
                 nome_exibido(&resultado.motor_usado)
             ));
@@ -1817,7 +1817,7 @@ pub fn compilar_completo(
     com_notas(com_subpasta(resultado, &sub), &notas)
 }
 
-/// Linha `ÉguaTex: tempos: ...` do comeco do log: total, cada passada do motor, bibliografia
+/// Linha `ÉguaTeX: tempos: ...` do comeco do log: total, cada passada do motor, bibliografia
 /// e indices, em milissegundos. Partes que nao rodaram ficam de fora.
 pub(crate) fn formatar_tempos(total_ms: u64, passadas_ms: &[u64], bibliografia_ms: u64, indices_ms: u64) -> String {
     let mut partes = vec![format!("total {total_ms} ms")];
@@ -1830,7 +1830,7 @@ pub(crate) fn formatar_tempos(total_ms: u64, passadas_ms: &[u64], bibliografia_m
     if indices_ms > 0 {
         partes.push(format!("indices {indices_ms} ms"));
     }
-    format!("ÉguaTex: tempos: {}", partes.join(", "))
+    format!("ÉguaTeX: tempos: {}", partes.join(", "))
 }
 
 pub(crate) fn limitar_passadas(pedido: Option<u32>) -> u32 {
@@ -1874,7 +1874,7 @@ fn compilar_ciclo(
     }
     let mut log = resultado.log.clone();
     if rascunho {
-        log = format!("ÉguaTex: passada 1 em rascunho ({}), sem gravar o PDF.\n{log}", argumento_rascunho(motor));
+        log = format!("ÉguaTeX: passada 1 em rascunho ({}), sem gravar o PDF.\n{log}", argumento_rascunho(motor));
     }
     let mut passadas = 1;
     // so medicao: tempo de cada passada do motor, da bibliografia e dos indices
@@ -1965,7 +1965,7 @@ fn compilar_ciclo(
         passadas += 1;
         log.push_str(&format!("\n--- Passada {passadas} ---\n"));
         if rascunho {
-            log.push_str(&format!("ÉguaTex: passada {passadas} em rascunho ({}), sem gravar o PDF.\n", argumento_rascunho(motor)));
+            log.push_str(&format!("ÉguaTeX: passada {passadas} em rascunho ({}), sem gravar o PDF.\n", argumento_rascunho(motor)));
         }
         log.push_str(&resultado.log);
         // o XeLaTeX em rascunho deixa o .xdv, que a passada normal nao usa
@@ -2307,14 +2307,14 @@ mod testes {
     #[test]
     fn linha_de_tempos_traz_total_e_cada_passada() {
         let linha = formatar_tempos(2500, &[1200, 900], 150, 0);
-        assert_eq!(linha, "ÉguaTex: tempos: total 2500 ms, passada 1 1200 ms, passada 2 900 ms, bibliografia 150 ms");
+        assert_eq!(linha, "ÉguaTeX: tempos: total 2500 ms, passada 1 1200 ms, passada 2 900 ms, bibliografia 150 ms");
         assert!(!linha.contains('\n'));
-        assert_eq!(formatar_tempos(10, &[10], 0, 0), "ÉguaTex: tempos: total 10 ms, passada 1 10 ms");
+        assert_eq!(formatar_tempos(10, &[10], 0, 0), "ÉguaTeX: tempos: total 10 ms, passada 1 10 ms");
         assert!(formatar_tempos(10, &[10], 0, 7).ends_with("indices 7 ms"));
         // as notas do projeto entram depois da linha de tempos
         let log = format!("{linha}\n--- log ---");
-        assert_eq!(juntar_notas("ÉguaTex: nota\n", &log), format!("{linha}\nÉguaTex: nota\n\n--- log ---"));
-        assert_eq!(juntar_notas("ÉguaTex: nota\n", "so log"), "ÉguaTex: nota\n\nso log");
+        assert_eq!(juntar_notas("ÉguaTeX: nota\n", &log), format!("{linha}\nÉguaTeX: nota\n\n--- log ---"));
+        assert_eq!(juntar_notas("ÉguaTeX: nota\n", "so log"), "ÉguaTeX: nota\n\nso log");
     }
 
     #[test]
@@ -3359,7 +3359,7 @@ Texto.
             let r2 = compilar_com_bibtex(&principal, pasta, "auto", false);
             let n_erros = r1.erros.iter().filter(|e| e.tipo != "aviso").count();
             let primeiros: Vec<String> = r1.erros.iter().filter(|e| e.tipo != "aviso").take(2).map(|e| e.mensagem.replace('|', "/").chars().take(70).collect()).collect();
-            let tempos = r1.log.lines().next().unwrap_or("").trim_start_matches("ÉguaTex: tempos: ").to_string();
+            let tempos = r1.log.lines().next().unwrap_or("").trim_start_matches("ÉguaTeX: tempos: ").to_string();
             let linha = format!(
                 "| {nome} | {principal} | {} ({}) | {} | {} | {} | {n_erros} {} | {tempos} |\n",
                 r1.motor_usado,

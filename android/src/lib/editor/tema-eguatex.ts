@@ -1,3 +1,5 @@
+import { HighlightStyle, syntaxHighlighting } from "@codemirror/language";
+import { tags as t } from "@lezer/highlight";
 import { EditorView } from "@codemirror/view";
 
 export const temaClaro = EditorView.theme({
@@ -83,4 +85,21 @@ export const temaEscuro = EditorView.theme({
   ".cm-searchMatch.cm-searchMatch-selected": {
     backgroundColor: "rgba(2, 119, 189, 0.4)",
   },
-});
+}, { dark: true });
+
+/** Cores do realce de sintaxe para fundo escuro (o realce padrao do CodeMirror e feito para fundo claro). */
+export const realceEscuro = HighlightStyle.define([
+  { tag: t.comment, color: "#7f8c8d", fontStyle: "italic" },
+  { tag: t.keyword, color: "#C792EA" },
+  { tag: t.atom, color: "#82AAFF" },
+  { tag: t.string, color: "#C3E88D" },
+  { tag: t.number, color: "#F78C6C" },
+  { tag: t.variableName, color: "#FFCB6B" },
+  { tag: t.operator, color: "#89DDFF" },
+  { tag: t.bracket, color: "#BFC7D5" },
+], { themeType: "dark" });
+
+/** Tema do editor que acompanha o tema geral do app. */
+export function temaDoEditor(escuro: boolean) {
+  return escuro ? [temaEscuro, syntaxHighlighting(realceEscuro)] : temaClaro;
+}

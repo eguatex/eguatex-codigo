@@ -1,4 +1,4 @@
-// Abertura do ÉguaTex: a tela do Curupira aparece uma vez por sessão do app.
+// Abertura do ÉguaTeX: a tela do Curupira aparece uma vez por sessão do app.
 // Minimizar e voltar não mostra de novo; fechar e abrir o app mostra.
 
 export const CHAVE_ABERTURA = 'eguatex-abertura-vista';

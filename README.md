@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://www.eguatex.com.br/">
-    <img src="https://eguatex.com.br/assets/img/banner.jpg" alt="ÉguaTex. Escreva LaTeX de qualquer lugar, mesmo sem internet. Feito na Amazônia. Ao lado, a logo do Curupira de perfil, com cabelo em chamas e colar de folhas." width="100%">
+    <img src="https://eguatex.com.br/assets/img/banner.jpg" alt="ÉguaTeX. Escreva LaTeX de qualquer lugar, mesmo sem internet. Feito na Amazônia. Ao lado, a logo do Curupira de perfil, com cabelo em chamas e colar de folhas." width="100%">
   </a>
 </p>
 
@@ -8,13 +8,13 @@
   <a href="https://www.eguatex.com.br/"><strong>www.eguatex.com.br</strong></a>
 </p>
 
-# ÉguaTex
+# ÉguaTeX
 
 Editor LaTeX gratuito e offline, feito na Amazônia.
 
 **Escreva LaTeX de qualquer lugar, mesmo sem internet.**
 
-Este é o código-fonte do ÉguaTex. Para só usar o app, baixe a versão mais recente em [www.eguatex.com.br](https://www.eguatex.com.br/) ou na aba [Releases](../../releases).
+Este é o código-fonte do ÉguaTeX. Para só usar o app, baixe a versão mais recente em [www.eguatex.com.br](https://www.eguatex.com.br/) ou na aba [Releases](../../releases).
 
 ## O que tem aqui
 
