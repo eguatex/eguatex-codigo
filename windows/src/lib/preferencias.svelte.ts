@@ -108,7 +108,7 @@ const normalizadores: Normalizadores = {
   alturaLinha: umDe(['compacta', 'normal', 'larga']),
   tema: umDe(['sistema', 'claro', 'escuro']),
   fracaoPdf: (valor) =>
-    typeof valor === 'number' && Number.isFinite(valor) ? Math.min(0.7, Math.max(0.05, valor)) : undefined,
+    typeof valor === 'number' && Number.isFinite(valor) ? Math.min(0.75, Math.max(0.05, valor)) : undefined,
   avisarVersaoNova: booleano,
   faixaAvisoVista: booleano,
   ultimaConsultaVersao: (valor) => (typeof valor === 'string' && /^(\d{4}-\d{2}-\d{2})?$/.test(valor) ? valor : undefined),

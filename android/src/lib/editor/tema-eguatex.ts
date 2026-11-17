@@ -50,6 +50,7 @@ export const temaEscuro = EditorView.theme({
     backgroundColor: "#1a1a1a",
     color: "#e8e8e8",
     fontSize: "14px",
+    height: "100%",
     fontFamily: "'Cascadia Code', 'Fira Code', 'JetBrains Mono', monospace",
   },
   ".cm-content": {

@@ -38,7 +38,7 @@
   import Play from "@lucide/svelte/icons/play";
   import Girador from "./Girador.svelte";
   import BarraProgresso from "./BarraProgresso.svelte";
-  import { CONSULTA_RETRATO, acompanharRetrato } from '$lib/retrato';
+  import { CONSULTA_RETRATO, LARGURA_RETRATO, acompanharRetrato } from '$lib/retrato';
   import BarraAbas, { idDaAba } from './BarraAbas.svelte';
   import { atalhoDeAba, type Aba } from '$lib/abas.svelte';
   import type { FileNode } from './FileTree.svelte';
@@ -576,7 +576,12 @@
         } else if (redimensionando === 'pdf') {
           const caixa = corpoRef?.getBoundingClientRect();
           if (compacto && caixa && caixa.width > 0) {
-            proporcaoPdf = Math.max(0.3, Math.min(0.7, (caixa.right - ev.clientX) / caixa.width));
+            proporcaoPdf = Math.max(0.25, Math.min(0.75, (caixa.right - ev.clientX) / caixa.width));
+          } else if (retrato && caixa && caixa.width > 0 && corpoRef) {
+            // em pe a tela e desenhada com 720 px e reduzida: converte o dedo para os px do desenho
+            const escala = caixa.width / (corpoRef.offsetWidth || LARGURA_RETRATO);
+            const desejada = (caixa.right - ev.clientX) / escala;
+            proporcaoPdf = limitarLarguraPdf(desejada, LARGURA_RETRATO, outrosPaineis) / LARGURA_RETRATO;
           } else {
             fracaoPdf = limitarLarguraPdf(window.innerWidth - ev.clientX, window.innerWidth, outrosPaineis) / window.innerWidth;
           }
@@ -584,8 +589,8 @@
       };
 
       const soltar = () => {
-        if (redimensionando === 'pdf' && Number.isFinite(fracaoPdf)) definirPreferencia('fracaoPdf', fracaoPdf);
-        if (redimensionando === 'pdf' && compacto && Number.isFinite(proporcaoPdf)) definirPreferencia('proporcaoPdf', proporcaoPdf);
+        if (redimensionando === 'pdf' && !compacto && !retrato && Number.isFinite(fracaoPdf)) definirPreferencia('fracaoPdf', fracaoPdf);
+        if (redimensionando === 'pdf' && (compacto || retrato) && Number.isFinite(proporcaoPdf)) definirPreferencia('proporcaoPdf', proporcaoPdf);
         redimensionando = null;
         if (alvo.hasPointerCapture?.(id)) alvo.releasePointerCapture(id);
         alvo.removeEventListener('pointermove', mover);
@@ -608,8 +613,8 @@
   let painelLateralVisivel = $derived(painelAtivo !== '');
   // barra de icones (44 px) e painel lateral aberto: o editor fica com o resto, no minimo 360 px
   let outrosPaineis = $derived(44 + (painelLateralVisivel ? (painelAtivo === 'chat' ? 340 : larguraPainel) : 0));
-  // retrato: o PDF fica com metade da largura de 720 px, como no Overleaf em pe
-  let larguraPdf = $derived(retrato ? 330 : larguraPdfLivre);
+  // retrato: o PDF comeca com metade dos 720 px do desenho e o divisor vai de 25% a 75%
+  let larguraPdf = $derived(retrato ? limitarLarguraPdf(proporcaoPdf * LARGURA_RETRATO, LARGURA_RETRATO, outrosPaineis) : larguraPdfLivre);
   let larguraPdfLivre = $derived(limitarLarguraPdf(fracaoPdf * larguraJanela, larguraJanela, outrosPaineis));
 
   // com uma imagem ativa o editor continua montado, so escondido

@@ -1,6 +1,6 @@
 {
   "name": "eguatex",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Editor LaTeX gratuito e offline, feito na Amazônia.",
   "type": "module",
   "scripts": {

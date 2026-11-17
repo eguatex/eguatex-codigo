@@ -781,6 +781,8 @@
 
   .editor-container :global(.cm-editor) {
     flex: 1;
+    /* sem isto o editor cresce com o texto e a rolagem some (bug do tema escuro na 1.0.1) */
+    min-height: 0;
     outline: none;
   }
 

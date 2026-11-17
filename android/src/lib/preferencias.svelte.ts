@@ -28,7 +28,7 @@ export interface Preferencias {
   mostrarTrilha: boolean;
   mostrarAbas: boolean;
   previaEquacao: boolean;
-  /** Celular deitado: parte da largura que o PDF ocupa no modo dividido (0,3 a 0,7). */
+  /** Celular deitado e em pe: parte da largura que o PDF ocupa no modo dividido (0,25 a 0,75). */
   proporcaoPdf: number;
   ortografia: ModoOrtografia;
   pdfEscuro: 'desligado' | 'tema' | 'sempre';
@@ -98,7 +98,7 @@ const normalizadores: Normalizadores = {
   alturaLinha: umDe(['compacta', 'normal', 'larga']),
   tema: umDe(['sistema', 'claro', 'escuro']),
   fracaoPdf: (valor) =>
-    typeof valor === 'number' && Number.isFinite(valor) ? Math.min(0.7, Math.max(0.05, valor)) : undefined,
+    typeof valor === 'number' && Number.isFinite(valor) ? Math.min(0.75, Math.max(0.05, valor)) : undefined,
   avisarVersaoNova: booleano,
   faixaAvisoVista: booleano,
   ultimaConsultaVersao: (valor) => (typeof valor === 'string' && /^(\d{4}-\d{2}-\d{2})?$/.test(valor) ? valor : undefined),
@@ -112,7 +112,7 @@ const normalizadores: Normalizadores = {
   autoSalvar: booleano,
   categoriaAtiva: (valor) => (typeof valor === 'string' && /^[a-z0-9-]{0,41}$/.test(valor) ? valor : undefined),
   proporcaoPdf: (valor) =>
-    typeof valor === 'number' && Number.isFinite(valor) ? Math.min(0.7, Math.max(0.3, valor)) : undefined,
+    typeof valor === 'number' && Number.isFinite(valor) ? Math.min(0.75, Math.max(0.25, valor)) : undefined,
 };
 
 // Grava `valor` em `alvo[chave]` se for valido (ajustando o que for preciso). Devolve se gravou.
