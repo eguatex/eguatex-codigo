@@ -97,6 +97,8 @@
     onrenomearitem?: (caminho: string, novoNome: string) => void;
     onexcluiritem?: (caminho: string) => void;
     onbaixaritem?: (caminho: string) => void;
+    /** "Definir como documento principal" de um .tex, como no Overleaf. */
+    ondefinirprincipal?: (caminho: string) => void;
     onirparalinha?: (linha: number) => void;
     onconfigurar?: () => void;
     /** Sigla do corretor na barra de status: abre a configuracao do corretor. */
@@ -172,6 +174,7 @@
     onrenomearitem,
     onexcluiritem,
     onbaixaritem,
+    ondefinirprincipal,
     onirparalinha,
     onconfigurar,
     onconfigurarortografia,
@@ -674,6 +677,7 @@
             {onrenomearitem}
             {onexcluiritem}
             {onbaixaritem}
+            {ondefinirprincipal}
           />
         {:else if painelAtivo === 'busca'}
           <div class="painel-cabecalho">

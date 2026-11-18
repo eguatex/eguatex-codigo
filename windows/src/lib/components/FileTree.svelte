@@ -68,6 +68,7 @@
   import ChevronDown from "@lucide/svelte/icons/chevron-down";
   import Pencil from "@lucide/svelte/icons/pencil";
   import Download from "@lucide/svelte/icons/download";
+  import Star from "@lucide/svelte/icons/star";
   import Trash from "@lucide/svelte/icons/trash";
   import { formatarTamanho } from '$lib/arquivos-util';
   import { t } from '$lib/i18n';
@@ -81,6 +82,8 @@
     onrenomearitem?: (caminho: string, novoNome: string) => void;
     onexcluiritem?: (caminho: string) => void;
     onbaixaritem?: (caminho: string) => void;
+    /** "Definir como documento principal" de um .tex, como no Overleaf. */
+    ondefinirprincipal?: (caminho: string) => void;
   }
 
   let {
@@ -91,6 +94,7 @@
     onrenomearitem,
     onexcluiritem,
     onbaixaritem,
+    ondefinirprincipal,
   }: Props = $props();
 
   const uid = $props.id();
@@ -332,6 +336,17 @@
     if (alvo && alvo.tipo === 'arquivo') onbaixaritem?.(alvo.caminho);
   }
 
+  // ---------- Documento principal ----------
+  function ehTex(node: FileNode): boolean {
+    return node.tipo === 'arquivo' && /\.tex$/i.test(node.nome);
+  }
+
+  function definirPrincipal() {
+    const alvo = menu?.node;
+    fecharMenu(true);
+    if (alvo && ehTex(alvo)) ondefinirprincipal?.(alvo.caminho);
+  }
+
   // ---------- Excluir ----------
   let excluindo = $state.raw<FileNode | null>(null);
   let gatilhoExclusao: HTMLElement | null = null;
@@ -463,6 +478,7 @@
             {onrenomearitem}
             {onexcluiritem}
             {onbaixaritem}
+            {ondefinirprincipal}
           />
         </div>
       {/if}
@@ -484,6 +500,12 @@
       <Pencil size={14} />
       <span>Renomear</span>
     </button>
+    {#if ehTex(menu.node) && ondefinirprincipal}
+      <button type="button" role="menuitem" class="menu-item" disabled={ehPrincipal(menu.node)} onclick={definirPrincipal}>
+        <Star size={14} />
+        <span>{t('arquivos.definir-principal')}</span>
+      </button>
+    {/if}
     {#if menu.node.tipo === 'arquivo'}
       <button type="button" role="menuitem" class="menu-item" disabled={!onbaixaritem} onclick={baixarItem}>
         <Download size={14} />

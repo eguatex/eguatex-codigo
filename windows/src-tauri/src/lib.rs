@@ -27,7 +27,7 @@ pub const NOME_VERSAO: &str = env!("CARGO_PKG_VERSION");
 
 /// Numero de compilacao (rodada de teste da oficina: v44, v45...). Fica nos
 /// bastidores e nunca aparece na tela (versionCode do Android, versao interna do instalador).
-pub const NUMERO_COMPILACAO: &str = "47";
+pub const NUMERO_COMPILACAO: &str = "49";
 
 #[tauri::command]
 fn cmd_versao() -> String {
@@ -360,8 +360,8 @@ mod testes_ler_pdf {
 mod testes_versao {
     #[test]
     fn tela_mostra_o_nome_da_versao() {
-        assert_eq!(super::NOME_VERSAO, "1.0.2");
-        assert_eq!(super::cmd_versao(), "ÉguaTeX 1.0.2");
+        assert_eq!(super::NOME_VERSAO, "1.0.3");
+        assert_eq!(super::cmd_versao(), "ÉguaTeX 1.0.3");
         assert!(!super::cmd_versao().contains("Tauri"));
     }
 

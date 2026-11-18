@@ -9,12 +9,26 @@
   interface Props {
     visivel?: boolean;
     arquivosTex?: string[];
+    /** Principal escolhido no projeto aberto ("/capitulo.tex") ou '' quando e automatico. */
+    principalProjeto?: string;
+    /** Ha projeto aberto: sem ele o seletor do documento principal nao aparece. */
+    temProjeto?: boolean;
+    /** Troca o principal so do projeto aberto ('' volta ao automatico). */
+    onprincipal?: (relativo: string) => void;
     /** Aba mostrada ao abrir (a sigla do corretor na barra de status abre a do editor). */
     abaInicial?: 'compilador' | 'editor' | 'aparencia';
     onfechar?: () => void;
   }
 
-  let { visivel = false, arquivosTex = [], abaInicial = 'compilador', onfechar }: Props = $props();
+  let {
+    visivel = false,
+    arquivosTex = [],
+    principalProjeto = '',
+    temProjeto = false,
+    onprincipal,
+    abaInicial = 'compilador',
+    onfechar,
+  }: Props = $props();
 
   // Chaves das preferencias que sao liga e desliga; as demais usam lista de opcoes.
   type ChaveInterruptor = {
@@ -135,23 +149,29 @@
       vistos.add(arquivo);
       lista.push({ valor: arquivo, rotulo: arquivo });
     }
-    const salvo = preferencias.documentoPrincipal;
+    const salvo = principalProjeto;
     if (!vistos.has(salvo)) lista.push({ valor: salvo, rotulo: tf('config.documento-nao-encontrado', { arquivo: salvo }) });
     return lista;
   }
 
-  const abas: Aba[] = [
+  // O documento principal e de cada projeto (o mesmo valor do menu "Definir como documento principal").
+  const itemPrincipal: ItemSeletor = {
+    tipo: 'seletor',
+    id: 'cfg-documentoPrincipal',
+    rotulo: t('config.documento-principal'),
+    descricao: t('config.documento-principal-descricao'),
+    opcoes: opcoesDocumento,
+    atual: () => principalProjeto,
+    alterar: (valor) => onprincipal?.(valor),
+  };
+
+  const abas: Aba[] = $derived([
     {
       id: 'compilador',
       titulo: t('config.compilador'),
       icone: Hammer,
       itens: [
-        seletor(
-          'documentoPrincipal',
-          t('config.documento-principal'),
-          opcoesDocumento,
-          t('config.documento-principal-descricao'),
-        ),
+        ...(temProjeto ? [itemPrincipal] : []),
         interruptor('autoSalvar', t('config.auto-salvar'), t('config.auto-salvar-descricao')),
         interruptor('avisarVersaoNova', t('config.avisar-versao'), t('config.avisar-versao-descricao')),
         interruptor('autoCompilar', t('config.compilacao-automatica'), t('config.compilacao-automatica-descricao')),
@@ -196,7 +216,7 @@
         seletor('pdfEscuro', t('config.pdf-escuro'), () => PDF_ESCURO, t('config.pdf-escuro-descricao')),
       ],
     },
-  ];
+  ]);
 
   let aba: Aba['id'] = $state('compilador');
   // Cada abertura comeca na aba pedida (a primeira, se ninguem pediu outra).

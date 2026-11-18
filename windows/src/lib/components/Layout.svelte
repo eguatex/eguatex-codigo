@@ -90,6 +90,8 @@
     onrenomearitem?: (caminho: string, novoNome: string) => void;
     onexcluiritem?: (caminho: string) => void;
     onbaixaritem?: (caminho: string) => void;
+    /** "Definir como documento principal" de um .tex, como no Overleaf. */
+    ondefinirprincipal?: (caminho: string) => void;
     /** Botao Atualizar do painel de arquivos: relista a pasta do projeto. */
     onatualizararquivos?: () => void;
     onirparalinha?: (linha: number) => void;
@@ -165,6 +167,7 @@
     onrenomearitem,
     onexcluiritem,
     onbaixaritem,
+    ondefinirprincipal,
     onatualizararquivos,
     onirparalinha,
     onconfigurar,
@@ -526,6 +529,7 @@
             {onrenomearitem}
             {onexcluiritem}
             {onbaixaritem}
+            {ondefinirprincipal}
           />
         {:else if painelAtivo === 'busca'}
           <div class="painel-cabecalho">

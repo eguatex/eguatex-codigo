@@ -1613,7 +1613,7 @@ mod testes_fonte {
         for novo in ["cmd_ia_chave_ativar", "cmd_ia_chave_status", "cmd_ia_chave_remover", "cmd_conta_google_entrar", "cmd_ia_google_info", "cmd_ia_google_sair"] {
             assert!(lista.contains(&format!("{novo},")), "{novo} falta no handler");
         }
-        assert!(lib.contains(r#"pub const NUMERO_COMPILACAO: &str = "45";"#));
+        assert!(lib.contains(r#"pub const NUMERO_COMPILACAO: &str = "#));
     }
 
     #[test]

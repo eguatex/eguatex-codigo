@@ -1,11 +1,11 @@
 name: Sugestão
-description: Uma ideia para melhorar o ÉguaTex
+description: Uma ideia para melhorar o ÉguaTeX
 labels: ["sugestão"]
 body:
   - type: textarea
     id: ideia
     attributes:
       label: Sua ideia
-      description: O que você gostaria que o ÉguaTex fizesse e por que isso ajudaria.
+      description: O que você gostaria que o ÉguaTeX fizesse e por que isso ajudaria.
     validations:
       required: true

@@ -84,3 +84,54 @@ export function escolherPrincipal(arquivos: ArquivoTexto[], nomePasta = ''): str
 export function chavePrincipalDoProjeto(caminhoProjeto: string): string {
   return `eguatex.principal:${caminhoProjeto.replace(/\\/g, '/').replace(/\/+$/, '').toLowerCase()}`;
 }
+
+/** Parte do localStorage que o principal usa (os testes passam um armazem falso). */
+export type ArmazemPrincipal = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
+
+function armazemPadrao(): ArmazemPrincipal | null {
+  try {
+    return typeof localStorage === 'undefined' ? null : localStorage;
+  } catch {
+    return null;
+  }
+}
+
+/** Principal escolhido para o projeto (relativo, sem "/" na frente) ou '' quando e automatico. */
+export function lerPrincipalDoProjeto(caminhoProjeto: string, armazem: ArmazemPrincipal | null = armazemPadrao()): string {
+  if (!caminhoProjeto || !armazem) return '';
+  try {
+    return (armazem.getItem(chavePrincipalDoProjeto(caminhoProjeto)) ?? '').replace(/\\/g, '/').replace(/^\/+/, '');
+  } catch {
+    return '';
+  }
+}
+
+/**
+ * Grava o principal so deste projeto, como o "Definir como documento principal" do Overleaf.
+ * `relativo` vazio volta ao automatico. Sem localStorage, o principal volta a ser detectado.
+ */
+export function gravarPrincipalDoProjeto(
+  caminhoProjeto: string,
+  relativo: string,
+  armazem: ArmazemPrincipal | null = armazemPadrao(),
+): void {
+  if (!caminhoProjeto || !armazem) return;
+  const limpo = relativo.replace(/\\/g, '/').replace(/^\/+/, '');
+  try {
+    if (limpo) armazem.setItem(chavePrincipalDoProjeto(caminhoProjeto), limpo);
+    else armazem.removeItem(chavePrincipalDoProjeto(caminhoProjeto));
+  } catch {
+    // sem espaco ou sem permissao: fica o automatico
+  }
+}
+
+/**
+ * Documento compilado: o principal escolhido no projeto, se ainda existe; senao o detectado;
+ * senao o arquivo aberto; senao main.tex. Devolve relativo, sem "/" na frente.
+ */
+export function resolverPrincipal(escolhido: string, existe: (relativo: string) => boolean, detectado: string | null, aberto: string): string {
+  const limpo = (c: string) => c.replace(/\\/g, '/').replace(/^\/+/, '');
+  const escolha = limpo(escolhido);
+  if (escolha && existe(escolha)) return escolha;
+  return limpo(detectado ?? aberto) || 'main.tex';
+}

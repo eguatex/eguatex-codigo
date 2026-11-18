@@ -32,6 +32,8 @@
     onrenomearitem?: (caminho: string, novoNome: string) => void;
     onexcluiritem?: (caminho: string) => void;
     onbaixaritem?: (caminho: string) => void;
+    /** "Definir como documento principal" de um .tex, como no Overleaf. */
+    ondefinirprincipal?: (caminho: string) => void;
   }
 
   let {
@@ -49,6 +51,7 @@
     onrenomearitem,
     onexcluiritem,
     onbaixaritem,
+    ondefinirprincipal,
   }: Props = $props();
 
   const uid = $props.id();
@@ -328,6 +331,7 @@
           {onrenomearitem}
           {onexcluiritem}
           {onbaixaritem}
+          {ondefinirprincipal}
         />
         {#if auxiliaresOcultos > 0}
           <button type="button" class="ocultos" onclick={alternarAuxiliares}>

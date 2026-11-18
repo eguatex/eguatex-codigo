@@ -23,7 +23,7 @@
   import { comTarefa, escutarProgressoRust, iniciarTarefa } from "$lib/tarefas.svelte";
   import type { EstadoOrtografia } from "$lib/ortografia-idioma";
   import { faltandoNosErros, nomeDoFaltando } from "$lib/faltando";
-  import { chavePrincipalDoProjeto, temBeginDocument } from "$lib/principal";
+  import { gravarPrincipalDoProjeto, lerPrincipalDoProjeto, resolverPrincipal, temBeginDocument } from "$lib/principal";
   import {
     abasEstado,
     aplicarEstadoAbas,
@@ -529,21 +529,25 @@
 
   // Documento principal de cada projeto: guardado no localStorage com o caminho do projeto na chave.
   // Preenchido na importacao de um zip ou de arquivos do Drive.
+  // Sobe a cada troca do principal: o localStorage nao avisa o Svelte, e o selo, a estrela da aba
+  // e as Configuracoes precisam redesenhar.
+  let versaoPrincipal = $state(0);
+
   function principalGuardado(caminho: string): string {
-    if (!caminho) return '';
-    try {
-      return localStorage.getItem(chavePrincipalDoProjeto(caminho)) ?? '';
-    } catch {
-      return '';
-    }
+    void versaoPrincipal;
+    return lerPrincipalDoProjeto(caminho);
   }
 
   function guardarPrincipal(caminho: string, relativo: string) {
-    try {
-      localStorage.setItem(chavePrincipalDoProjeto(caminho), relativo.replace(/^\/+/, ''));
-    } catch {
-      // sem localStorage: o principal volta a ser detectado
-    }
+    gravarPrincipalDoProjeto(caminho, relativo);
+    versaoPrincipal++;
+  }
+
+  // "Definir como documento principal" (menu da lista de arquivos) e o seletor das Configuracoes:
+  // vale so para o projeto aberto, como no Overleaf. Vazio volta ao automatico.
+  function definirPrincipal(relativo: string) {
+    if (!caminhoProjeto) return;
+    guardarPrincipal(caminhoProjeto, relativo);
   }
 
   // Ordem: principal do projeto, o detectado (\begin{document}, como no Overleaf), main.tex da
@@ -583,11 +587,7 @@
   }
 
   function esquecerPrincipal(caminho: string) {
-    try {
-      localStorage.removeItem(chavePrincipalDoProjeto(caminho));
-    } catch {
-      // sem localStorage: nada guardado
-    }
+    guardarPrincipal(caminho, '');
   }
 
   async function carregarArvore() {
@@ -1310,14 +1310,15 @@
   });
 
   // como no Overleaf, compila o documento principal, nao o arquivo aberto
+  // A escolha e de cada projeto (zip, Drive, menu da lista ou Configuracoes gravam no mesmo lugar).
+  // A preferencia global antiga (documentoPrincipal) nao vale mais: ela trocava o principal de todos.
   function documentoPrincipal(): string {
-    const guardado = principalGuardado(caminhoProjeto);
-    const doProjeto = guardado && existeNaArvore(arquivosProjeto, comBarra(guardado)) ? comBarra(guardado) : '';
-    const escolhido = doProjeto || (preferencias.documentoPrincipal ? comBarra(preferencias.documentoPrincipal) : '');
-    const principal = escolhido && existeNaArvore(arquivosProjeto, escolhido)
-      ? escolhido
-      : encontrarMainTex(arquivosProjeto) ?? arquivoAtual;
-    return principal.replace(/^\/+/, '') || 'main.tex';
+    return resolverPrincipal(
+      principalGuardado(caminhoProjeto),
+      (rel) => existeNaArvore(arquivosProjeto, comBarra(rel)),
+      encontrarMainTex(arquivosProjeto),
+      arquivoAtual,
+    );
   }
 
   function nomeDoMotor(motor: string): string {
@@ -2322,6 +2323,7 @@ ${resultado.log || ''}`
     onrenomearitem={renomearItem}
     onexcluiritem={excluirItem}
     onbaixaritem={baixarItem}
+    ondefinirprincipal={definirPrincipal}
     onatualizararquivos={() => void recarregarArvore()}
     oninserirtexto={(t) => editorAtivo?.inserir(t)}
     {nomeProjeto}
@@ -2409,6 +2411,9 @@ ${resultado.log || ''}`
   visivel={configuracoesVisivel}
   abaInicial={configuracoesAba}
   arquivosTex={caminhosTex(arquivosProjeto)}
+  principalProjeto={caminhoProjeto ? comBarra(principalGuardado(caminhoProjeto)).replace(/^\/$/, '') : ''}
+  temProjeto={!!caminhoProjeto}
+  onprincipal={definirPrincipal}
   onfechar={() => (configuracoesVisivel = false)}
 />
 
@@ -3115,7 +3120,9 @@ ${resultado.log || ''}`
   }
 
   .modal {
-    width: 420px;
+    /* celular em pe tem 360 a 412 px: o modal cabe na tela e o botao Criar aparece */
+    width: min(420px, calc(100vw - 32px));
+    box-sizing: border-box;
     padding: 22px;
     border: 1px solid var(--borda);
     border-radius: 12px;
